@@ -34,11 +34,11 @@ namespace Tools
 
             for (int i = 0; i < length; i++)
             {
-                char c = (char)(random.Next(1, 94) + 33);
+                char c = (char)(random.Next(0, 94) + 33);
                 password += c;
             }
 
-            throw new NotImplementedException();
+            return password;
         }
     }
 }

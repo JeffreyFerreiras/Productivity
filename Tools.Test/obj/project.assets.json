@@ -8548,10 +8548,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Git\\Tools\\Tools.Test\\Tools.Test.csproj",
+      "projectUniqueName": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools.Test\\Tools.Test.csproj",
       "projectName": "Tools.Test",
-      "projectPath": "C:\\Projects\\Git\\Tools\\Tools.Test\\Tools.Test.csproj",
-      "outputPath": "C:\\Projects\\Git\\Tools\\Tools.Test\\obj\\",
+      "projectPath": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools.Test\\Tools.Test.csproj",
+      "outputPath": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
@@ -8559,8 +8559,8 @@
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "C:\\Projects\\Git\\Tools\\Tools\\Tools.csproj": {
-              "projectPath": "C:\\Projects\\Git\\Tools\\Tools\\Tools.csproj"
+            "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools\\Tools.csproj": {
+              "projectPath": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools\\Tools.csproj"
             }
           }
         }

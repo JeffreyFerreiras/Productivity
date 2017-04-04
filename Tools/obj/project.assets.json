@@ -4025,10 +4025,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Git\\Tools\\Tools\\Tools.csproj",
+      "projectUniqueName": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools\\Tools.csproj",
       "projectName": "Tools",
-      "projectPath": "C:\\Projects\\Git\\Tools\\Tools\\Tools.csproj",
-      "outputPath": "C:\\Projects\\Git\\Tools\\Tools\\obj\\",
+      "projectPath": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools\\Tools.csproj",
+      "outputPath": "C:\\Users\\sephn\\Source\\Repos\\Tools\\Tools\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netstandard1.6"

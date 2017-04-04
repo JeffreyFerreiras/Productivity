@@ -12,3 +12,10 @@ C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfo.cs
 C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\UnitTestTools.dll
 C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\UnitTestTools.pdb
 C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\Tools.csprojResolveAssemblyReference.cache
+C:\Users\sephn\Source\Repos\Tools\Tools\bin\Debug\netstandard1.6\UnitTestTools.deps.json
+C:\Users\sephn\Source\Repos\Tools\Tools\bin\Debug\netstandard1.6\UnitTestTools.dll
+C:\Users\sephn\Source\Repos\Tools\Tools\bin\Debug\netstandard1.6\UnitTestTools.pdb
+C:\Users\sephn\Source\Repos\Tools\Tools\obj\Debug\netstandard1.6\Tools.csprojResolveAssemblyReference.cache
+C:\Users\sephn\Source\Repos\Tools\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfo.cs
+C:\Users\sephn\Source\Repos\Tools\Tools\obj\Debug\netstandard1.6\UnitTestTools.dll
+C:\Users\sephn\Source\Repos\Tools\Tools\obj\Debug\netstandard1.6\UnitTestTools.pdb
