@@ -1,0 +1,14 @@
+C:\Projects\Git\Tools\UnitTestTools\bin\Debug\netstandard1.6\UnitTestTools.deps.json
+C:\Projects\Git\Tools\UnitTestTools\bin\Debug\netstandard1.6\UnitTestTools.dll
+C:\Projects\Git\Tools\UnitTestTools\bin\Debug\netstandard1.6\UnitTestTools.pdb
+C:\Projects\Git\Tools\UnitTestTools\obj\Debug\netstandard1.6\Tools.csprojResolveAssemblyReference.cache
+C:\Projects\Git\Tools\UnitTestTools\obj\Debug\netstandard1.6\Tools.AssemblyInfo.cs
+C:\Projects\Git\Tools\UnitTestTools\obj\Debug\netstandard1.6\UnitTestTools.dll
+C:\Projects\Git\Tools\UnitTestTools\obj\Debug\netstandard1.6\UnitTestTools.pdb
+C:\Projects\Git\Tools\Tools\bin\Debug\netstandard1.6\UnitTestTools.deps.json
+C:\Projects\Git\Tools\Tools\bin\Debug\netstandard1.6\UnitTestTools.dll
+C:\Projects\Git\Tools\Tools\bin\Debug\netstandard1.6\UnitTestTools.pdb
+C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfo.cs
+C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\UnitTestTools.dll
+C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\UnitTestTools.pdb
+C:\Projects\Git\Tools\Tools\obj\Debug\netstandard1.6\Tools.csprojResolveAssemblyReference.cache
