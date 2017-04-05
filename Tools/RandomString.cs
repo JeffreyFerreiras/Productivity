@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Tools
 {
@@ -26,7 +23,7 @@ namespace Tools
 
             return result;
         }
-
+        
         public static string NextPassword(int length = 8)
         {
             var random = new Random();
