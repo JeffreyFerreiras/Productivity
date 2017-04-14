@@ -40,3 +40,17 @@ C:\Projects\this.Git\tools\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.csprojR
 C:\Projects\this.Git\tools\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.AssemblyInfo.cs
 C:\Projects\this.Git\tools\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.dll
 C:\Projects\this.Git\tools\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.pdb
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Tools.Test.deps.json
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Tools.Test.runtimeconfig.json
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Tools.Test.runtimeconfig.dev.json
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Tools.Test.dll
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\Tools.Test.pdb
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\UnitTestTools.dll
+C:\git\Tools.NET-Core\Tools.Test\bin\Debug\netcoreapp1.1\UnitTestTools.pdb
+C:\git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.csprojResolveAssemblyReference.cache
+C:\git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.AssemblyInfo.cs
+C:\git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.dll
+C:\git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.pdb
