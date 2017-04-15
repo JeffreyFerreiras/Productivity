@@ -350,7 +350,7 @@
       },
       "unittesttools/1.0.0": {
         "runtime": {
-          "UnitTestTools.dll": {}
+          "Tools.dll": {}
         }
       }
     }

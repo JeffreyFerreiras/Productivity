@@ -2824,6 +2824,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
+          "Microsoft.CSharp": "4.3.0",
           "NETStandard.Library": "1.6.0"
         }
       }
@@ -8543,15 +8544,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NinJask\\.nuget\\packages\\": {}
+    "C:\\Users\\sephn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "projectUniqueName": "C:\\Projects\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "projectName": "Tools.Test",
-      "projectPath": "C:\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
-      "outputPath": "C:\\Git\\Tools.NET-Core\\Tools.Test\\obj\\",
+      "projectPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "outputPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
@@ -8559,8 +8560,8 @@
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "C:\\Git\\Tools.NET-Core\\Tools\\Tools.csproj": {
-              "projectPath": "C:\\Git\\Tools.NET-Core\\Tools\\Tools.csproj"
+            "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\Tools.csproj": {
+              "projectPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\Tools.csproj"
             }
           }
         }
