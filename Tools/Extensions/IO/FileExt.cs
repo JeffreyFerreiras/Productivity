@@ -4,19 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
+using Tools.Extensions.Validation;
 
 namespace Tools.Extensions.IO
 {
     public static class FileExt
     {
-        public static bool CreateDirectory(string path)
+        public static bool CreateDirectory(this string path)
         {
-            FileAttributes attr = File.GetAttributes(path);
+            if (!path.IsValid()) return false;
 
-            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                Directory.CreateDirectory(path);
-            else
-                Directory.CreateDirectory(Path.GetDirectoryName(path));
+            if(path != Path.GetPathRoot(path))
+            {
+                DirectoryInfo parent = Directory.GetParent(path);
+                parent?.FullName.CreateDirectory();
+            }
+            
+            Directory.CreateDirectory(path);
 
             return Directory.Exists(path);
         }

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 
 namespace Tools
 {
+    using Extensions.Validation;
+
     public class RandomString
     {
         /// <summary>
@@ -24,7 +27,12 @@ namespace Tools
             return result;
         }
         
-        public static string NextPassword(int length = 8)
+        /// <summary>
+        /// Generates a string with specified length that meet minumum password requireents.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string NextPassword(int length = 8, int upperCount = 1, int numbersCount=1)
         {
             var random = new Random();
             string password = string.Empty;
@@ -34,7 +42,6 @@ namespace Tools
                 char c = (char)(random.Next(0, 94) + 33);
                 password += c;
             }
-
             return password;
         }
     }

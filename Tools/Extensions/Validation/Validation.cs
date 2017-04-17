@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 
 
-namespace Tools.Extensions
+namespace Tools.Extensions.Validation
 {
     /// <summary>
     /// Provides common validation functionality.
@@ -13,7 +13,6 @@ namespace Tools.Extensions
 
     public static class Validation
     {
-
         public static bool IsNumber(this object value)
         {
             return value is sbyte
@@ -29,33 +28,33 @@ namespace Tools.Extensions
                 || value is decimal;
         }
 
-        public static bool ValidateAllProps(this object o)
+        public static bool ValidateProperties(this object o)
         {
-            if(o == null) return false;
+            if (o == null) return false;
 
-            foreach(var m in o.GetType().GetTypeInfo().GetProperties())
-                if(!m.GetValue(o).IsValid()) return false;
+            foreach (var m in o.GetType().GetTypeInfo().GetProperties())
+                if (!m.GetValue(o).IsValid()) return false;
 
             return true;
         }
 
         public static bool IsValid(this object o)
         {
-            if(o.IsNumber()) return Convert.ToInt32(o) > 0;
-            if(o == null) return false;
-            if(o is string && string.IsNullOrWhiteSpace(o.ToString())) return false;
-            if(o.HasProp("Count")) return (int) o.GetPropertyVal("Count") > 0;
+            if (o.IsNumber()) return Convert.ToInt32(o) > 0;
+            if (o == null) return false;
+            if (o is string && string.IsNullOrWhiteSpace(o.ToString())) return false;
+            if (o.HasProp("Count")) return (int)o.GetPropertyVal("Count") > 0;
 
             return true;
         }
 
         public static bool IsValidNumber(this string num)
         {
-            if(!num.IsValid()) return false;
+            if (!num.IsValid()) return false;
 
-            foreach(var c in num)
+            foreach (var c in num)
             {
-                if(c >= 48 && c <= 57) continue;
+                if (c >= 48 && c <= 57) continue;
 
                 return false;
             }
@@ -63,7 +62,7 @@ namespace Tools.Extensions
             return true;
         }
 
-        public static  bool OnlyLetters(this string letters)
+        public static bool OnlyLetters(this string letters)
         {
             foreach (var letter in letters)
             {
@@ -75,11 +74,40 @@ namespace Tools.Extensions
             return true;
         }
 
+        public static bool HasCharType(this string pw, Predicate<char> predicate, int count = 1)
+        {
+            foreach (char letter in pw)
+            {
+                if (predicate(letter)) count--;
+                if (count <= 0) return true;
+            }
+
+            return false;
+        }
+
+        public static bool HasUpper(this string pw, int count = 1)
+        {
+            Predicate<char> predicate = c => char.IsUpper(c);
+            return pw.HasCharType(predicate, count);
+        }
+
+        public static bool HasLower(this string pw, int count = 1)
+        {
+            Predicate<char> predicate = c => char.IsLower(c);
+            return pw.HasCharType(predicate, count);
+        }
+
+        public static bool HasNumber(this string pw, int count = 1)
+        {
+            Predicate<char> predicate = c => char.IsDigit(c);
+            return pw.HasCharType(predicate, count);
+        }
+
         private static object GetPropertyVal(this object o, string property)
         {
             PropertyInfo p = o.GetType().GetTypeInfo().GetProperty(property);
 
-            if(p != null && p.CanRead)
+            if (p != null && p.CanRead)
             {
                 dynamic val = p.GetValue(o);
                 return val;

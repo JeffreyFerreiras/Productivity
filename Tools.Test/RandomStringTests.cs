@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tools.Test
 {
-    using Extensions;
+    using Tools.Extensions.Validation;
 
     [TestClass]
     public class RandomStringTests
