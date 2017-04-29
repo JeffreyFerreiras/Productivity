@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v1.6/",
-    "signature": "0bec805a3db2826d52757bebf4e075c65daeac33"
+    "signature": "e17c05b2a671d4d4efc1c962a535f95e17a8e18e"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,12 +9,60 @@
     ".NETStandard,Version=v1.6/": {
       "tools/1.0.0": {
         "dependencies": {
+          "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
           "Microsoft.CSharp": "4.3.0",
           "NETStandard.Library": "1.6.0",
           "System.Linq.Dynamic.Core": "1.0.6.13"
         },
         "runtime": {
           "Tools.dll": {}
+        }
+      },
+      "corecompat.system.componentmodel.attributes/4.2.3-rg": {
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.0.0",
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel": "4.3.0",
+          "System.ComponentModel.Primitives": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll": {}
+        }
+      },
+      "corecompat.system.componentmodel.dataannotations/4.2.3-r7": {
+        "dependencies": {
+          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rg",
+          "CoreCompat.System.ComponentModel.Design": "4.2.3-r3",
+          "System.ComponentModel.Annotations": "4.1.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll": {}
+        }
+      },
+      "corecompat.system.componentmodel.design/4.2.3-r3": {
+        "dependencies": {
+          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rg",
+          "System.Collections": "4.3.0",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel": "4.3.0",
+          "System.ComponentModel.Primitives": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
         }
       },
       "microsoft.csharp/4.3.0": {
@@ -47,6 +95,18 @@
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
+        }
+      },
+      "microsoft.win32.registry/4.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "System.Collections": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.Handles": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0"
         }
       },
       "netstandard.library/1.6.0": {
@@ -198,6 +258,24 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.ComponentModel.dll": {}
+        }
+      },
+      "system.componentmodel.annotations/4.1.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.ComponentModel": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Reflection.Extensions": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.ComponentModel.Annotations.dll": {}
         }
       },
       "system.componentmodel.primitives/4.3.0": {
@@ -892,6 +970,27 @@
       "serviceable": false,
       "sha512": ""
     },
+    "corecompat.system.componentmodel.attributes/4.2.3-rg": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M6wlcIE3i30JhRZNF/tfE0mUShLhnc54bKrRLCGHU9Cs9XvZ09O+7dtBzDSj5f5Y8RgRF5vT9gxySTnT7pVAKg==",
+      "path": "corecompat.system.componentmodel.attributes/4.2.3-rg",
+      "hashPath": "corecompat.system.componentmodel.attributes.4.2.3-rg.nupkg.sha512"
+    },
+    "corecompat.system.componentmodel.dataannotations/4.2.3-r7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-k02b4WM6GWw78s04yuwDjrjeY3eutgwo0L7g+xq6F9j8flgJif14DDQkD/ijl5HDADa53UStmIrmjNvbwpLE5A==",
+      "path": "corecompat.system.componentmodel.dataannotations/4.2.3-r7",
+      "hashPath": "corecompat.system.componentmodel.dataannotations.4.2.3-r7.nupkg.sha512"
+    },
+    "corecompat.system.componentmodel.design/4.2.3-r3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wjbA4GTTAB0cVbKaxRJSGPwdb8svbCLfTLsd1YR/NKWeuiuPPhfuLujW+RVCOWl7twIVyf35VTya63S6THEXbw==",
+      "path": "corecompat.system.componentmodel.design/4.2.3-r3",
+      "hashPath": "corecompat.system.componentmodel.design.4.2.3-r3.nupkg.sha512"
+    },
     "microsoft.csharp/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -919,6 +1018,13 @@
       "sha512": "sha512-fQnBHO9DgcmkC9dYSJoBqo6sH1VJwJprUHh8F3hbcRlxiQiBUuTntdk8tUwV490OqC2kQUrinGwZyQHTieuXRA==",
       "path": "microsoft.win32.primitives/4.0.1",
       "hashPath": "microsoft.win32.primitives.4.0.1.nupkg.sha512"
+    },
+    "microsoft.win32.registry/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q+eLtROUAQ3OxYA5mpQrgyFgzLQxIyrfT2eLpYX5IEPlHmIio2nh4F5bgOaQoGOV865kFKZZso9Oq9RlazvXtg==",
+      "path": "microsoft.win32.registry/4.0.0",
+      "hashPath": "microsoft.win32.registry.4.0.0.nupkg.sha512"
     },
     "netstandard.library/1.6.0": {
       "type": "package",
@@ -1003,6 +1109,13 @@
       "sha512": "sha512-VyGn1jGRZVfxnh8EdvDCi71v3bMXrsu8aYJOwoV7SNDLVhiEqwP86pPMyRGsDsxhXAm2b3o9OIqeETfN5qfezw==",
       "path": "system.componentmodel/4.3.0",
       "hashPath": "system.componentmodel.4.3.0.nupkg.sha512"
+    },
+    "system.componentmodel.annotations/4.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U7MVnEPtQHmjevkluecPA7nkHXR3QHvs1JAURt2vWO+SPfbkM2pBi+xkaC03DECqcErVvi9SmmOZtgPA3Oo7YQ==",
+      "path": "system.componentmodel.annotations/4.1.0",
+      "hashPath": "system.componentmodel.annotations.4.1.0.nupkg.sha512"
     },
     "system.componentmodel.primitives/4.3.0": {
       "type": "package",

@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Tools"
+    "\\Tools",
+    "\\Tools.Test",
+    "\\Tools.Test\\Extensions"
   ],
-  "SelectedNode": "\\Tools.sln",
+  "SelectedNode": "\\Tools.Test\\RandomStringTests.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
     <PackageReference Include="microsoft.csharp" Version="4.3.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.1.11" />

@@ -17,7 +17,11 @@ namespace Tools.Test.Extensions.IO
             dir.CreateDirectory();
 
             Assert.IsTrue(Directory.Exists(dir));
+        }
 
+        [TestCleanup]
+        public void CleanDir()
+        {
             Directory.Delete(@"C:\Test\Test\test");
             Directory.Delete(@"C:\Test\test");
             Directory.Delete(@"C:\Test\");

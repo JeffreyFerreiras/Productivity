@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "d7ee5e4b6120f38b422a060c10c0b02f60e948f6"
+    "signature": "551f53fb6c55037f49cfd2d8f0ff90ac80f8f997"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v1.1": {
       "tools.test/1.0.0": {
         "dependencies": {
+          "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
           "MSTest.TestAdapter": "1.1.11",
           "MSTest.TestFramework": "1.1.11",
           "Microsoft.NET.Test.Sdk": "15.0.0",
@@ -16,6 +17,37 @@
         },
         "runtime": {
           "Tools.Test.dll": {}
+        }
+      },
+      "corecompat.system.componentmodel.attributes/4.2.3-rg": {
+        "dependencies": {
+          "System.Collections.NonGeneric": "4.3.0",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel.Primitives": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll": {}
+        }
+      },
+      "corecompat.system.componentmodel.dataannotations/4.2.3-r7": {
+        "dependencies": {
+          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rg",
+          "CoreCompat.System.ComponentModel.Design": "4.2.3-r3"
+        },
+        "runtime": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll": {}
+        }
+      },
+      "corecompat.system.componentmodel.design/4.2.3-r3": {
+        "dependencies": {
+          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rg",
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel.Primitives": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
         }
       },
       "microsoft.net.test.sdk/15.0.0": {
@@ -360,6 +392,7 @@
       },
       "unittesttools/1.0.0": {
         "dependencies": {
+          "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
           "System.Linq.Dynamic.Core": "1.0.6.13"
         },
         "runtime": {
@@ -373,6 +406,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "corecompat.system.componentmodel.attributes/4.2.3-rg": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M6wlcIE3i30JhRZNF/tfE0mUShLhnc54bKrRLCGHU9Cs9XvZ09O+7dtBzDSj5f5Y8RgRF5vT9gxySTnT7pVAKg==",
+      "path": "corecompat.system.componentmodel.attributes/4.2.3-rg",
+      "hashPath": "corecompat.system.componentmodel.attributes.4.2.3-rg.nupkg.sha512"
+    },
+    "corecompat.system.componentmodel.dataannotations/4.2.3-r7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-k02b4WM6GWw78s04yuwDjrjeY3eutgwo0L7g+xq6F9j8flgJif14DDQkD/ijl5HDADa53UStmIrmjNvbwpLE5A==",
+      "path": "corecompat.system.componentmodel.dataannotations/4.2.3-r7",
+      "hashPath": "corecompat.system.componentmodel.dataannotations.4.2.3-r7.nupkg.sha512"
+    },
+    "corecompat.system.componentmodel.design/4.2.3-r3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wjbA4GTTAB0cVbKaxRJSGPwdb8svbCLfTLsd1YR/NKWeuiuPPhfuLujW+RVCOWl7twIVyf35VTya63S6THEXbw==",
+      "path": "corecompat.system.componentmodel.design/4.2.3-r3",
+      "hashPath": "corecompat.system.componentmodel.design.4.2.3-r3.nupkg.sha512"
     },
     "microsoft.net.test.sdk/15.0.0": {
       "type": "package",

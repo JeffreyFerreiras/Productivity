@@ -13,6 +13,8 @@ namespace Tools.Extensions
 
     public static class Validation
     {
+        public static bool IsNullOrWhiteSpace(this string s) => string.IsNullOrWhiteSpace(s);
+
         public static bool IsNumber(this object value)
         {
             return value is sbyte

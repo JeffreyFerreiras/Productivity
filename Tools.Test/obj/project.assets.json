@@ -2,6 +2,65 @@
   "version": 2,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
+      "CoreCompat.System.ComponentModel.Attributes/4.2.3-rg": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Win32.Registry": "4.0.0",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.ComponentModel": "4.0.1",
+          "System.ComponentModel.Primitives": "4.1.0",
+          "System.ComponentModel.TypeConverter": "4.1.0",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Diagnostics.Tools": "4.0.1",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Text.RegularExpressions": "4.1.0",
+          "System.Threading": "4.0.11"
+        },
+        "compile": {
+          "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll": {}
+        }
+      },
+      "CoreCompat.System.ComponentModel.DataAnnotations/4.2.3-r7": {
+        "type": "package",
+        "dependencies": {
+          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rg",
+          "CoreCompat.System.ComponentModel.Design": "4.2.3-r3",
+          "System.ComponentModel.Annotations": "4.1.0",
+          "System.Linq": "4.1.0",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Extensions": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll": {}
+        }
+      },
+      "CoreCompat.System.ComponentModel.Design/4.2.3-r3": {
+        "type": "package",
+        "dependencies": {
+          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rf",
+          "System.Collections": "4.0.11",
+          "System.Collections.Specialized": "4.0.1",
+          "System.ComponentModel": "4.0.1",
+          "System.ComponentModel.Primitives": "4.1.0",
+          "System.ComponentModel.TypeConverter": "4.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -588,7 +647,7 @@
           "System.Runtime.InteropServices": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/Microsoft.Win32.Registry.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/Microsoft.Win32.Registry.dll": {
@@ -992,7 +1051,7 @@
           "System.Threading": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Collections.Specialized.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
@@ -2848,6 +2907,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
+          "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
           "Microsoft.CSharp": "4.3.0",
           "NETStandard.Library": "1.6.0",
           "System.Linq.Dynamic.Core": "1.0.6.13"
@@ -2856,6 +2916,36 @@
     }
   },
   "libraries": {
+    "CoreCompat.System.ComponentModel.Attributes/4.2.3-rg": {
+      "sha512": "M6wlcIE3i30JhRZNF/tfE0mUShLhnc54bKrRLCGHU9Cs9XvZ09O+7dtBzDSj5f5Y8RgRF5vT9gxySTnT7pVAKg==",
+      "type": "package",
+      "path": "corecompat.system.componentmodel.attributes/4.2.3-rg",
+      "files": [
+        "corecompat.system.componentmodel.attributes.4.2.3-rg.nupkg.sha512",
+        "corecompat.system.componentmodel.attributes.nuspec",
+        "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll"
+      ]
+    },
+    "CoreCompat.System.ComponentModel.DataAnnotations/4.2.3-r7": {
+      "sha512": "k02b4WM6GWw78s04yuwDjrjeY3eutgwo0L7g+xq6F9j8flgJif14DDQkD/ijl5HDADa53UStmIrmjNvbwpLE5A==",
+      "type": "package",
+      "path": "corecompat.system.componentmodel.dataannotations/4.2.3-r7",
+      "files": [
+        "corecompat.system.componentmodel.dataannotations.4.2.3-r7.nupkg.sha512",
+        "corecompat.system.componentmodel.dataannotations.nuspec",
+        "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll"
+      ]
+    },
+    "CoreCompat.System.ComponentModel.Design/4.2.3-r3": {
+      "sha512": "wjbA4GTTAB0cVbKaxRJSGPwdb8svbCLfTLsd1YR/NKWeuiuPPhfuLujW+RVCOWl7twIVyf35VTya63S6THEXbw==",
+      "type": "package",
+      "path": "corecompat.system.componentmodel.design/4.2.3-r3",
+      "files": [
+        "corecompat.system.componentmodel.design.4.2.3-r3.nupkg.sha512",
+        "corecompat.system.componentmodel.design.nuspec",
+        "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll"
+      ]
+    },
     "Libuv/1.9.1": {
       "sha512": "uqX2Frwf9PW8MaY7PRNY6HM5BpW1D8oj1EdqzrmbEFD5nH63Yat3aEjN/tws6Tw6Fk7LwmLBvtUh32tTeTaHiA==",
       "type": "package",
@@ -8588,6 +8678,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
+      "CoreCompat.System.ComponentModel.DataAnnotations >= 4.2.3-r7",
       "MSTest.TestAdapter >= 1.1.11",
       "MSTest.TestFramework >= 1.1.11",
       "Microsoft.NET.Test.Sdk >= 15.0.0",
@@ -8648,6 +8739,10 @@
           "microsoft.csharp": {
             "target": "Package",
             "version": "4.3.0"
+          },
+          "CoreCompat.System.ComponentModel.DataAnnotations": {
+            "target": "Package",
+            "version": "4.2.3-r7"
           }
         }
       }
