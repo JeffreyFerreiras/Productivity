@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 
 
-namespace Tools.Extensions.Validation
+namespace Tools.Extensions
 {
     /// <summary>
     /// Provides common validation functionality.
@@ -101,19 +101,6 @@ namespace Tools.Extensions.Validation
         {
             Predicate<char> predicate = c => char.IsDigit(c);
             return pw.HasCharType(predicate, count);
-        }
-
-        private static object GetPropertyVal(this object o, string property)
-        {
-            PropertyInfo p = o.GetType().GetTypeInfo().GetProperty(property);
-
-            if (p != null && p.CanRead)
-            {
-                dynamic val = p.GetValue(o);
-                return val;
-            }
-
-            return -1; //something went wrong.
         }
 
         public static bool HasProp(this object o, string propName)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
-using Tools.Extensions.Validation;
+using Tools.Extensions;
 
 namespace Tools.Extensions.IO
 {
@@ -12,8 +12,8 @@ namespace Tools.Extensions.IO
     {
         public static bool CreateDirectory(this string path)
         {
-            if (!path.IsValid()) return false;
-
+            if(!path.IsValid()) return false;
+            
             if(path != Path.GetPathRoot(path))
             {
                 DirectoryInfo parent = Directory.GetParent(path);

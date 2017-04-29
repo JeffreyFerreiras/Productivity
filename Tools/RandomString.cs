@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Tools
 {
-    using Extensions.Validation;
+    using Extensions;
 
     public class RandomString
     {

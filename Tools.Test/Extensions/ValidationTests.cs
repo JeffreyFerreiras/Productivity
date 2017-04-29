@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tools.Extensions.Validation;
+using Tools.Extensions;
 
-namespace Tools.Test.Extensions.Validation
+namespace Tools.Test.Extensions
 {
     [TestClass]
     public class ValidationTests
