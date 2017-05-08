@@ -11,7 +11,7 @@ namespace Tools.Test
         [TestMethod]
         public void Next_Test()
         {
-            string randLetters = RandomString.Next(6);
+            string randLetters = RandomString.NextAlphabet(6);
 
             Assert.IsTrue(randLetters.Length == 6);
             Assert.IsTrue(randLetters.OnlyLetters());
@@ -22,6 +22,20 @@ namespace Tools.Test
         {
             string pw = RandomString.NextPassword(8);
             Assert.IsTrue(pw.Length == 8);
+        }
+
+        [TestMethod]
+        public void NextRandomized_Test()
+        {
+            int count = 15;
+
+            while(count > 0)
+            {
+                string randomized = RandomString.NextRandomized(8);
+                Assert.IsNotNull(randomized);
+                Assert.IsTrue(!string.IsNullOrWhiteSpace(randomized));
+                count--;
+            }
         }
     }
 }

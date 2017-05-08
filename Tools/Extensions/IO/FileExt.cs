@@ -21,7 +21,6 @@ namespace Tools.Extensions.IO
             }
             
             Directory.CreateDirectory(path);
-
             return Directory.Exists(path);
         }
     }

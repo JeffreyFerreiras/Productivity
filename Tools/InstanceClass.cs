@@ -8,7 +8,7 @@ namespace Tools
     {
         public string Next(int len = 8)
         {
-            return RandomString.Next(len);
+            return RandomString.NextAlphabet(len);
 
         }
     }

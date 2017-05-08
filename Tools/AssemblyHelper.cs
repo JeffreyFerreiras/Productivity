@@ -16,7 +16,7 @@ namespace Tools
                 ContentType = AssemblyContentType.Default,
             };
 
-            var assembly = Assembly.Load(assemblyRef);
+            Assembly assembly = Assembly.Load(assemblyRef);
             dynamic instance = assembly.CreateInstance(module, true);
 
             return instance;

@@ -12,7 +12,7 @@ namespace Tools
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string Next(int length = 8)
+        public static string NextAlphabet(int length = 8)
         {
             var random = new Random();
             string result = string.Empty;
@@ -26,13 +26,13 @@ namespace Tools
 
             return result;
         }
-        
+
         /// <summary>
         /// Generates a string with specified length that meet minumum password requireents.
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string NextPassword(int length = 8, int upperCount = 1, int numbersCount=1)
+        public static string NextPassword(int length = 8, int upperCount = 1, int numbersCount = 1)
         {
             var random = new Random();
             string password = string.Empty;
@@ -43,6 +43,25 @@ namespace Tools
                 password += c;
             }
             return password;
+        }
+
+        /// <summary>
+        /// Creates a randomized string of characters that includes special characters.
+        /// </summary>
+        /// <param name="len"></param>
+        /// <returns></returns>
+        public static string NextRandomized(int len =8)
+        {
+            string rand = string.Empty;
+            var random = new Random();
+
+            for (int i = 0; i < len; i++)
+            {
+                char c = (char)random.Next(0, 128);
+                rand += c;
+            }
+    
+            return rand;
         }
     }
 }
