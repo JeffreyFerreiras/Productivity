@@ -9,7 +9,6 @@ namespace Tools
         public string Next(int len = 8)
         {
             return RandomString.NextAlphabet(len);
-
         }
     }
 }

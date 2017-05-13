@@ -4097,7 +4097,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "pUPkXqeKXr9vblZgfkMJkgmN4EMrv/7UzH9VEuMxPYyoWY3E3/Bm0KN6n0SlLMly2MKAqTBTd0L8hsB1+iIk3w==",
+      "sha512": "hvqB3Lb5jF4mVzbOvRiek0UDhM11VYVUZ3TluLL7E2rs5raQQQdXr1nYT7Rnai+7ZHYtwpBrYh4NwTcukgOAQQ==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -4134,7 +4134,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "YwlWXHWdqrQFR1l7+vLYZAMblhHkfHXLo8QHQVSQsGJzLtKnQzkpxqr8bNQR4eWFhdi8+jQLuD9Nh3Bw4JAdew==",
+      "sha512": "Uu9HCqh///L/IbJeImgG6Z79jiOzGcSf/HcnkLsaVlpylicEGQAHjJbLXH0pAJ3jtyZ5UkszFv/JUir9kDuF+w==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -4373,7 +4373,7 @@
       ]
     },
     "System.ComponentModel.Primitives/4.3.0": {
-      "sha512": "DyHZvu4zkmOhZ26HNIIbsnVJJwQ6C5J/1xD5vRXnBbIZq0RwyJRsho3TOF1lGnyyaGROHZZyCW4r2zlu4i3gUw==",
+      "sha512": "BkO00DfZEMObsoyhDZCNeKY3vleDk929zevlcUXmQAFRuQ115m+kDtCRNHS+WCbp7BYrJ3l85BiYhZla/Q1GVw==",
       "type": "package",
       "path": "system.componentmodel.primitives/4.3.0",
       "files": [
@@ -4410,7 +4410,7 @@
       ]
     },
     "System.ComponentModel.TypeConverter/4.3.0": {
-      "sha512": "HVBXlZunDZJYrIjWgwahCMu00g0qSpooEeWyn0JADPxBrLjE4zb0ebIruogWzhYOs1zP1HhkWhV35GasRztueA==",
+      "sha512": "FwvdCCVZlkKh/R95PDGAF3imjArcNBb+fz3u6flgfzXWZHj8eee/FqOeN5x5UC8CYGLezg/+zGZFP3WbfWpasg==",
       "type": "package",
       "path": "system.componentmodel.typeconverter/4.3.0",
       "files": [
@@ -8689,15 +8689,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sephn\\.nuget\\packages\\": {}
+    "C:\\Users\\NinJask\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "projectUniqueName": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "projectName": "Tools.Test",
-      "projectPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
-      "outputPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools.Test\\obj\\",
+      "projectPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "outputPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
@@ -8705,8 +8705,8 @@
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\Tools.csproj": {
-              "projectPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\Tools.csproj"
+            "D:\\Development\\Git\\Tools.NET-Core\\Tools\\Tools.csproj": {
+              "projectPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools\\Tools.csproj"
             }
           }
         }

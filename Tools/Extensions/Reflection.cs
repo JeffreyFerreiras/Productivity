@@ -6,6 +6,7 @@ using System.Text;
 namespace Tools.Extensions
 {
     using Exceptions;
+
     public static class Reflection
     {
         public static dynamic GetPropertyVal(this object o, string property)

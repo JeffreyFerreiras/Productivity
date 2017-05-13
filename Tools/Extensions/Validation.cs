@@ -41,9 +41,9 @@ namespace Tools.Extensions
         }
 
         public static bool IsValid(this object o)
-        {
-            if (o.IsNumber()) return Convert.ToInt32(o) > 0;
+        {        
             if (o == null) return false;
+            if (o.IsNumber()) return Convert.ToInt32(o) > 0;
             if (o is string && string.IsNullOrWhiteSpace(o.ToString())) return false;
             if (o.HasProp("Count")) return (int)o.GetPropertyVal("Count") > 0;
 
@@ -73,6 +73,7 @@ namespace Tools.Extensions
 
                 return false;
             }
+
             return true;
         }
 
