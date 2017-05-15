@@ -473,14 +473,14 @@
     "system.collections.nongeneric/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hvqB3Lb5jF4mVzbOvRiek0UDhM11VYVUZ3TluLL7E2rs5raQQQdXr1nYT7Rnai+7ZHYtwpBrYh4NwTcukgOAQQ==",
+      "sha512": "sha512-pUPkXqeKXr9vblZgfkMJkgmN4EMrv/7UzH9VEuMxPYyoWY3E3/Bm0KN6n0SlLMly2MKAqTBTd0L8hsB1+iIk3w==",
       "path": "system.collections.nongeneric/4.3.0",
       "hashPath": "system.collections.nongeneric.4.3.0.nupkg.sha512"
     },
     "system.collections.specialized/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Uu9HCqh///L/IbJeImgG6Z79jiOzGcSf/HcnkLsaVlpylicEGQAHjJbLXH0pAJ3jtyZ5UkszFv/JUir9kDuF+w==",
+      "sha512": "sha512-YwlWXHWdqrQFR1l7+vLYZAMblhHkfHXLo8QHQVSQsGJzLtKnQzkpxqr8bNQR4eWFhdi8+jQLuD9Nh3Bw4JAdew==",
       "path": "system.collections.specialized/4.3.0",
       "hashPath": "system.collections.specialized.4.3.0.nupkg.sha512"
     },
@@ -494,14 +494,14 @@
     "system.componentmodel.primitives/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BkO00DfZEMObsoyhDZCNeKY3vleDk929zevlcUXmQAFRuQ115m+kDtCRNHS+WCbp7BYrJ3l85BiYhZla/Q1GVw==",
+      "sha512": "sha512-DyHZvu4zkmOhZ26HNIIbsnVJJwQ6C5J/1xD5vRXnBbIZq0RwyJRsho3TOF1lGnyyaGROHZZyCW4r2zlu4i3gUw==",
       "path": "system.componentmodel.primitives/4.3.0",
       "hashPath": "system.componentmodel.primitives.4.3.0.nupkg.sha512"
     },
     "system.componentmodel.typeconverter/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FwvdCCVZlkKh/R95PDGAF3imjArcNBb+fz3u6flgfzXWZHj8eee/FqOeN5x5UC8CYGLezg/+zGZFP3WbfWpasg==",
+      "sha512": "sha512-HVBXlZunDZJYrIjWgwahCMu00g0qSpooEeWyn0JADPxBrLjE4zb0ebIruogWzhYOs1zP1HhkWhV35GasRztueA==",
       "path": "system.componentmodel.typeconverter/4.3.0",
       "hashPath": "system.componentmodel.typeconverter.4.3.0.nupkg.sha512"
     },
