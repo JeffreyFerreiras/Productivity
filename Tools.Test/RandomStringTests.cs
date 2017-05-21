@@ -9,7 +9,7 @@ namespace Tools.Test
     public class RandomStringTests
     {
         [TestMethod]
-        public void Next_Test()
+        public void NextAlphabet_Test()
         {
             string randLetters = RandomString.NextAlphabet(6);
 
@@ -18,10 +18,38 @@ namespace Tools.Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NextAlphabet_NegativeLength()
+        {
+            string randLetters = RandomString.NextAlphabet(-6);
+        }
+
+        [TestMethod]
         public void NextPassword_Test()
         {
             string pw = RandomString.NextPassword(8);
             Assert.IsTrue(pw.Length == 8);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NextPassword_NegativeLength()
+        {
+            string randLetters = RandomString.NextPassword(-6);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NextPassword_NegativeLength_Upper()
+        {
+            string randLetters = RandomString.NextPassword(6, -1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NextPassword_NegativeLength_Numbers()
+        {
+            string randLetters = RandomString.NextPassword(6, 1, -7);
         }
 
         [TestMethod]
@@ -36,6 +64,13 @@ namespace Tools.Test
                 Assert.IsTrue(!string.IsNullOrWhiteSpace(randomized));
                 count--;
             }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NextRandomized_NegativeLength()
+        {
+            string randLetters = RandomString.NextRandomized(-7);
         }
     }
 }
