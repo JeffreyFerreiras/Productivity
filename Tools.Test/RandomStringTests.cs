@@ -14,7 +14,7 @@ namespace Tools.Test
             string randLetters = RandomString.NextAlphabet(6);
 
             Assert.IsTrue(randLetters.Length == 6);
-            Assert.IsTrue(randLetters.OnlyLetters());
+            Assert.IsTrue(randLetters.HasOnlyLetters());
         }
 
         [TestMethod]

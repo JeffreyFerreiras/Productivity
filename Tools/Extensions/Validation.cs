@@ -44,13 +44,8 @@ namespace Tools.Extensions
         {        
             if (o == null) return false;
             if (o.IsNumber()) return Convert.ToInt32(o) > -1;
-<<<<<<< HEAD
             if (o is string) return !string.IsNullOrWhiteSpace(o.ToString());
             if (o.HasProp("Count")) return (int)o.GetType().GetProperty("Count").GetValue(o) > 0;
-=======
-            if (o is string && string.IsNullOrWhiteSpace(o.ToString())) return false;
-            if (o.HasProp("Count")) return (int)o.GetPropertyVal("Count") > 0;
->>>>>>> d
 
             return true;
         }
@@ -69,7 +64,7 @@ namespace Tools.Extensions
             return true;
         }
 
-        public static bool OnlyLetters(this string letters)
+        public static bool HasOnlyLetters(this string letters)
         {
             foreach (var letter in letters)
             {
