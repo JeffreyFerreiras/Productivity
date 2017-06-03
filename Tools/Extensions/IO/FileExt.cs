@@ -14,14 +14,7 @@ namespace Tools.Extensions.IO
         {
             if(!path.IsValid()) return false;
             
-            if(path != Path.GetPathRoot(path))
-            {
-                DirectoryInfo parent = Directory.GetParent(path);
-                parent?.FullName.CreateDirectory();
-            }
-            
-            Directory.CreateDirectory(path);
-            return Directory.Exists(path);
+            return null != Directory.CreateDirectory(path);
         }
     }
 }
