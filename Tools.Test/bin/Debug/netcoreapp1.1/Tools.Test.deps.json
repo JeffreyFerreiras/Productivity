@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "551f53fb6c55037f49cfd2d8f0ff90ac80f8f997"
+    "signature": "bfffe5aa3a29fcf9e1e37dbf322d57af95f9d03f"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,10 +13,22 @@
           "MSTest.TestFramework": "1.1.11",
           "Microsoft.NET.Test.Sdk": "15.0.0",
           "System.Linq.Dynamic.Core": "1.0.6.13",
-          "UnitTestTools": "1.0.0"
+          "UnitTestTools": "1.0.0",
+          "NSubstitute": "2.0.3"
         },
         "runtime": {
           "Tools.Test.dll": {}
+        }
+      },
+      "castle.core/4.0.0": {
+        "dependencies": {
+          "System.Collections.Specialized": "4.3.0",
+          "System.ComponentModel.TypeConverter": "4.3.0",
+          "System.Diagnostics.TraceSource": "4.3.0",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Castle.Core.dll": {}
         }
       },
       "corecompat.system.componentmodel.attributes/4.2.3-rg": {
@@ -296,6 +308,14 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
+      "nsubstitute/2.0.3": {
+        "dependencies": {
+          "Castle.Core": "4.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/NSubstitute.dll": {}
+        }
+      },
       "system.collections.nongeneric/4.3.0": {
         "runtime": {
           "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
@@ -407,6 +427,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "castle.core/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iLINpMFc07bcb0d075AB0mcXV/MT8J8oyBarDSeyrLM03UoCVOuvYu87LI4511XHfy7XEhHtMDum5gt2s56xDg==",
+      "path": "castle.core/4.0.0",
+      "hashPath": "castle.core.4.0.0.nupkg.sha512"
+    },
     "corecompat.system.componentmodel.attributes/4.2.3-rg": {
       "type": "package",
       "serviceable": true,
@@ -469,6 +496,13 @@
       "sha512": "sha512-U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
       "path": "newtonsoft.json/9.0.1",
       "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
+    },
+    "nsubstitute/2.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZQRZ5b3/lhz4qKUdwzFSoPiFJnYSIjVzsmmfgvFG/7GjJ3+HO59NvaKBg+RcMNBrMNAR07X/mal3as4P0w+Dmw==",
+      "path": "nsubstitute/2.0.3",
+      "hashPath": "nsubstitute.2.0.3.nupkg.sha512"
     },
     "system.collections.nongeneric/4.3.0": {
       "type": "package",
