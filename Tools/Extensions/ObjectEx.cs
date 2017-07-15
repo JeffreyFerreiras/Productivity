@@ -7,5 +7,6 @@ namespace Tools.Extensions
     public static class ObjectEx
     {
         public static int ToInt32(this object o) => Convert.ToInt32(o);
+
     }
 }

@@ -11,7 +11,8 @@ namespace Tools.Extensions
     {
         public static dynamic GetPropertyVal(this object o, string property)
         {
-            Guard.ThrowIfInvalidArgs(o, property);
+            Guard.ThrowIfInvalidArgs(o.IsValid(), "object");
+            Guard.ThrowIfInvalidArgs(property.IsValid(), nameof(property));
 
             PropertyInfo p = o.GetType().GetTypeInfo().GetProperty(property);
 
@@ -21,7 +22,7 @@ namespace Tools.Extensions
                 return val;
             }
 
-            return -1; //something went wrong.
+            return Activator.CreateInstance(p.PropertyType); //something went wrong.
         }
     }
 }

@@ -8,6 +8,8 @@ namespace Tools
 
     public class RandomString
     {
+        private static readonly Random random = new Random();
+        private static readonly object lockObject = new object();
         /// <summary>
         /// Generate a random string of alphabet characters.
         /// </summary>
@@ -15,16 +17,18 @@ namespace Tools
         /// <returns></returns>
         public static string NextAlphabet(int length = 8)
         {
-            Guard.ThrowIfInvalidArgs(length);
+            Guard.ThrowIfInvalidArgs(length.IsValid(), nameof(length));
 
-            var random = new Random();
             string result = string.Empty;
 
-            for (int i = 0; i < length; i++)
+            lock (lockObject)
             {
-                char c = (char)(random.Next(0, 26) + 97); //use ASCII to get lower case letters.
-                if (random.Next(0, 2) == 1) c = char.ToUpper(c);
-                result += c;
+                for (int i = 0; i < length; i++)
+                {
+                    char c = (char)(random.Next(0, 26) + 97); //use ASCII to get lower case letters.
+                    if (random.Next(0, 2) == 1) c = char.ToUpper(c);
+                    result += c;
+                } 
             }
 
             return result;
@@ -37,15 +41,19 @@ namespace Tools
         /// <returns></returns>
         public static string NextPassword(int length = 8, int upperCount = 1, int numbersCount = 1)
         {
-            Guard.ThrowIfInvalidArgs(length, upperCount, numbersCount);
+            Guard.ThrowIfInvalidArgs(length.IsValid(), nameof(length));
+            Guard.ThrowIfInvalidArgs(upperCount.IsValid(), nameof(upperCount));
+            Guard.ThrowIfInvalidArgs(numbersCount.IsValid(), nameof(numbersCount));
 
-            var random = new Random();
             string password = string.Empty;
 
-            for (int i = 0; i < length; i++)
+            lock (lockObject)
             {
-                char c = (char)(random.Next(0, 94) + 33);
-                password += c;
+                for (int i = 0; i < length; i++)
+                {
+                    char c = (char)(random.Next(0, 94) + 33);
+                    password += c;
+                } 
             }
 
             return password;
@@ -56,17 +64,19 @@ namespace Tools
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string NextRandomized(int length =8)
+        public static string NextRandomized(int length = 8)
         {
-            Guard.ThrowIfInvalidArgs(length);
+            Guard.ThrowIfInvalidArgs(length.IsValid(), nameof(length));
 
             string randomized = string.Empty;
-            var random = new Random();
 
-            for (int i = 0; i < length; i++)
+            lock (lockObject)
             {
-                char c = (char)random.Next(0, 128);
-                randomized += c;
+                for (int i = 0; i < length; i++)
+                {
+                    char c = (char)random.Next(0, 128);
+                    randomized += c;
+                } 
             }
     
             return randomized;

@@ -45,7 +45,7 @@ namespace Tools.Extensions
             if (o == null) return false;
             if (o.IsNumber()) return Convert.ToInt32(o) > -1;
             if (o is string) return !string.IsNullOrWhiteSpace(o.ToString());
-            if (o.HasProp("Count")) return (int)o.GetType().GetProperty("Count").GetValue(o) > 0;
+            if (o.HasProp("Count")) return (int)o.GetType().GetProperty("Count").GetValue(o) > 0;            
 
             return true;
         }

@@ -5,26 +5,26 @@ using System.Text;
 namespace Tools.Exceptions
 {
     using Extensions;
+    using System.Reflection;
+
     /// <summary>
     /// Exeption throwing class.
     /// </summary>
     public static class Guard
     {
-        public static void ThrowIfInvalidArgs(params object[] oArry)
+        public static void ThrowIfInvalidArgs(bool assert, string msg)
         {
-            foreach (var o in oArry)
+            if (!assert)
             {
-                if (!o.IsValid())
-                    throw new ArgumentException("Invlaid argument");
+                throw new ArgumentException($"Invlaid argument: {msg}");
             }
         }
         
-        public static void ThrowIfNullReference(params object [] oArry)
+        public static void ThrowIfInvalidOperation(bool assert, string msg)
         {
-            foreach (var o in oArry)
+            if(!assert)
             {
-                if (o == null)
-                    throw new NullReferenceException($"{o.GetType().Name} object is null");
+                throw new InvalidOperationException($"Invalid operation: {msg}");
             }
         }
     }

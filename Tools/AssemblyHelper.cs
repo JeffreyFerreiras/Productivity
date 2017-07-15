@@ -7,12 +7,14 @@ using System.IO;
 namespace Tools
 {
     using Exceptions;
+    using Tools.Extensions;
 
     public static class AssemblyHelper
     {
         public static dynamic LoadNETAssembly(string componentPath, string module)
         {
-            Guard.ThrowIfInvalidArgs(componentPath, module);
+            Guard.ThrowIfInvalidArgs(module.IsValid(), nameof(module));
+            Guard.ThrowIfInvalidArgs(componentPath.IsValid(), nameof(componentPath));
 
             var assemblyRef = new AssemblyName
             {

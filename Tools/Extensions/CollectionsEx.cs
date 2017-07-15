@@ -19,7 +19,7 @@ namespace Tools.Extensions
         
         public static IDictionary<string, dynamic> ToDictionary<T>(this T item)
         {
-            Guard.ThrowIfInvalidArgs(item);
+            Guard.ThrowIfInvalidArgs(item.IsValid(), $"{typeof(T)} not valid");
 
             IDictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
 
@@ -33,6 +33,23 @@ namespace Tools.Extensions
             }
 
             return dict;
+        }
+
+        public static T FromDictionary<T>(this IDictionary<string, object> dict, T item)
+        {
+            Guard.ThrowIfInvalidArgs(item.IsValid(), $"{typeof(T)} not valid");
+
+            foreach (var p in typeof(T).GetProperties())
+            {
+                dynamic val = dict[p.Name];
+
+                if (p.CanWrite)
+                {
+                    p.SetValue(item, val);
+                }
+            }
+
+            return item;
         }
     }
 }
