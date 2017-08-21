@@ -8,7 +8,7 @@ using Tools.Extensions;
 
 namespace Tools.Extensions.IO
 {
-    public static class FileExt
+    public static class IOEx
     {
         public static bool CreateDirectory(this string path)
         {

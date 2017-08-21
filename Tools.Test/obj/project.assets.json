@@ -811,6 +811,20 @@
           "lib/netstandard1.3/NSubstitute.dll": {}
         }
       },
+      "NUnit/3.7.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.Runtime.Loader": "4.3.0",
+          "System.Threading.Thread": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/nunit.framework.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.1": {
         "type": "package",
         "runtimeTargets": {
@@ -3778,6 +3792,31 @@
         "lib/netstandard1.3/NSubstitute.xml",
         "nsubstitute.2.0.3.nupkg.sha512",
         "nsubstitute.nuspec"
+      ]
+    },
+    "NUnit/3.7.1": {
+      "sha512": "vUTICvR3uqw6OTOcwsfz22KjVk8xFcNdz22XnGPL3itQU7+HSV+8xySjGmVkMWZ4IPbaV/+T33C775EEtiEYIA==",
+      "type": "package",
+      "path": "nunit/3.7.1",
+      "files": [
+        "CHANGES.md",
+        "LICENSE.txt",
+        "NOTICES.txt",
+        "lib/net20/NUnit.System.Linq.dll",
+        "lib/net20/nunit.framework.dll",
+        "lib/net20/nunit.framework.xml",
+        "lib/net35/nunit.framework.dll",
+        "lib/net35/nunit.framework.xml",
+        "lib/net40/nunit.framework.dll",
+        "lib/net40/nunit.framework.xml",
+        "lib/net45/nunit.framework.dll",
+        "lib/net45/nunit.framework.xml",
+        "lib/netstandard1.3/nunit.framework.dll",
+        "lib/netstandard1.3/nunit.framework.xml",
+        "lib/netstandard1.6/nunit.framework.dll",
+        "lib/netstandard1.6/nunit.framework.xml",
+        "nunit.3.7.1.nupkg.sha512",
+        "nunit.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.1": {
@@ -8744,6 +8783,7 @@
       "MSTest.TestFramework >= 1.1.11",
       "Microsoft.NET.Test.Sdk >= 15.0.0",
       "Microsoft.NETCore.App >= 1.1.2",
+      "NUnit >= 3.7.1",
       "System.Linq.Dynamic.Core >= 1.0.6.13",
       "UnitTestTools >= 1.0.0",
       "microsoft.csharp >= 4.3.0",
@@ -8810,6 +8850,10 @@
           "MSTest.TestAdapter": {
             "target": "Package",
             "version": "1.1.11"
+          },
+          "NUnit": {
+            "target": "Package",
+            "version": "3.7.1"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

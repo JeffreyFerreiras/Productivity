@@ -10,6 +10,7 @@ namespace Tools
     {
         private static readonly Random random = new Random();
         private static readonly object lockObject = new object();
+
         /// <summary>
         /// Generate a random string of alphabet characters.
         /// </summary>

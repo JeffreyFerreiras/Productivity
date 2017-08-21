@@ -23,9 +23,8 @@ namespace Tools
             };
 
             Assembly assembly = Assembly.Load(assemblyRef);
-            dynamic instance = assembly.CreateInstance(module, true);
 
-            return instance;
+            return assembly.CreateInstance(module, true); ;
         }
     }
 }
