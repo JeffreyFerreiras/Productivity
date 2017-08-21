@@ -47,3 +47,5 @@ D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.csprojRes
 D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfo.cs
 D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.dll
 D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.pdb
+D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.csproj.CoreCompileInputs.cache
+D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfoInputs.cache

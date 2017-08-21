@@ -35,21 +35,31 @@ namespace Tools.Extensions
             return dict;
         }
 
-        public static T FromDictionary<T>(this IDictionary<string, object> dict, T item)
+        public static T FromDictionary<T, TValue>(this IDictionary<string, TValue> dict, T item)
         {
             Guard.ThrowIfInvalidArgs(item.IsValid(), $"{typeof(T)} not valid");
 
             foreach (var p in typeof(T).GetProperties())
             {
-                dynamic val = dict[p.Name];
+                TValue val = dict.TryGetValue(p.Name);
 
-                if (p.CanWrite)
+                if (p.CanWrite && val.IsValid())
                 {
                     p.SetValue(item, val);
                 }
             }
 
             return item;
+        }
+
+        public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey index)
+        {
+            if (dict.ContainsKey(index))
+            {
+                return dict[index];
+            }
+
+            return default(TValue);
         }
     }
 }

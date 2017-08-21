@@ -9,16 +9,16 @@ namespace Tools.Extensions
 
     public static class Reflection
     {
-        public static dynamic GetPropertyVal(this object o, string property)
+        public static dynamic GetPropertyVal<T>(this T value, string property)
         {
-            Guard.ThrowIfInvalidArgs(o.IsValid(), "object");
+            Guard.ThrowIfInvalidArgs(value.IsValid(), nameof(value));
             Guard.ThrowIfInvalidArgs(property.IsValid(), nameof(property));
 
-            PropertyInfo p = o.GetType().GetTypeInfo().GetProperty(property);
+            PropertyInfo p = value.GetType().GetTypeInfo().GetProperty(property);
 
             if (p != null && p.CanRead)
             {
-                dynamic val = p.GetValue(o);
+                dynamic val = p.GetValue(value);
                 return val;
             }
 

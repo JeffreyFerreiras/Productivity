@@ -49,7 +49,8 @@ namespace Tools.Test.Extensions
                 e = null
             };
 
-            IDictionary<string, object> itemDictionary = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase)
+            IDictionary<string, object> itemDictionary = 
+                new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase)
             {
                 { "a", "a value" },
                 { "b", 5},

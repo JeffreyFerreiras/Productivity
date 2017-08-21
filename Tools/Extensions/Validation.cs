@@ -14,6 +14,7 @@ namespace Tools.Extensions
     public static class Validation
     {
         public static bool IsNullOrWhiteSpace(this string s) => string.IsNullOrWhiteSpace(s);
+        public static bool IsNullOrEmpty(this string s) => string.IsNullOrEmpty(s);
 
         public static bool IsNumber(this object value)
         {
@@ -30,22 +31,22 @@ namespace Tools.Extensions
                 || value is decimal;
         }
 
-        public static bool ValidateProperties(this object o)
+        public static bool ValidateProperties<T>(this T value)
         {
-            if (o == null) return false;
+            if (value == null) return false;
 
-            foreach (var m in o.GetType().GetTypeInfo().GetProperties())
-                if (!m.GetValue(o).IsValid()) return false;
+            foreach (var m in value.GetType().GetTypeInfo().GetProperties())
+                if (!m.GetValue(value).IsValid()) return false;
 
             return true;
         }
 
-        public static bool IsValid(this object o)
+        public static bool IsValid<T>(this T value)
         {        
-            if (o == null) return false;
-            if (o.IsNumber()) return Convert.ToInt32(o) > -1;
-            if (o is string) return !string.IsNullOrWhiteSpace(o.ToString());
-            if (o.HasProp("Count")) return (int)o.GetType().GetProperty("Count").GetValue(o) > 0;            
+            if (value == null) return false;
+            if (value.IsNumber()) return Convert.ToInt32(value) > -1;
+            if (value is string) return !string.IsNullOrWhiteSpace(value.ToString());
+            if (value.HasProp("Count")) return (int)value.GetType().GetProperty("Count").GetValue(value) > 0;            
 
             return true;
         }
@@ -106,9 +107,9 @@ namespace Tools.Extensions
             return pw.HasCharType(predicate, count);
         }
 
-        public static bool HasProp(this object o, string propName)
+        public static bool HasProp<T>(this T value, string propName)
         {
-            PropertyInfo countProp = o.GetType().GetTypeInfo().GetProperty(propName);
+            PropertyInfo countProp = value.GetType().GetTypeInfo().GetProperty(propName);
             return countProp != null;
         }
     }

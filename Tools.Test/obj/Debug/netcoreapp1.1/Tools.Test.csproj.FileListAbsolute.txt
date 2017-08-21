@@ -82,3 +82,5 @@ D:\Development\Git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.
 D:\Development\Git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.AssemblyInfo.cs
 D:\Development\Git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.dll
 D:\Development\Git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.pdb
+D:\Development\Git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.csproj.CoreCompileInputs.cache
+D:\Development\Git\Tools.NET-Core\Tools.Test\obj\Debug\netcoreapp1.1\Tools.Test.AssemblyInfoInputs.cache
