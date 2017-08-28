@@ -14,12 +14,12 @@ namespace Tools.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue"></typeparam>
-        /// <param name="item"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
         
-        public static IDictionary<string, dynamic> ToDictionary<T>(this T item)
+        public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
         {
-            Guard.ThrowIfInvalidArgs(item.IsValid(), $"{typeof(T)} not valid");
+            Guard.ThrowIfInvalidArgs(model.IsValid(), $"{typeof(T).Name} not valid");
 
             IDictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
 
@@ -27,17 +27,25 @@ namespace Tools.Extensions
             {
                 if (!p.CanRead) continue;
 
-                dynamic val = p.GetValue(item);
+                dynamic val = p.GetValue(model);
                 
                 dict[p.Name]=val;
             }
 
             return dict;
         }
-
-        public static T FromDictionary<T, TValue>(this IDictionary<string, TValue> dict, T item)
+        /// <summary>
+        /// Assigns matching key value pairs to object properties.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static T FromDictionary<T, TValue>(this IDictionary<string, TValue> dict, T model)
         {
-            Guard.ThrowIfInvalidArgs(item.IsValid(), $"{typeof(T)} not valid");
+            Guard.ThrowIfInvalidArgs(model.IsValid(), $"{typeof(T).Name} not valid");
+            Guard.ThrowIfInvalidArgs(dict.IsValid(), "Dictionary not valid");
 
             foreach (var p in typeof(T).GetProperties())
             {
@@ -45,18 +53,21 @@ namespace Tools.Extensions
 
                 if (p.CanWrite && val.IsValid())
                 {
-                    p.SetValue(item, val);
+                    p.SetValue(model, val);
                 }
             }
 
-            return item;
+            return model;
         }
 
-        public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey index)
+        public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key)
         {
-            if (dict.ContainsKey(index))
+            Guard.ThrowIfInvalidArgs(key.IsValid(), $"{nameof(key)} not valid");
+            Guard.ThrowIfInvalidArgs(dict.IsValid(), "Dictionary not valid");
+
+            if (dict.ContainsKey(key))
             {
-                return dict[index];
+                return dict[key];
             }
 
             return default(TValue);

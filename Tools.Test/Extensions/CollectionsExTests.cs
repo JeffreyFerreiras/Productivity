@@ -63,5 +63,43 @@ namespace Tools.Test.Extensions
 
             Assert.IsTrue(o.ValidateProperties());
         }
+
+        [TestMethod]
+        public void TryGetValue_ValidDictANDIndex_IndexValue()
+        {
+            var dict = new Dictionary<string, string>();
+            const string key = "key";
+            const string value = "value";
+            dict.Add(key, value);
+
+
+            Assert.AreEqual(value, dict.TryGetValue(key));
+        }
+
+        [TestMethod]
+        public void TryGetValue_InvalidKey_ThrowsArgumentException()
+        {
+            var dict = new Dictionary<string, string>();
+            const string key = "key";
+            const string value = "value";
+            dict.Add(key, value);
+
+           
+            Assert.ThrowsException<ArgumentException>(()=> dict.TryGetValue(""));
+            Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(null));
+        }
+
+        [TestMethod]
+        public void TryGetValue_NonExistingKey_DefaultValue()
+        {
+            var dict = new Dictionary<string, string>();
+            const string key = "key";
+            const string value = "value";
+            dict.Add(key, value);
+
+            string defaultValue = dict.TryGetValue("DoesnotExist");
+
+            Assert.AreEqual(default(string), defaultValue);
+        }
     }
 }

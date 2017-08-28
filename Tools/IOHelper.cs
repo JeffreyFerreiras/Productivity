@@ -2,13 +2,25 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace Tools
 {
+    using Extensions;
+    using Tools.Exceptions;
+
     public static class IOHelper
     {
+        /// <summary>
+        /// Returns directory info for each level in the directory.
+        /// Will return objects if the directory does not exist.
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         public static Stack<DirectoryInfo> GetDirectoryStack(string dir)
         {
+            Guard.ThrowIfInvalidArgs(dir.IsValid(), "directory not valid");
+
             DirectoryInfo dirInfo = new DirectoryInfo(dir);
             Stack<DirectoryInfo> stack = new Stack<DirectoryInfo>();
 

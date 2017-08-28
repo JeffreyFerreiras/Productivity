@@ -21,17 +21,15 @@ namespace Tools.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void LoadNETAssembly_NullArgs()
         {
-            var assemblyInstance = AssemblyHelper.LoadNETAssembly(null, null);
+            Assert.ThrowsException<ArgumentException> (()=>AssemblyHelper.LoadNETAssembly(null, null));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void LoadNETAssembly_EmptyArgs()
         {
-            var assemblyInstance = AssemblyHelper.LoadNETAssembly("", "");
+            Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly("", ""));
         }
     }
 }

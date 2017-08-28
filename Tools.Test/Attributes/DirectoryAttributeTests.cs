@@ -13,7 +13,7 @@ namespace Tools.Test.Attributes
         [TestMethod()]
         public void Directory_Test()
         {
-            var dirAttribute = new Directory();
+            var dirAttribute = new DirectoryAttribute();
             bool valid = dirAttribute.IsValid(@"C:\Test\Test");
             Assert.IsTrue(valid);
         }

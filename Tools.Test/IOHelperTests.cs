@@ -14,10 +14,31 @@ namespace Tools.Test
         public void GetDirectoryStack_ValidDirectory_ValidDirectoryStack()
         {
             var executingDir = Directory.GetCurrentDirectory();
-
             var stack = IOHelper.GetDirectoryStack(executingDir);
 
             Assert.IsTrue(stack.Count > 0);
+        }
+
+        [TestMethod]
+        public void GetDirectoryStack_NonExistingDirectory_ValidDirectoryStack()
+        {
+            string currentDir = Directory.GetCurrentDirectory();
+            string nonExistantDir = Path.Combine(currentDir, "NONEXISTINGDIR");
+
+            var dirStack = IOHelper.GetDirectoryStack(nonExistantDir);
+            Assert.IsTrue(dirStack.Count > 0);
+        }
+
+        [TestMethod]
+        public void GetDirectoryStack_EmptyDirectory_Throws()
+        {
+            Assert.ThrowsException<ArgumentException>(()=>IOHelper.GetDirectoryStack(string.Empty));
+        }
+
+        [TestMethod]
+        public void GetDirectoryStack_NullDirectory_Throws()
+        {
+            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetDirectoryStack(null));
         }
     }
 }

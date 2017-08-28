@@ -9,7 +9,7 @@ namespace Tools.Test
     public class RandomStringTests
     {
         [TestMethod]
-        public void NextAlphabet_Test()
+        public void NextAlphabet_ValidStringLength_RandomString()
         {
             string randLetters = RandomString.NextAlphabet(6);
 

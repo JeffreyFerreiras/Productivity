@@ -9,7 +9,7 @@ namespace Tools.Attributes
 {
     using Extensions;
 
-    public class Directory : ValidationAttribute
+    public class DirectoryAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
