@@ -18,6 +18,7 @@ namespace Tools.Extensions.IO
             
             return null != Directory.CreateDirectory(path);
         }
+        
         //TODO: Create unit tests
         public static bool IsValidPath(this string path)
         {

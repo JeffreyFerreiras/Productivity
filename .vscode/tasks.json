@@ -11,7 +11,7 @@
             "args": [ ],
             "isBuildCommand": true,
             "showOutput": "silent",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile"     
         }
     ]
 }

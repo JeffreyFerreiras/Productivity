@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using System.Linq;
 
 namespace Tools.Extensions
 {
@@ -9,6 +10,30 @@ namespace Tools.Extensions
 
     public static class CollectionsEx
     {
+        private static readonly Random _random = new Random();
+        private static readonly object _syncLock = new object();
+
+        /// <summary>
+        /// Gets a random value within a collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        
+        public static T GetRandomElement<T>(this ICollection<T> collection)
+        {
+            int index = 0;
+
+            lock (_syncLock)
+            {
+                index = _random.Next(0, collection.Count-1);
+            }
+
+            T element =  collection.ElementAt(index);
+
+            return element.IsValid() ? element : default(T);
+        }
+
         /// <summary>
         /// Converts an object into a dictioanry of key value pair.
         /// </summary>
