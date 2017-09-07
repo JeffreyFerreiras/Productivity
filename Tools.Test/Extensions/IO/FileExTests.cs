@@ -23,7 +23,7 @@ namespace Tools.Test.Extensions.IO
         }
 
         [TestMethod]
-        public void CreateDirectory_InvalidDirectory_ThrowsArgumentException()
+        public void CreateDirectory_InvalidDirectory_ReturnsFalse()
         { 
             char invalidChar = Path.GetInvalidPathChars().GetRandomElement();
             string invalidDirectoryName = $@"C:\invlaidFolder{invalidChar}Name";
@@ -31,5 +31,28 @@ namespace Tools.Test.Extensions.IO
             Assert.IsFalse(invalidDirectoryName.CreateDirectory());
         }
 
+        [TestMethod]
+        public void IsValidPath_ValidPath_ReturnsTrue()
+        {
+            string validPath = @"c:\\TEST\";
+
+            bool isValidPath = validPath.IsValidPath();
+
+            Assert.IsTrue(isValidPath);
+        }
+
+        [TestMethod]
+        public void IsValidPath_InvalidPath_ReturnsFalse()
+        {
+            string invalidPathName = $@"C:\";
+
+            foreach (char invalidPathChar in Path.GetInvalidPathChars())
+            {
+                invalidPathName += invalidPathChar;
+            }
+
+            bool isValidPath = invalidPathName.IsValidPath();
+            Assert.IsFalse(isValidPath);
+        }
     }
 }

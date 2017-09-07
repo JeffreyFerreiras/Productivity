@@ -4978,9 +4978,12 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
       "projectUniqueName": "C:\\projects\\git\\Tools.NET-Core\\Tools\\Tools.csproj",
-      "projectName": "UnitTestTools",
+      "projectName": "Tools",
       "projectPath": "C:\\projects\\git\\Tools.NET-Core\\Tools\\Tools.csproj",
       "packagesPath": "C:\\Users\\sephn_000\\.nuget\\packages\\",
       "outputPath": "C:\\projects\\git\\Tools.NET-Core\\Tools\\obj\\",
@@ -5013,22 +5016,22 @@
     "frameworks": {
       "netstandard1.6": {
         "dependencies": {
+          "System.Linq.Dynamic.Core": {
+            "target": "Package",
+            "version": "1.0.6.13"
+          },
           "NETStandard.Library": {
             "target": "Package",
             "version": "1.6.0",
             "autoReferenced": true
           },
-          "CoreCompat.System.ComponentModel.DataAnnotations": {
-            "target": "Package",
-            "version": "4.2.3-r7"
-          },
           "Microsoft.CSharp": {
             "target": "Package",
             "version": "4.3.0"
           },
-          "System.Linq.Dynamic.Core": {
+          "CoreCompat.System.ComponentModel.DataAnnotations": {
             "target": "Package",
-            "version": "1.0.6.13"
+            "version": "4.2.3-r7"
           }
         },
         "imports": [

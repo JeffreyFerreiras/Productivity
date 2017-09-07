@@ -4,6 +4,7 @@ using System.Text;
 using NSubstitute;
 using Tools.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace Tools.Test.Extensions
 {
@@ -17,6 +18,28 @@ namespace Tools.Test.Extensions
             public object c { get; set; }
             public object d { get; set; }
             public object e { get; set; }
+        }
+
+        [TestMethod]
+        public void GetRandomElement_ValidCollection_ReturnsRandomElement()
+        {
+            string[] stringArry = GetFakeStringArray(20);
+
+            string elem = stringArry.GetRandomElement();
+
+            Assert.IsTrue(stringArry.Contains(elem));
+        }
+
+        private static string[] GetFakeStringArray(int length = 10)
+        {
+            string[] stringArray = new string[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                stringArray[i] = RandomString.NextAlphabet();
+            }
+
+            return stringArray;
         }
 
         [TestMethod]

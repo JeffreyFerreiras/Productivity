@@ -271,10 +271,10 @@
           }
         }
       },
-      "Microsoft.NET.Test.Sdk/15.0.0-preview-20170125-04": {
+      "Microsoft.NET.Test.Sdk/15.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.TestPlatform.TestHost": "15.0.0-preview-20170125-04"
+          "Microsoft.TestPlatform.TestHost": "15.0.0"
         },
         "build": {
           "build/netcoreapp1.0/Microsoft.Net.Test.Sdk.props": {},
@@ -380,7 +380,7 @@
       "Microsoft.NETCore.Windows.ApiSets/1.0.1": {
         "type": "package"
       },
-      "Microsoft.TestPlatform.ObjectModel/15.0.0-preview-20170125-04": {
+      "Microsoft.TestPlatform.ObjectModel/15.0.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -492,10 +492,10 @@
           }
         }
       },
-      "Microsoft.TestPlatform.TestHost/15.0.0-preview-20170125-04": {
+      "Microsoft.TestPlatform.TestHost/15.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "15.0.0-preview-20170125-04",
+          "Microsoft.TestPlatform.ObjectModel": "15.0.0",
           "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
@@ -3192,15 +3192,16 @@
         "runtimes/win8-arm/native/Microsoft.DiaSymReader.Native.arm.dll"
       ]
     },
-    "Microsoft.NET.Test.Sdk/15.0.0-preview-20170125-04": {
-      "sha512": "IyUa79oHT5fBdQF8K21adBkDCpIlHHKDnDF8FR6WQzSpcCg5hoVtoDzlugnU4ueeH4tsyWHpcrofQM97XJAJyA==",
+    "Microsoft.NET.Test.Sdk/15.0.0": {
+      "sha512": "fiOrr+qc9NUc7T8am9Kz9TlXVDa+tQcVP3WFXyeZQA1vrbgsA578wcmGhSbc7KxMcWCu2GG4i0DKK1c5pLRdpQ==",
       "type": "package",
-      "path": "microsoft.net.test.sdk/15.0.0-preview-20170125-04",
+      "path": "microsoft.net.test.sdk/15.0.0",
       "files": [
+        "build/net45/Microsoft.Net.Test.Sdk.props",
         "build/net45/Microsoft.Net.Test.Sdk.targets",
         "build/netcoreapp1.0/Microsoft.Net.Test.Sdk.props",
         "build/netcoreapp1.0/Microsoft.Net.Test.Sdk.targets",
-        "microsoft.net.test.sdk.15.0.0-preview-20170125-04.nupkg.sha512",
+        "microsoft.net.test.sdk.15.0.0.nupkg.sha512",
         "microsoft.net.test.sdk.nuspec"
       ]
     },
@@ -3314,10 +3315,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.TestPlatform.ObjectModel/15.0.0-preview-20170125-04": {
-      "sha512": "TuUYy2ZLxxQoCp7/GX24bXlvnyHWBo5plkj+h3MKNzI4qKUy/Oyo40wHD0KC35ywhmguVFcZOG5MUgw0xjIcNQ==",
+    "Microsoft.TestPlatform.ObjectModel/15.0.0": {
+      "sha512": "cmnwtae/q/DKcWT6aF3fvexPhQ/rhr0twc+2VLEhzDBfE0khtBGrlDvnCfcWktGjShtTCB0OO204JdS3QtAByQ==",
       "type": "package",
-      "path": "microsoft.testplatform.objectmodel/15.0.0-preview-20170125-04",
+      "path": "microsoft.testplatform.objectmodel/15.0.0",
       "files": [
         "lib/net46/Microsoft.TestPlatform.CoreUtilities.dll",
         "lib/net46/Microsoft.VisualStudio.TestPlatform.ObjectModel.dll",
@@ -3375,14 +3376,14 @@
         "lib/netstandard1.5/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
         "lib/netstandard1.5/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll",
         "lib/netstandard1.5/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
-        "microsoft.testplatform.objectmodel.15.0.0-preview-20170125-04.nupkg.sha512",
+        "microsoft.testplatform.objectmodel.15.0.0.nupkg.sha512",
         "microsoft.testplatform.objectmodel.nuspec"
       ]
     },
-    "Microsoft.TestPlatform.TestHost/15.0.0-preview-20170125-04": {
-      "sha512": "+tx7ngdI2IXqm2HTgzYgNMrYEkEpYoglljXcldwPvor7c9N4L314lk47BOm12LfpFOI+PoBRWHj6t8NfiAsoeA==",
+    "Microsoft.TestPlatform.TestHost/15.0.0": {
+      "sha512": "OIQilyR5xljftuD2UcKoXANGrHESt/MN7DVfzEdpF7Lg7CtL6NMADidHjZU+iwHCdvpyqBJ+TE7aI01qYVWsaw==",
       "type": "package",
-      "path": "microsoft.testplatform.testhost/15.0.0-preview-20170125-04",
+      "path": "microsoft.testplatform.testhost/15.0.0",
       "files": [
         "ThirdPartyNotices.txt",
         "lib/net45/_._",
@@ -3430,7 +3431,7 @@
         "lib/netstandard1.5/zh-Hant/Microsoft.TestPlatform.CommunicationUtilities.resources.dll",
         "lib/netstandard1.5/zh-Hant/Microsoft.TestPlatform.CrossPlatEngine.resources.dll",
         "lib/netstandard1.5/zh-Hant/Microsoft.VisualStudio.TestPlatform.Common.resources.dll",
-        "microsoft.testplatform.testhost.15.0.0-preview-20170125-04.nupkg.sha512",
+        "microsoft.testplatform.testhost.15.0.0.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
       ]
     },
@@ -8818,7 +8819,7 @@
       "CoreCompat.System.ComponentModel.DataAnnotations >= 4.2.3-r7",
       "MSTest.TestAdapter >= 1.1.11",
       "MSTest.TestFramework >= 1.1.11",
-      "Microsoft.NET.Test.Sdk >= 15.0.0-preview-20170125-04",
+      "Microsoft.NET.Test.Sdk >= 15.0.0",
       "Microsoft.NETCore.App >= 1.1.1",
       "NUnit >= 3.7.1",
       "System.Linq.Dynamic.Core >= 1.0.6.13",
@@ -8832,12 +8833,15 @@
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\projects\\git\\Tools.NET-Core\\tools.test\\Tools.Test.csproj",
+      "projectUniqueName": "C:\\projects\\git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "projectName": "Tools.Test",
-      "projectPath": "C:\\projects\\git\\Tools.NET-Core\\tools.test\\Tools.Test.csproj",
+      "projectPath": "C:\\projects\\git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "packagesPath": "C:\\Users\\sephn_000\\.nuget\\packages\\",
-      "outputPath": "C:\\projects\\git\\Tools.NET-Core\\tools.test\\obj\\",
+      "outputPath": "C:\\projects\\git\\Tools.NET-Core\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sephn_000\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8869,27 +8873,6 @@
     "frameworks": {
       "netcoreapp1.1": {
         "dependencies": {
-          "Microsoft.NETCore.App": {
-            "target": "Package",
-            "version": "1.1.1",
-            "autoReferenced": true
-          },
-          "CoreCompat.System.ComponentModel.DataAnnotations": {
-            "target": "Package",
-            "version": "4.2.3-r7"
-          },
-          "microsoft.csharp": {
-            "target": "Package",
-            "version": "4.3.0"
-          },
-          "Microsoft.NET.Test.Sdk": {
-            "target": "Package",
-            "version": "15.0.0-preview-20170125-04"
-          },
-          "MSTest.TestAdapter": {
-            "target": "Package",
-            "version": "1.1.11"
-          },
           "MSTest.TestFramework": {
             "target": "Package",
             "version": "1.1.11"
@@ -8898,13 +8881,34 @@
             "target": "Package",
             "version": "2.0.3"
           },
+          "System.Linq.Dynamic.Core": {
+            "target": "Package",
+            "version": "1.0.6.13"
+          },
+          "MSTest.TestAdapter": {
+            "target": "Package",
+            "version": "1.1.11"
+          },
           "NUnit": {
             "target": "Package",
             "version": "3.7.1"
           },
-          "System.Linq.Dynamic.Core": {
+          "Microsoft.NETCore.App": {
             "target": "Package",
-            "version": "1.0.6.13"
+            "version": "1.1.1",
+            "autoReferenced": true
+          },
+          "Microsoft.NET.Test.Sdk": {
+            "target": "Package",
+            "version": "15.0.0"
+          },
+          "microsoft.csharp": {
+            "target": "Package",
+            "version": "4.3.0"
+          },
+          "CoreCompat.System.ComponentModel.DataAnnotations": {
+            "target": "Package",
+            "version": "4.2.3-r7"
           }
         }
       }
