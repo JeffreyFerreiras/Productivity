@@ -16,10 +16,11 @@ namespace Tools.Exceptions
         {
             if (!assert)
             {
-                TException ex = (TException)Activator.CreateInstance(typeof(TException), msg);
+                TException ex = (TException) Activator.CreateInstance(typeof(TException), msg);
                 throw ex;
             }
         }
+
         public static void ThrowIfInvalidArgs(bool assert, string msg)
         {
             if (!assert)

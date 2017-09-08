@@ -8,6 +8,7 @@ namespace Tools
 {
     using Extensions;
     using Tools.Exceptions;
+    using Tools.Extensions.IO;
 
     public static class IOHelper
     {
@@ -19,7 +20,7 @@ namespace Tools
         /// <returns></returns>
         public static Stack<DirectoryInfo> GetDirectoryStack(string dir)
         {
-            Guard.ThrowIfInvalidArgs(dir.IsValid(), "directory not valid");
+            Guard.ThrowIfInvalidArgs(dir.IsValidPath(), "directory not valid");
 
             DirectoryInfo dirInfo = new DirectoryInfo(dir);
             Stack<DirectoryInfo> stack = new Stack<DirectoryInfo>();

@@ -5,6 +5,9 @@ using NSubstitute;
 using Tools.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualStudio.TestPlatform;
+using System.Reflection;
 
 namespace Tools.Test.Extensions
 {
@@ -72,7 +75,7 @@ namespace Tools.Test.Extensions
                 e = null
             };
 
-            IDictionary<string, object> itemDictionary = 
+            IDictionary<string, object> itemDictionary =
                 new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase)
             {
                 { "a", "a value" },
@@ -107,8 +110,8 @@ namespace Tools.Test.Extensions
             const string value = "value";
             dict.Add(key, value);
 
-           
-            Assert.ThrowsException<ArgumentException>(()=> dict.TryGetValue(""));
+
+            Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(""));
             Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(null));
         }
 

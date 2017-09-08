@@ -8,13 +8,14 @@ namespace Tools
 {
     using Exceptions;
     using Tools.Extensions;
+    using Tools.Extensions.IO;
 
     public static class AssemblyHelper
     {
         public static dynamic LoadNETAssembly(string componentPath, string module)
         {
             Guard.ThrowIfInvalidArgs(module.IsValid(), nameof(module));
-            Guard.ThrowIfInvalidArgs(componentPath.IsValid(), nameof(componentPath));
+            Guard.ThrowIfInvalidArgs(componentPath.IsValidPath(), nameof(componentPath));
 
             var assemblyRef = new AssemblyName
             {
@@ -24,7 +25,7 @@ namespace Tools
 
             Assembly assembly = Assembly.Load(assemblyRef);
 
-            return assembly.CreateInstance(module, true); ;
+            return assembly.CreateInstance(module, true);
         }
     }
 }

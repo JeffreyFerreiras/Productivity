@@ -26,7 +26,7 @@ namespace Tools.Extensions
 
             lock (_syncLock)
             {
-                index = _random.Next(0, collection.Count-1);
+                index = _random.Next(0, collection.Count - 1);
             }
 
             T element =  collection.ElementAt(index);

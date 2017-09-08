@@ -25,7 +25,10 @@ namespace Tools.Test
             string currentDir = Directory.GetCurrentDirectory();
             string nonExistantDir = Path.Combine(currentDir, "NONEXISTINGDIR");
 
+            if (Directory.Exists(nonExistantDir)) Directory.Delete(nonExistantDir, true);
+
             var dirStack = IOHelper.GetDirectoryStack(nonExistantDir);
+
             Assert.IsTrue(dirStack.Count > 0);
         }
 

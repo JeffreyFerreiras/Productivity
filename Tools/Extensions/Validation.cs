@@ -109,8 +109,8 @@ namespace Tools.Extensions
 
         public static bool HasProp<T>(this T value, string propName)
         {
-            PropertyInfo countProp = value.GetType().GetTypeInfo().GetProperty(propName);
-            return countProp != null;
+            PropertyInfo property = value.GetType().GetTypeInfo().GetProperty(propName);
+            return property != null;
         }
     }
 }

@@ -8,8 +8,8 @@ namespace Tools
 
     public class RandomString
     {
-        private static readonly Random random = new Random();
-        private static readonly object lockObject = new object();
+        private static readonly Random _random = new Random();
+        private static readonly object _syncLock = new object();
 
         /// <summary>
         /// Generate a random string of alphabet characters.
@@ -22,12 +22,12 @@ namespace Tools
 
             string result = string.Empty;
 
-            lock (lockObject)
+            lock (_syncLock)
             {
                 for (int i = 0; i < length; i++)
                 {
-                    char c = (char)(random.Next(0, 26) + 97); //use ASCII to get lower case letters.
-                    if (random.Next(0, 2) == 1) c = char.ToUpper(c);
+                    char c = (char)(_random.Next(0, 26) + 97); //use ASCII to get lower case letters.
+                    if (_random.Next(0, 2) == 1) c = char.ToUpper(c);
                     result += c;
                 } 
             }
@@ -48,13 +48,13 @@ namespace Tools
 
             string password = string.Empty;
 
-            lock (lockObject)
+            lock (_syncLock)
             {
                 for (int i = 0; i < length; i++)
                 {
-                    char c = (char)(random.Next(0, 94) + 33);
+                    char c = (char)(_random.Next(0, 94) + 33);
                     password += c;
-                } 
+                }
             }
 
             return password;
@@ -71,11 +71,11 @@ namespace Tools
 
             string randomized = string.Empty;
 
-            lock (lockObject)
+            lock (_syncLock)
             {
                 for (int i = 0; i < length; i++)
                 {
-                    char c = (char)random.Next(0, 128);
+                    char c = (char)_random.Next(0, 128);
                     randomized += c;
                 } 
             }
