@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Tools;
+using System.Reflection;
 
 namespace Tools.Test
 {
@@ -13,8 +14,8 @@ namespace Tools.Test
         [TestMethod]
         public void GetDirectoryStack_ValidDirectory_ValidDirectoryStack()
         {
-            var executingDir = Directory.GetCurrentDirectory();
-            var stack = IOHelper.GetDirectoryStack(executingDir);
+            string executingDir = Directory.GetCurrentDirectory();
+            Stack<DirectoryInfo> stack = IOHelper.GetDirectoryStack(executingDir);
 
             Assert.IsTrue(stack.Count > 0);
         }
@@ -27,7 +28,7 @@ namespace Tools.Test
 
             if (Directory.Exists(nonExistantDir)) Directory.Delete(nonExistantDir, true);
 
-            var dirStack = IOHelper.GetDirectoryStack(nonExistantDir);
+            Stack<DirectoryInfo> dirStack = IOHelper.GetDirectoryStack(nonExistantDir);
 
             Assert.IsTrue(dirStack.Count > 0);
         }
@@ -42,6 +43,15 @@ namespace Tools.Test
         public void GetDirectoryStack_NullDirectory_Throws()
         {
             Assert.ThrowsException<ArgumentException>(() => IOHelper.GetDirectoryStack(null));
+        }
+
+        [TestMethod]
+        public void GetFiles_ValidPath_ArrayOfFiles()
+        {
+            string path = this.GetType().GetTypeInfo().Assembly.Location;
+
+            string [] files = IOHelper.GetFiles(path);
+            Assert.IsTrue(files.Length > 0);
         }
     }
 }

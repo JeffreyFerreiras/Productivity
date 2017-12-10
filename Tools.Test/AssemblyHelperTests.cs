@@ -13,7 +13,7 @@ namespace Tools.Test
         public void LoadNETAssembly_Test()
         {
             string assemblyName = this.GetType().GetTypeInfo().Assembly.Location;
-            var assemblyInstance = AssemblyHelper.LoadNETAssembly(assemblyName, "Tools.InstanceClass");
+            dynamic assemblyInstance = AssemblyHelper.LoadNETAssembly(assemblyName, "Tools.InstanceClass");
 
             string s = assemblyInstance.Next(10);
 

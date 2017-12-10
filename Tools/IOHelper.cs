@@ -33,5 +33,19 @@ namespace Tools
 
             return stack;
         }
+
+        public static string[] GetFiles(string path, string pattern = null)
+        { 
+            Guard.ThrowIfInvalidArgs(path.IsValidPath(), $"Invalid path \"{path}\"");
+
+            path = Path.GetDirectoryName(path);
+
+            if (pattern.IsValid())
+            {
+                return Directory.GetFiles(path, pattern);
+            }
+
+            return Directory.GetFiles(path);
+        }
     }
 }

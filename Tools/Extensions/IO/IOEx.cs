@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.IO;
 using Tools.Extensions;
-using Tools.Exceptions;
 using System.Text.RegularExpressions;
 
 namespace Tools.Extensions.IO
@@ -21,8 +20,26 @@ namespace Tools.Extensions.IO
         
         public static bool IsValidPath(this string path)
         {
+            if (!path.IsValid()) return false;
+            
             char[] invalidChars = Path.GetInvalidPathChars();
-            return !path.Any(x => invalidChars.Contains(x));
+
+            DirectoryInfo directoryInfo = null;
+
+            if(!path.Any(x => invalidChars.Contains(x)))
+            {
+                directoryInfo = new DirectoryInfo(path);
+            }
+
+            return directoryInfo != null;
+        }
+
+        public static bool IsValidFileName(this string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            var invalidChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+
+            return !fileName.Any(x=> invalidChars.Contains(x));
         }
     }
 }

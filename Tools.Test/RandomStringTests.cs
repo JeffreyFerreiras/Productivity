@@ -21,7 +21,7 @@ namespace Tools.Test
         [ExpectedException(typeof(ArgumentException))]
         public void NextAlphabet_NegativeLength()
         {
-            string randLetters = RandomString.NextAlphabet(-6);
+            string randLetters = RandomString.NextAlphabet(-6);                                          
         }
 
         [TestMethod]
