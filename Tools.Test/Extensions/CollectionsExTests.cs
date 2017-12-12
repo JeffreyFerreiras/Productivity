@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using NSubstitute;
-using Tools.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.TestPlatform;
-using System.Reflection;
+using Tools.Extensions;
 
 namespace Tools.Test.Extensions
 {
@@ -98,7 +93,6 @@ namespace Tools.Test.Extensions
             const string value = "value";
             dict.Add(key, value);
 
-
             Assert.AreEqual(value, dict.TryGetValue(key));
         }
 
@@ -109,7 +103,6 @@ namespace Tools.Test.Extensions
             const string key = "key";
             const string value = "value";
             dict.Add(key, value);
-
 
             Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(""));
             Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(null));

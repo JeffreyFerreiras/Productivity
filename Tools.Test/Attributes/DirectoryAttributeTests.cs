@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tools.Attributes;
 
 namespace Tools.Test.Attributes
@@ -9,7 +6,6 @@ namespace Tools.Test.Attributes
     [TestClass]
     public class DirectoryAttributeTests
     {
-        
         [TestMethod()]
         public void Directory_Test()
         {

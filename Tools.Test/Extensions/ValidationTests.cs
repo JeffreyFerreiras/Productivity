@@ -1,13 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestPlatform;
 using Tools.Extensions;
 
 namespace Tools.Test.Extensions
 {
-    
     [TestClass]
     public class ValidationTests
     {
@@ -18,7 +14,7 @@ namespace Tools.Test.Extensions
             {
                 Cost = 88.50,
                 Name = "Bob",
-                Collection = new List<int> { 1,2,3,4,5},
+                Collection = new List<int> { 1, 2, 3, 4, 5 },
                 IsCom = false,
             };
 
@@ -32,7 +28,7 @@ namespace Tools.Test.Extensions
             {
                 Cost = -1,
                 Name = "",
-                Collection = new List<int> (),
+                Collection = new List<int>(),
                 IsCom = false,
             };
 
@@ -63,7 +59,7 @@ namespace Tools.Test.Extensions
         {
             object num = 5;
             Assert.IsTrue(num.IsNumber());
-        } 
+        }
 
         [TestMethod]
         public void IsNumber_NotNumber()
@@ -103,7 +99,7 @@ namespace Tools.Test.Extensions
         [TestMethod]
         public void HasLower_Test()
         {
-             string s = "AaBbCc12345!@#";
+            string s = "AaBbCc12345!@#";
             Assert.IsTrue(s.HasLower(3));
         }
 

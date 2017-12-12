@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETStandard,Version=v1.6": {
+    ".NETStandard,Version=v2.0": {
       "CoreCompat.System.ComponentModel.Attributes/4.2.3-rg": {
         "type": "package",
         "dependencies": {
@@ -59,33 +59,6 @@
         },
         "runtime": {
           "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
-        }
-      },
-      "Microsoft.CSharp/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.ObjectModel": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0",
-          "System.Threading": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/Microsoft.CSharp.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.CSharp.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -683,28 +656,22 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
-      "System.Linq.Dynamic.Core/1.0.6.13": {
+      "System.Linq.Dynamic.Core/1.0.7.13": {
         "type": "package",
         "dependencies": {
           "System.Collections.Concurrent": "4.3.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
           "System.Diagnostics.TraceSource": "4.3.0",
           "System.Dynamic.Runtime": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
           "System.Linq.Queryable": "4.3.0",
-          "System.ObjectModel": "4.3.0",
           "System.Reflection.Emit": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Threading": "4.3.0"
+          "System.Reflection.TypeExtensions": "4.3.0"
         },
         "compile": {
-          "lib/netstandard1.3/System.Linq.Dynamic.Core.dll": {}
+          "lib/netstandard2.0/System.Linq.Dynamic.Core.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/System.Linq.Dynamic.Core.dll": {}
+          "lib/netstandard2.0/System.Linq.Dynamic.Core.dll": {}
         }
       },
       "System.Linq.Expressions/4.3.0": {
@@ -1414,63 +1381,6 @@
         "corecompat.system.componentmodel.design.4.2.3-r3.nupkg.sha512",
         "corecompat.system.componentmodel.design.nuspec",
         "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll"
-      ]
-    },
-    "Microsoft.CSharp/4.3.0": {
-      "sha512": "P+MBhIM0YX+JqROuf7i306ZLJEjQYA9uUyRDE+OqwUI5sh41e2ZbPQV3LfAPh+29cmceE1pUffXsGfR4eMY3KA==",
-      "type": "package",
-      "path": "microsoft.csharp/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/netcore50/Microsoft.CSharp.dll",
-        "lib/netstandard1.3/Microsoft.CSharp.dll",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "microsoft.csharp.4.3.0.nupkg.sha512",
-        "microsoft.csharp.nuspec",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/Microsoft.CSharp.dll",
-        "ref/netcore50/Microsoft.CSharp.xml",
-        "ref/netcore50/de/Microsoft.CSharp.xml",
-        "ref/netcore50/es/Microsoft.CSharp.xml",
-        "ref/netcore50/fr/Microsoft.CSharp.xml",
-        "ref/netcore50/it/Microsoft.CSharp.xml",
-        "ref/netcore50/ja/Microsoft.CSharp.xml",
-        "ref/netcore50/ko/Microsoft.CSharp.xml",
-        "ref/netcore50/ru/Microsoft.CSharp.xml",
-        "ref/netcore50/zh-hans/Microsoft.CSharp.xml",
-        "ref/netcore50/zh-hant/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/Microsoft.CSharp.dll",
-        "ref/netstandard1.0/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/de/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/es/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/fr/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/it/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/ja/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/ko/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/ru/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/zh-hans/Microsoft.CSharp.xml",
-        "ref/netstandard1.0/zh-hant/Microsoft.CSharp.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -2223,8 +2133,6 @@
       "type": "package",
       "path": "system.diagnostics.diagnosticsource/4.0.0",
       "files": [
-        "System.Diagnostics.DiagnosticSource.4.0.0.nupkg.sha512",
-        "System.Diagnostics.DiagnosticSource.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/net46/System.Diagnostics.DiagnosticSource.dll",
@@ -2234,7 +2142,9 @@
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.xml",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.dll",
-        "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml"
+        "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml",
+        "system.diagnostics.diagnosticsource.4.0.0.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.nuspec"
       ]
     },
     "System.Diagnostics.Tools/4.0.1": {
@@ -2957,30 +2867,71 @@
         "system.linq.nuspec"
       ]
     },
-    "System.Linq.Dynamic.Core/1.0.6.13": {
-      "sha512": "oNa4gOqh7QpMZ2U3KlpzGkr25MXPi3oXEjm64Mb+YPOw2nTvYn7j0oYDX3bf8WIj9cp8kOTr3RGQUoNnalC7+w==",
+    "System.Linq.Dynamic.Core/1.0.7.13": {
+      "sha512": "JB5fKzMAOP7LNm6JGsah9wmOzpJLrRFQ6wkq0x64TJivlTF7zhHVOEwJh4EQ2WDQq/lQC/wYxj62cOZOT6HWCA==",
       "type": "package",
-      "path": "system.linq.dynamic.core/1.0.6.13",
+      "path": "system.linq.dynamic.core/1.0.7.13",
       "files": [
         "lib/net35/System.Linq.Dynamic.Core.dll",
+        "lib/net35/System.Linq.Dynamic.Core.pdb",
         "lib/net35/System.Linq.Dynamic.Core.xml",
         "lib/net40/System.Linq.Dynamic.Core.dll",
+        "lib/net40/System.Linq.Dynamic.Core.pdb",
         "lib/net40/System.Linq.Dynamic.Core.xml",
         "lib/net45/System.Linq.Dynamic.Core.dll",
+        "lib/net45/System.Linq.Dynamic.Core.pdb",
         "lib/net45/System.Linq.Dynamic.Core.xml",
-        "lib/netcore45/System.Linq.Dynamic.Core.dll",
-        "lib/netcore45/System.Linq.Dynamic.Core.xml",
-        "lib/netcore451/System.Linq.Dynamic.Core.dll",
-        "lib/netcore451/System.Linq.Dynamic.Core.xml",
-        "lib/netcore50/System.Linq.Dynamic.Core.dll",
-        "lib/netcore50/System.Linq.Dynamic.Core.xml",
+        "lib/net46/System.Linq.Dynamic.Core.dll",
+        "lib/net46/System.Linq.Dynamic.Core.pdb",
+        "lib/net46/System.Linq.Dynamic.Core.xml",
         "lib/netstandard1.3/System.Linq.Dynamic.Core.dll",
+        "lib/netstandard1.3/System.Linq.Dynamic.Core.pdb",
         "lib/netstandard1.3/System.Linq.Dynamic.Core.xml",
-        "lib/sl50/System.Linq.Dynamic.Core.dll",
-        "lib/sl50/System.Linq.Dynamic.Core.xml",
+        "lib/netstandard2.0/System.Linq.Dynamic.Core.dll",
+        "lib/netstandard2.0/System.Linq.Dynamic.Core.pdb",
+        "lib/netstandard2.0/System.Linq.Dynamic.Core.xml",
         "lib/uap10.0/System.Linq.Dynamic.Core.dll",
+        "lib/uap10.0/System.Linq.Dynamic.Core.pdb",
+        "lib/uap10.0/System.Linq.Dynamic.Core.pri",
         "lib/uap10.0/System.Linq.Dynamic.Core.xml",
-        "system.linq.dynamic.core.1.0.6.13.nupkg.sha512",
+        "src/System.Linq.Dynamic.Core/AssemblyBuilderFactory.cs",
+        "src/System.Linq.Dynamic.Core/Compatibility/CustomIntrospectionExtensions.cs",
+        "src/System.Linq.Dynamic.Core/Compatibility/CustomTypeBuilderExtensions.cs",
+        "src/System.Linq.Dynamic.Core/Compatibility/CustomTypeConverterExtensions.cs",
+        "src/System.Linq.Dynamic.Core/CustomTypeProviders/AbstractDynamicLinqCustomTypeProvider.cs",
+        "src/System.Linq.Dynamic.Core/CustomTypeProviders/DefaultDynamicLinqCustomTypeProvider.cs",
+        "src/System.Linq.Dynamic.Core/CustomTypeProviders/DynamicLinqTypeAttribute.cs",
+        "src/System.Linq.Dynamic.Core/CustomTypeProviders/IDynamicLinkTypeProvider.cs",
+        "src/System.Linq.Dynamic.Core/DefaultAssemblyHelper.cs",
+        "src/System.Linq.Dynamic.Core/DynamicClass.cs",
+        "src/System.Linq.Dynamic.Core/DynamicClassFactory.cs",
+        "src/System.Linq.Dynamic.Core/DynamicEnumerableAsyncExtensions.cs",
+        "src/System.Linq.Dynamic.Core/DynamicEnumerableExtensions.cs",
+        "src/System.Linq.Dynamic.Core/DynamicExpressionArgument.cs",
+        "src/System.Linq.Dynamic.Core/DynamicExpressionParser.cs",
+        "src/System.Linq.Dynamic.Core/DynamicOrdering.cs",
+        "src/System.Linq.Dynamic.Core/DynamicProperty.cs",
+        "src/System.Linq.Dynamic.Core/DynamicQueryableExtensions.cs",
+        "src/System.Linq.Dynamic.Core/Exceptions/ParseException.cs",
+        "src/System.Linq.Dynamic.Core/ExpressionParser.cs",
+        "src/System.Linq.Dynamic.Core/ExtensibilityPoint.cs",
+        "src/System.Linq.Dynamic.Core/Extensions/ExpandObjectExtensions.cs",
+        "src/System.Linq.Dynamic.Core/Extensions/LinqProviderExtensions.cs",
+        "src/System.Linq.Dynamic.Core/GlobalConfig.cs",
+        "src/System.Linq.Dynamic.Core/GroupResult.cs",
+        "src/System.Linq.Dynamic.Core/IAssemblyHelper.cs",
+        "src/System.Linq.Dynamic.Core/PagedResult.cs",
+        "src/System.Linq.Dynamic.Core/ParsingConfig.cs",
+        "src/System.Linq.Dynamic.Core/Properties/AssemblyInfo.cs",
+        "src/System.Linq.Dynamic.Core/Res.cs",
+        "src/System.Linq.Dynamic.Core/System.Linq.Dynamic.Core.csproj",
+        "src/System.Linq.Dynamic.Core/Tokenizer/TextParser.cs",
+        "src/System.Linq.Dynamic.Core/Tokenizer/Token.cs",
+        "src/System.Linq.Dynamic.Core/Tokenizer/TokenId.cs",
+        "src/System.Linq.Dynamic.Core/TypeConverterFactory.cs",
+        "src/System.Linq.Dynamic.Core/Validation/Check.cs",
+        "src/System.Linq.Dynamic.Core/Validation/CoreStrings.cs",
+        "system.linq.dynamic.core.1.0.7.13.nupkg.sha512",
         "system.linq.dynamic.core.nuspec"
       ]
     },
@@ -4548,8 +4499,6 @@
       "type": "package",
       "path": "system.text.regularexpressions/4.1.0",
       "files": [
-        "System.Text.RegularExpressions.4.1.0.nupkg.sha512",
-        "System.Text.RegularExpressions.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -4621,7 +4570,9 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._"
+        "ref/xamarinwatchos10/_._",
+        "system.text.regularexpressions.4.1.0.nupkg.sha512",
+        "system.text.regularexpressions.nuspec"
       ]
     },
     "System.Threading/4.3.0": {
@@ -4965,11 +4916,10 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETStandard,Version=v1.6": [
+    ".NETStandard,Version=v2.0": [
       "CoreCompat.System.ComponentModel.DataAnnotations >= 4.2.3-r7",
-      "Microsoft.CSharp >= 4.3.0",
       "NETStandard.Library >= 1.6.0",
-      "System.Linq.Dynamic.Core >= 1.0.6.13"
+      "System.Linq.Dynamic.Core >= 1.0.7.13"
     ]
   },
   "packageFolders": {
@@ -4996,14 +4946,14 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netstandard1.6"
+        "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netstandard1.6": {
+        "netstandard2.0": {
           "projectReferences": {}
         }
       },
@@ -5014,29 +4964,28 @@
       }
     },
     "frameworks": {
-      "netstandard1.6": {
+      "netstandard2.0": {
         "dependencies": {
           "CoreCompat.System.ComponentModel.DataAnnotations": {
             "target": "Package",
             "version": "[4.2.3-r7, )"
           },
-          "Microsoft.CSharp": {
-            "target": "Package",
-            "version": "[4.3.0, )"
-          },
           "NETStandard.Library": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[1.6.0, )",
             "autoReferenced": true
           },
           "System.Linq.Dynamic.Core": {
             "target": "Package",
-            "version": "[1.0.6.13, )"
+            "version": "[1.0.7.13, )"
           }
         },
         "imports": [
-          "dnxcore50"
-        ]
+          "net461"
+        ],
+        "assetTargetFallback": true,
+        "warn": true
       }
     }
   }

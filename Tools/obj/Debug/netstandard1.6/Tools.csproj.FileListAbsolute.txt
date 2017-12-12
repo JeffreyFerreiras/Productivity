@@ -49,3 +49,4 @@ D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.csproj.Co
 D:\Development\Git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfoInputs.cache
 C:\projects\git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.csproj.CoreCompileInputs.cache
 C:\projects\git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.AssemblyInfoInputs.cache
+C:\Projects\git\Tools.NET-Core\Tools\obj\Debug\netstandard1.6\Tools.csprojResolveAssemblyReference.cache

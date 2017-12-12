@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Reflection;
-
 
 namespace Tools.Extensions
 {
@@ -14,6 +10,7 @@ namespace Tools.Extensions
     public static class Validation
     {
         public static bool IsNullOrWhiteSpace(this string s) => string.IsNullOrWhiteSpace(s);
+
         public static bool IsNullOrEmpty(this string s) => string.IsNullOrEmpty(s);
 
         public static bool IsNumber(this object value)
@@ -77,7 +74,6 @@ namespace Tools.Extensions
                 {
                     if (e.ToString().ToLower() == o.ToString().ToLower())
                         return true;
-
                 }
             }
 

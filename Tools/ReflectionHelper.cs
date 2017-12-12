@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tools
 {
@@ -21,7 +19,5 @@ namespace Tools
                 return false;
             }
         }
-
-        
     }
 }

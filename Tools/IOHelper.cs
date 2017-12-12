@@ -1,8 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
 
 namespace Tools
 {
@@ -34,18 +31,11 @@ namespace Tools
             return stack;
         }
 
-        public static string[] GetFiles(string path, string pattern = null)
-        { 
+        public static string[] GetFiles(string path, string pattern = "*")
+        {
             Guard.ThrowIfInvalidArgs(path.IsValidPath(), $"Invalid path \"{path}\"");
 
-            path = Path.GetDirectoryName(path);
-
-            if (pattern.IsValid())
-            {
-                return Directory.GetFiles(path, pattern);
-            }
-
-            return Directory.GetFiles(path);
+            return Directory.GetFiles(Path.GetDirectoryName(path), pattern);
         }
     }
 }

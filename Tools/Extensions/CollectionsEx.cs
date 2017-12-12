@@ -11,14 +11,14 @@ namespace Tools.Extensions
     {
         private static readonly Random _random = new Random();
         private static readonly object _syncLock = new object();
-
+        
         /// <summary>
         /// Gets a random value within a collection
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="collection"></param>
         /// <returns></returns>
-
+        
         public static T GetRandomElement<T>(this IEnumerable<T> collection)
         {
             int index = 0;
@@ -60,7 +60,6 @@ namespace Tools.Extensions
             return model;
         }
 
-
         /// <summary>
         /// Get value from Dictionary if key exists, otherwise returns default value
         /// </summary>
@@ -81,5 +80,8 @@ namespace Tools.Extensions
 
             return default(TValue);
         }
+
+
+
     }
 }

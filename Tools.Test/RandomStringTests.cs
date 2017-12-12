@@ -1,5 +1,5 @@
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Tools.Test
 {
@@ -21,7 +21,7 @@ namespace Tools.Test
         [ExpectedException(typeof(ArgumentException))]
         public void NextAlphabet_NegativeLength()
         {
-            string randLetters = RandomString.NextAlphabet(-6);                                          
+            string randLetters = RandomString.NextAlphabet(-6);
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace Tools.Test
         {
             int count = 15;
 
-            while(count > 0)
+            while (count > 0)
             {
                 string randomized = RandomString.NextRandomized(8);
                 Assert.IsNotNull(randomized);

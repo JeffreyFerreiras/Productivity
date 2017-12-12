@@ -1,39 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Tools.Exceptions
 {
-    using Extensions;
-    using System.Reflection;
-
     /// <summary>
     /// Exeption throwing class.
     /// </summary>
     public static class Guard
     {
-        public static void Throw<TException>(bool assert, string msg) where TException : Exception
+        public static void Throw<TException>(bool assert, string message) where TException : Exception
         {
             if (!assert)
             {
-                TException ex = (TException) Activator.CreateInstance(typeof(TException), msg);
-                throw ex;
+                throw (TException)Activator.CreateInstance(typeof(TException), message);
             }
         }
 
-        public static void ThrowIfInvalidArgs(bool assert, string msg)
+        public static void ThrowIfInvalidArgs(bool assert, string message)
         {
             if (!assert)
             {
-                throw new ArgumentException($"Invlaid argument: {msg}");
+                throw new ArgumentException($"Invlaid argument: {message}");
             }
         }
-        
-        public static void ThrowIfInvalidOperation(bool assert, string msg)
+
+        public static void ThrowIfInvalidOperation(bool assert, string message)
         {
-            if(!assert)
+            if (!assert)
             {
-                throw new InvalidOperationException($"Invalid operation: {msg}");
+                throw new InvalidOperationException($"Invalid operation: {message}");
             }
         }
     }

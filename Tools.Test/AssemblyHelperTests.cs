@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Reflection;
 
 namespace Tools.Test
 {
     [TestClass]
     public class AssemblyHelperTests
-    { 
+    {
         [TestMethod]
         public void LoadNETAssembly_Test()
         {
@@ -23,7 +21,7 @@ namespace Tools.Test
         [TestMethod]
         public void LoadNETAssembly_NullArgs()
         {
-            Assert.ThrowsException<ArgumentException> (()=>AssemblyHelper.LoadNETAssembly(null, null));
+            Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly(null, null));
         }
 
         [TestMethod]

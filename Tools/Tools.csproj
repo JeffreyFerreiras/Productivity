@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Tools</AssemblyName>
     <PackageId>UnitTestTools</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
@@ -13,8 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.6.13" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.7.13" />
   </ItemGroup>
 
 </Project>
