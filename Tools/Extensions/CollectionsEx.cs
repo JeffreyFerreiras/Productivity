@@ -19,44 +19,18 @@ namespace Tools.Extensions
         /// <param name="collection"></param>
         /// <returns></returns>
 
-        public static T GetRandomElement<T>(this ICollection<T> collection)
+        public static T GetRandomElement<T>(this IEnumerable<T> collection)
         {
             int index = 0;
 
             lock (_syncLock)
             {
-                index = _random.Next(0, collection.Count - 1);
+                index = _random.Next(0, collection.Count() - 1);
             }
 
             T element = collection.ElementAt(index);
 
             return element.IsValid() ? element : default(T);
-        }
-
-        /// <summary>
-        /// Converts an object into a dictioanry of key value pair.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="model"></param>
-        /// <returns></returns>
-
-        public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
-        {
-            Guard.ThrowIfInvalidArgs(model.IsValid(), $"{typeof(T).Name} not valid");
-
-            IDictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
-
-            foreach (var p in typeof(T).GetProperties())
-            {
-                if (!p.CanRead) continue;
-
-                dynamic val = p.GetValue(model);
-
-                dict[p.Name] = val;
-            }
-
-            return dict;
         }
 
         /// <summary>
@@ -72,18 +46,20 @@ namespace Tools.Extensions
             Guard.ThrowIfInvalidArgs(model.IsValid(), $"{typeof(T).Name} not valid");
             Guard.ThrowIfInvalidArgs(dict.IsValid(), "Dictionary not valid");
 
-            foreach (var p in typeof(T).GetProperties())
-            {
-                TValue val = dict.TryGetValue(p.Name);
+            Type t = model.GetType();
 
-                if (p.CanWrite && val.IsValid())
-                {
-                    p.SetValue(model, val);
-                }
+            foreach (var prop in t.GetProperties())
+            {
+                if (!prop.CanWrite) continue;
+                if (!dict.ContainsKey(prop.Name)) continue;
+
+                TValue val = dict[prop.Name];
+                prop.SetValue(model, val);
             }
 
             return model;
         }
+
 
         /// <summary>
         /// Get value from Dictionary if key exists, otherwise returns default value

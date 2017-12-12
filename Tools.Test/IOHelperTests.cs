@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Tools;
 using System.Reflection;
 
 namespace Tools.Test
@@ -36,7 +34,7 @@ namespace Tools.Test
         [TestMethod]
         public void GetDirectoryStack_EmptyDirectory_Throws()
         {
-            Assert.ThrowsException<ArgumentException>(()=>IOHelper.GetDirectoryStack(string.Empty));
+            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetDirectoryStack(string.Empty));
         }
 
         [TestMethod]
@@ -50,7 +48,7 @@ namespace Tools.Test
         {
             string path = this.GetType().GetTypeInfo().Assembly.Location;
 
-            string [] files = IOHelper.GetFiles(path);
+            string[] files = IOHelper.GetFiles(path);
             Assert.IsTrue(files.Length > 0);
         }
     }

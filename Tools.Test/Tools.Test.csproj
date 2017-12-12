@@ -2,6 +2,9 @@
   <PropertyGroup>    
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,13 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
-    <PackageReference Include="microsoft.csharp" Version="4.3.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.1.11" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
-    <PackageReference Include="nsubstitute" Version="2.0.3" />
-    <PackageReference Include="NUnit" Version="3.7.1" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.6.13" />
+    <PackageReference Include="microsoft.csharp" Version="4.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <PackageReference Include="nsubstitute" Version="3.1.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.7.13" />
   </ItemGroup>
 
   <ItemGroup>

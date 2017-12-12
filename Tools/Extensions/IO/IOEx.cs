@@ -6,6 +6,7 @@ using System.Reflection;
 using System.IO;
 using Tools.Extensions;
 using System.Text.RegularExpressions;
+using Tools.Exceptions;
 
 namespace Tools.Extensions.IO
 {
@@ -36,10 +37,19 @@ namespace Tools.Extensions.IO
 
         public static bool IsValidFileName(this string fileName)
         {
-            fileName = Path.GetFileName(fileName);
-            var invalidChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+            if (string.IsNullOrWhiteSpace(fileName)) return false;
 
-            return !fileName.Any(x=> invalidChars.Contains(x));
+            try
+            {
+                fileName = Path.GetFileName(fileName);
+                HashSet<char> invalidChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+
+                return !fileName.Any(x => invalidChars.Contains(x));
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

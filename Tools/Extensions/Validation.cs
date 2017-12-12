@@ -42,11 +42,11 @@ namespace Tools.Extensions
         }
 
         public static bool IsValid<T>(this T value)
-        {        
+        {
             if (value == null) return false;
             if (value.IsNumber()) return Convert.ToInt32(value) > -1;
             if (value is string) return !string.IsNullOrWhiteSpace(value.ToString());
-            if (value.HasProp("Count")) return (int)value.GetType().GetProperty("Count").GetValue(value) > 0;            
+            if (value.HasProp("Count")) return (int)value.GetType().GetProperty("Count").GetValue(value) > 0;
 
             return true;
         }
@@ -63,6 +63,25 @@ namespace Tools.Extensions
             }
 
             return true;
+        }
+
+        public static bool IsValidEnum(this object o)
+        {
+            Type t = o.GetType();
+
+            if (t.GetTypeInfo().IsEnum)
+            {
+                Array enumVals = t.GetTypeInfo().GetEnumValues();
+
+                foreach (var e in enumVals)
+                {
+                    if (e.ToString().ToLower() == o.ToString().ToLower())
+                        return true;
+
+                }
+            }
+
+            return false;
         }
 
         public static bool HasOnlyLetters(this string letters)

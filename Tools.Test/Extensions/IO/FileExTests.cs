@@ -17,7 +17,7 @@ namespace Tools.Test.Extensions.IO
             dir.CreateDirectory();
 
             Assert.IsTrue(Directory.Exists(dir));
-            Directory.Delete(@"C:\Test\");
+            Directory.Delete(@"C:\Test\", true);
         }
 
         [TestMethod]
