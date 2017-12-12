@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Tools.Extensions
 {
@@ -9,7 +7,15 @@ namespace Tools.Extensions
 
     public static class Reflection
     {
-        public static dynamic GetPropertyVal<T>(this T value, string property)
+        /// <summary>
+        /// Get value of a property within object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
+
+        public static dynamic GetValueOf<T>(this T value, string property)
         {
             Guard.ThrowIfInvalidArgs(value.IsValid(), nameof(value));
             Guard.ThrowIfInvalidArgs(property.IsValid(), nameof(property));
@@ -19,10 +25,11 @@ namespace Tools.Extensions
             if (p != null && p.CanRead)
             {
                 dynamic val = p.GetValue(value);
+
                 return val;
             }
 
-            return Activator.CreateInstance(p.PropertyType); //something went wrong.
+            return Activator.CreateInstance(p.PropertyType); //Property does not have  value, return default
         }
     }
 }

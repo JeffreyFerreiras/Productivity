@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
 
 namespace Tools.Extensions
 {
@@ -19,7 +18,7 @@ namespace Tools.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="collection"></param>
         /// <returns></returns>
-        
+
         public static T GetRandomElement<T>(this ICollection<T> collection)
         {
             int index = 0;
@@ -29,7 +28,7 @@ namespace Tools.Extensions
                 index = _random.Next(0, collection.Count - 1);
             }
 
-            T element =  collection.ElementAt(index);
+            T element = collection.ElementAt(index);
 
             return element.IsValid() ? element : default(T);
         }
@@ -41,7 +40,7 @@ namespace Tools.Extensions
         /// <typeparam name="TValue"></typeparam>
         /// <param name="model"></param>
         /// <returns></returns>
-        
+
         public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
         {
             Guard.ThrowIfInvalidArgs(model.IsValid(), $"{typeof(T).Name} not valid");
@@ -53,12 +52,13 @@ namespace Tools.Extensions
                 if (!p.CanRead) continue;
 
                 dynamic val = p.GetValue(model);
-                
-                dict[p.Name]=val;
+
+                dict[p.Name] = val;
             }
 
             return dict;
         }
+
         /// <summary>
         /// Assigns matching key value pairs to object properties.
         /// </summary>
@@ -85,6 +85,14 @@ namespace Tools.Extensions
             return model;
         }
 
+        /// <summary>
+        /// Get value from Dictionary if key exists, otherwise returns default value
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key)
         {
             Guard.ThrowIfInvalidArgs(key.IsValid(), $"{nameof(key)} not valid");

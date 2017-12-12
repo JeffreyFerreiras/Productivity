@@ -4235,7 +4235,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "hvqB3Lb5jF4mVzbOvRiek0UDhM11VYVUZ3TluLL7E2rs5raQQQdXr1nYT7Rnai+7ZHYtwpBrYh4NwTcukgOAQQ==",
+      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -4272,7 +4272,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Uu9HCqh///L/IbJeImgG6Z79jiOzGcSf/HcnkLsaVlpylicEGQAHjJbLXH0pAJ3jtyZ5UkszFv/JUir9kDuF+w==",
+      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -4511,7 +4511,7 @@
       ]
     },
     "System.ComponentModel.Primitives/4.3.0": {
-      "sha512": "BkO00DfZEMObsoyhDZCNeKY3vleDk929zevlcUXmQAFRuQ115m+kDtCRNHS+WCbp7BYrJ3l85BiYhZla/Q1GVw==",
+      "sha512": "j8GUkCpM8V4d4vhLIIoBLGey2Z5bCkMVNjEZseyAlm4n5arcsJOeI3zkUP+zvZgzsbLTYh4lYeP/ZD/gdIAPrw==",
       "type": "package",
       "path": "system.componentmodel.primitives/4.3.0",
       "files": [
@@ -4548,7 +4548,7 @@
       ]
     },
     "System.ComponentModel.TypeConverter/4.3.0": {
-      "sha512": "FwvdCCVZlkKh/R95PDGAF3imjArcNBb+fz3u6flgfzXWZHj8eee/FqOeN5x5UC8CYGLezg/+zGZFP3WbfWpasg==",
+      "sha512": "16pQ6P+EdhcXzPiEK4kbA953Fu0MNG2ovxTZU81/qsCd1zPRsKc3uif5NgvllCY598k6bI0KUyKW8fanlfaDQg==",
       "type": "package",
       "path": "system.componentmodel.typeconverter/4.3.0",
       "files": [
@@ -8829,8 +8829,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NinJask\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "C:\\Users\\XBBND77\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -8838,19 +8837,15 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "projectUniqueName": "C:\\Projects\\git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "projectName": "Tools.Test",
-      "projectPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
-      "packagesPath": "C:\\Users\\NinJask\\.nuget\\packages\\",
-      "outputPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\obj\\",
+      "projectPath": "C:\\Projects\\git\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "packagesPath": "C:\\Users\\XBBND77\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\git\\Tools.NET-Core\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\NinJask\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\XBBND77\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp1.1"
@@ -8858,14 +8853,13 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {},
-        "C:\\Users\\NinJask\\.dotnet\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {
-            "D:\\Development\\Git\\Tools.NET-Core\\Tools\\Tools.csproj": {
-              "projectPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools\\Tools.csproj"
+            "C:\\Projects\\git\\Tools.NET-Core\\Tools\\Tools.csproj": {
+              "projectPath": "C:\\Projects\\git\\Tools.NET-Core\\Tools\\Tools.csproj"
             }
           }
         }

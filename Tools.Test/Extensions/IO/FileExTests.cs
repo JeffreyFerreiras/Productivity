@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
 namespace Tools.Test.Extensions.IO
@@ -9,7 +6,7 @@ namespace Tools.Test.Extensions.IO
     using System.Reflection;
     using Tools.Extensions;
     using Tools.Extensions.IO;
-    
+
     [TestClass]
     public class FileExTests
     {
@@ -25,10 +22,10 @@ namespace Tools.Test.Extensions.IO
 
         [TestMethod]
         public void CreateDirectory_InvalidDirectory_ReturnsFalse()
-        { 
+        {
             char invalidChar = Path.GetInvalidPathChars().GetRandomElement();
             string invalidDirectoryName = $@"C:\invlaidFolder{invalidChar}Name";
-            
+
             Assert.IsFalse(invalidDirectoryName.CreateDirectory());
         }
 
@@ -74,6 +71,7 @@ namespace Tools.Test.Extensions.IO
 
             Assert.IsFalse(isValidPath);
         }
+
         [TestMethod]
         public void IsValidPath_RandomString_ReturnsFalse()
         {
@@ -111,8 +109,10 @@ namespace Tools.Test.Extensions.IO
         public void IsFile_Null_ReturnsFalse()
         {
             string n = null;
+
             Assert.IsFalse(n.IsValidFileName());
         }
+
         [TestMethod]
         public void IsFile_InvalidFileNameChars_ReturnsFalse()
         {
