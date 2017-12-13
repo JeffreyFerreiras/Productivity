@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Tools.Extensions;
+using Tools.Extensions.Validation;
 
 namespace Tools.Test.Extensions
 {

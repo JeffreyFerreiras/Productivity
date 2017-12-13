@@ -3,7 +3,7 @@ using System;
 
 namespace Tools.Test
 {
-    using Tools.Extensions;
+    using Tools.Extensions.Validation;
 
     [TestClass]
     public class RandomStringTests

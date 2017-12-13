@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Tools
 {
     using Exceptions;
-    using Tools.Extensions;
+    using Tools.Extensions.Validation;
     using Tools.Extensions.IO;
 
     public static class AssemblyHelper

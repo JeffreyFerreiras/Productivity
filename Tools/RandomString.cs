@@ -2,7 +2,7 @@
 
 namespace Tools
 {
-    using Extensions;
+    using Extensions.Validation;
     using Tools.Exceptions;
 
     public class RandomString

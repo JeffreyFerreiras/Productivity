@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Tools.Extensions
+namespace Tools.Extensions.Validation
 {
     /// <summary>
     /// Provides common validation functionality.
@@ -107,6 +107,7 @@ namespace Tools.Extensions
         public static bool HasUpper(this string pw, int count = 1)
         {
             Predicate<char> predicate = c => char.IsUpper(c);
+
             return pw.HasCharType(predicate, count);
         }
 

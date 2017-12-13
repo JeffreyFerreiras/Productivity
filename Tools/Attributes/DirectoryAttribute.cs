@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Tools.Attributes
 {
-    using Extensions;
+    using Extensions.Validation;
 
     public class DirectoryAttribute : ValidationAttribute
     {

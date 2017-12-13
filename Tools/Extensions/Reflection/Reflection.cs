@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Tools.Extensions
+namespace Tools.Extensions.Reflection
 {
     using Exceptions;
+    using Extensions.Validation;
 
     public static class Reflection
     {
@@ -30,34 +31,6 @@ namespace Tools.Extensions
             }
 
             return Activator.CreateInstance(p.PropertyType); //Property does not have  value, return default
-        }
-
-        public static dynamic ToEnum(this string s, Type type)
-        {
-            Array modeTypes = type.GetTypeInfo().GetEnumValues();
-
-            foreach (var mode in modeTypes)
-            {
-                if (s.IsNumber())
-                {
-                    int numVal = Convert.ToInt32(s);
-                    if ((int)mode == numVal)
-                        return mode;
-                }
-
-                if (s.ToLower() == mode.ToString().ToLower())
-                    return mode;
-
-                if (s.Length == 1)
-                {
-                    int ascii = Convert.ToChar(s);
-
-                    if ((int)mode == ascii)
-                        return mode;
-                }
-            }
-
-            return null;
         }
     }
 }

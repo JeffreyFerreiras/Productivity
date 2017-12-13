@@ -4,11 +4,11 @@ using System.IO;
 namespace Tools.Test.Extensions.IO
 {
     using System.Reflection;
-    using Tools.Extensions;
+    using Tools.Extensions.Collection;
     using Tools.Extensions.IO;
 
     [TestClass]
-    public class FileExTests
+    public class IOExTests
     {
         [TestMethod]
         public void CreateDirectory_ValidDirectoryName_CreatesDirectory()
@@ -44,7 +44,7 @@ namespace Tools.Test.Extensions.IO
         {
             string invalidPathName = $@"C:\";
 
-            foreach (char invalidPathChar in Path.GetInvalidPathChars())
+            foreach(char invalidPathChar in Path.GetInvalidPathChars())
             {
                 invalidPathName += invalidPathChar;
             }

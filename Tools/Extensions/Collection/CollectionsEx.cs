@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Tools.Extensions
+namespace Tools.Extensions.Collection
 {
+    using Validation;
     using Exceptions;
 
     public static class CollectionsEx
@@ -73,15 +74,12 @@ namespace Tools.Extensions
             Guard.ThrowIfInvalidArgs(key.IsValid(), $"{nameof(key)} not valid");
             Guard.ThrowIfInvalidArgs(dict.IsValid(), "Dictionary not valid");
 
-            if (dict.ContainsKey(key))
+            if(dict.ContainsKey(key))
             {
                 return dict[key];
             }
 
             return default(TValue);
         }
-
-
-
     }
 }
