@@ -8,6 +8,7 @@ namespace Tools.Test.Extensions.Conversion
     [TestClass]
     public class ConversionExTests
     {
+        #region ToEnum
         [TestMethod]
         public void ToEnum_ValidEnum_ConvertsToEnum()
         {
@@ -41,10 +42,11 @@ namespace Tools.Test.Extensions.Conversion
             string strEnum = "Club";
 
             Assert.IsTrue(Suits.Club == strEnum.ToEnum<Suits>(false));
-        }
+        } 
+        #endregion
 
         [TestMethod]
-        public void ToDictionary_ConvertObject_IDictionary()
+        public void ToDictionary_Object_IDictionary()
         {
             var item = new
             {

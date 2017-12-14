@@ -17,7 +17,7 @@ namespace Tools
         /// <returns></returns>
         public static string NextAlphabet(int length = 8)
         {
-            Guard.ThrowIfInvalidArgs(length.IsValid(), nameof(length));
+            Guard.AssertArgs(length.IsValid(), nameof(length));
 
             string result = string.Empty;
 
@@ -41,9 +41,9 @@ namespace Tools
         /// <returns></returns>
         public static string NextPassword(int length = 8, int upperCount = 1, int numbersCount = 1)
         {
-            Guard.ThrowIfInvalidArgs(length.IsValid(), nameof(length));
-            Guard.ThrowIfInvalidArgs(upperCount.IsValid(), nameof(upperCount));
-            Guard.ThrowIfInvalidArgs(numbersCount.IsValid(), nameof(numbersCount));
+            Guard.AssertArgs(length.IsValid(), nameof(length));
+            Guard.AssertArgs(upperCount.IsValid(), nameof(upperCount));
+            Guard.AssertArgs(numbersCount.IsValid(), nameof(numbersCount));
 
             string password = string.Empty;
 
@@ -66,7 +66,7 @@ namespace Tools
         /// <returns></returns>
         public static string NextRandomized(int length = 8)
         {
-            Guard.ThrowIfInvalidArgs(length.IsValid(), nameof(length));
+            Guard.AssertArgs(length.IsValid(), nameof(length));
 
             string randomized = string.Empty;
 

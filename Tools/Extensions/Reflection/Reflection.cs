@@ -18,8 +18,8 @@ namespace Tools.Extensions.Reflection
 
         public static dynamic GetValueOf<T>(this T value, string property)
         {
-            Guard.ThrowIfInvalidArgs(value.IsValid(), nameof(value));
-            Guard.ThrowIfInvalidArgs(property.IsValid(), nameof(property));
+            Guard.AssertArgs(value.IsValid(), nameof(value));
+            Guard.AssertArgs(property.IsValid(), nameof(property));
 
             PropertyInfo p = value.GetType().GetTypeInfo().GetProperty(property);
 

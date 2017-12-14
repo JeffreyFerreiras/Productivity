@@ -8,7 +8,7 @@ namespace Tools.Test
     public class AssemblyHelperTests
     {
         [TestMethod]
-        public void LoadNETAssembly_Test()
+        public void LoadNETAssembly_ValidArgs_CreatesDynamicObject()
         {
             string assemblyName = this.GetType().GetTypeInfo().Assembly.Location;
             dynamic assemblyInstance = AssemblyHelper.LoadNETAssembly(assemblyName, "Tools.InstanceClass");
@@ -19,14 +19,9 @@ namespace Tools.Test
         }
 
         [TestMethod]
-        public void LoadNETAssembly_NullArgs()
+        public void LoadNETAssembly_InvalidArgs_ThrowsArgumentException()
         {
             Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly(null, null));
-        }
-
-        [TestMethod]
-        public void LoadNETAssembly_EmptyArgs()
-        {
             Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly("", ""));
         }
     }

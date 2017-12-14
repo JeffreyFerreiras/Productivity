@@ -15,7 +15,7 @@ namespace Tools.Exceptions
             }
         }
 
-        public static void ThrowIfInvalidArgs(bool assert, string message)
+        public static void AssertArgs(bool assert, string message)
         {
             if (!assert)
             {
@@ -23,7 +23,7 @@ namespace Tools.Exceptions
             }
         }
 
-        public static void ThrowIfInvalidOperation(bool assert, string message)
+        public static void AssertOperation(bool assert, string message)
         {
             if (!assert)
             {

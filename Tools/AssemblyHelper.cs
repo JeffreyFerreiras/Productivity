@@ -4,15 +4,15 @@ using System.Reflection;
 namespace Tools
 {
     using Exceptions;
-    using Tools.Extensions.Validation;
-    using Tools.Extensions.IO;
+    using Extensions.Validation;
+    using Extensions.IO;
 
     public static class AssemblyHelper
     {
         public static dynamic LoadNETAssembly(string componentPath, string module)
         {
-            Guard.ThrowIfInvalidArgs(module.IsValid(), nameof(module));
-            Guard.ThrowIfInvalidArgs(componentPath.IsValidPath(), nameof(componentPath));
+            Guard.AssertArgs(module.IsValid(), nameof(module));
+            Guard.AssertArgs(componentPath.IsValidPath(), nameof(componentPath));
 
             var assemblyRef = new AssemblyName
             {

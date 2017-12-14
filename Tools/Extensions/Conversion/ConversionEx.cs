@@ -69,7 +69,7 @@ namespace Tools.Extensions.Conversion
 
         public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
         {
-            Guard.ThrowIfInvalidArgs(model.IsValid(), $"{typeof(T).Name} not valid");
+            Guard.AssertArgs(model.IsValid(), $"{typeof(T).Name} not valid");
 
             IDictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
 
