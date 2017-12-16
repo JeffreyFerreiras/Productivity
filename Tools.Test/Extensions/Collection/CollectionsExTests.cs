@@ -59,34 +59,29 @@ namespace Tools.Test.Extensions
         [TestMethod]
         public void FromDictionary_PopulatedMultipleTypeProperties_PopulatesObject()
         {
-            var item = new FakeMultiType
-            {
-                A = "dddd",
-                B = 1.55,
-                C = DateTime.Now,
-                D = Suits.Club
-            };
+            var item = Helper.GetFakeMultiType();
 
             IDictionary<string, object> itemDictionary =
                 new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase)
             {
-                { "a", "a value" },
-                { "b", 5.55},
-                { "c", DateTime.Now},
-                { "d", Suits.Club }
+                { "StringType", "a value" },
+                { "DoubleType", 5.55},
+                { "DateType", DateTime.Now},
+                { "EnumType", Suits.Club }
             };
             
             object o = itemDictionary.FromDictionary(item);
 
-            Assert.IsTrue(item.A.Equals(itemDictionary["a"]));
-            Assert.IsTrue(item.B.Equals(itemDictionary["b"]));
-            Assert.IsTrue(item.C.Equals(itemDictionary["c"]));
+            Assert.IsTrue(item.StringType.Equals(itemDictionary["StringType"]));
+            Assert.IsTrue(item.DoubleType.Equals(itemDictionary["DoubleType"]));
+            Assert.IsTrue(item.DateType.Equals(itemDictionary["DateType"]));
+            Assert.IsTrue(item.EnumType.Equals(itemDictionary["EnumType"]));
         }
 
         [TestMethod]
         public void FromDictionary_MismatchedTypes_PopulatesObject()
         {
-            var item = new FakeMultiType
+            var item = new
             {
                 A = "dddd",
                 B = 1.55,

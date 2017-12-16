@@ -17,16 +17,16 @@ namespace Tools
         /// <returns></returns>
         public static string NextAlphabet(int length = 8)
         {
-            Guard.AssertArgs(length.IsValid(), nameof(length));
+            Guard.AssertArgs(length > 0, nameof(length));
 
             string result = string.Empty;
 
-            lock (s_syncLock)
+            lock(s_syncLock)
             {
-                for (int i = 0; i < length; i++)
+                for(int i = 0; i < length; i++)
                 {
                     char c = (char)(s_random.Next(0, 26) + 97); //use ASCII to get lower case letters.
-                    if (s_random.Next(0, 2) == 1) c = char.ToUpper(c);
+                    if(s_random.Next(0, 2) == 1) c = char.ToUpper(c);
                     result += c;
                 }
             }
@@ -41,15 +41,15 @@ namespace Tools
         /// <returns></returns>
         public static string NextPassword(int length = 8, int upperCount = 1, int numbersCount = 1)
         {
-            Guard.AssertArgs(length.IsValid(), nameof(length));
+            Guard.AssertArgs(length > 0, nameof(length));
             Guard.AssertArgs(upperCount.IsValid(), nameof(upperCount));
             Guard.AssertArgs(numbersCount.IsValid(), nameof(numbersCount));
 
             string password = string.Empty;
 
-            lock (s_syncLock)
+            lock(s_syncLock)
             {
-                for (int i = 0; i < length; i++)
+                for(int i = 0; i < length; i++)
                 {
                     char c = (char)(s_random.Next(0, 94) + 33);
                     password += c;
@@ -66,13 +66,13 @@ namespace Tools
         /// <returns></returns>
         public static string NextRandomized(int length = 8)
         {
-            Guard.AssertArgs(length.IsValid(), nameof(length));
+            Guard.AssertArgs(length > 0, nameof(length));
 
             string randomized = string.Empty;
 
-            lock (s_syncLock)
+            lock(s_syncLock)
             {
-                for (int i = 0; i < length; i++)
+                for(int i = 0; i < length; i++)
                 {
                     char c = (char)s_random.Next(0, 128);
                     randomized += c;

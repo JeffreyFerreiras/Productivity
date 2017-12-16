@@ -18,6 +18,7 @@ namespace Tools.Exceptions
         {
             Exception ex = this;
             StringBuilder sb = new StringBuilder();
+
             int count = 0;
 
             while (ex != null)
@@ -28,7 +29,7 @@ namespace Tools.Exceptions
             }
 
             sb.AppendLine($"\nShort Stack Trace: {this.StackTrace}");
-            sb.AppendLine($"\nFull Stack Trace: {Environment.StackTrace}");
+            sb.AppendLine($"\nFull Stack Trace:  {Environment.StackTrace}");
 
             return sb.ToString();
         }

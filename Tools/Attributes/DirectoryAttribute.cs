@@ -13,6 +13,7 @@ namespace Tools.Attributes
             string dir = value as string;
             string root = Path.GetPathRoot(dir);
             if (root.IsNullOrWhiteSpace()) return false;
+
             return !Path.GetInvalidPathChars().Any(c => dir.Contains(c));
         }
     }

@@ -3,10 +3,7 @@ using System.IO;
 
 namespace Tools
 {
-    using Extensions;
-    using System.Diagnostics;
     using Tools.Exceptions;
-    using Tools.Extensions.IO;
 
     public static class IOHelper
     {
@@ -23,7 +20,7 @@ namespace Tools
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             Stack<DirectoryInfo> stack = new Stack<DirectoryInfo>();
 
-            while (dirInfo != null)
+            while(dirInfo != null)
             {
                 stack.Push(dirInfo);
                 dirInfo = dirInfo?.Parent;
@@ -32,6 +29,12 @@ namespace Tools
             return stack;
         }
 
+        /// <summary>
+        /// Get files from directory with optional filter.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
         public static string[] GetFiles(string path, string pattern = "*")
         {
             Guard.AssertArgs(Directory.Exists(path), $"Does not exist \"{path}\"");
@@ -39,6 +42,12 @@ namespace Tools
             return Directory.GetFiles(path, pattern);
         }
 
+        /// <summary>
+        /// Get FileInfo collection from directory with optional filter.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
         public static IEnumerable<FileInfo> GetFilesInfo(string path, string pattern = "*")
         {
             Guard.AssertArgs(Directory.Exists(path), $"Location does not exist: {path}");
@@ -54,6 +63,11 @@ namespace Tools
             }
         }
 
+        /// <summary>
+        /// Delete files within a directory with optional filter
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="pattern"></param>
         public static void DeleteFiles(string path, string pattern = "*")
         {
             Guard.AssertArgs(Directory.Exists(path), $"Location does not exist: {path}");

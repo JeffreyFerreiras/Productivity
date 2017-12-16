@@ -15,6 +15,8 @@ namespace Tools.Extensions.Validation
 
         public static bool IsNumber(this object value)
         {
+            if(value is string) return value.ToString().IsValidNumber();
+
             return value is sbyte
                 || value is byte
                 || value is short
@@ -28,33 +30,14 @@ namespace Tools.Extensions.Validation
                 || value is decimal;
         }
 
-        public static bool ValidateProperties<T>(this T value)
-        {
-            if (value == null) return false;
-
-            foreach (var m in value.GetType().GetTypeInfo().GetProperties())
-                if (!m.GetValue(value).IsValid()) return false;
-
-            return true;
-        }
-
-        public static bool IsValid<T>(this T value)
-        {
-            if (value == null) return false;
-            if (value.IsNumber()) return Convert.ToInt32(value) > -1;
-            if (value is string) return !string.IsNullOrWhiteSpace(value.ToString());
-            if (value.HasProp("Count")) return (int)value.GetType().GetProperty("Count").GetValue(value) > 0;
-
-            return true;
-        }
-
         public static bool IsValidNumber(this string num)
         {
-            if (!num.IsValid()) return false;
+            if(string.IsNullOrWhiteSpace(num)) return false;
+            if(num[0] == '-') num = num.Substring(1);
 
-            foreach (var c in num)
+            foreach(var c in num)
             {
-                if (c >= 48 && c <= 57) continue;
+                if(c >= 48 && c <= 57) continue;
 
                 return false;
             }
@@ -62,30 +45,32 @@ namespace Tools.Extensions.Validation
             return true;
         }
 
-        public static bool IsValidEnum(this object o)
+        public static bool ValidateProperties<T>(this T value)
         {
-            Type t = o.GetType();
+            if(value == null) return false;
 
-            if (t.GetTypeInfo().IsEnum)
-            {
-                Array enumVals = t.GetTypeInfo().GetEnumValues();
+            foreach(var m in value.GetType().GetTypeInfo().GetProperties())
+                if(!m.GetValue(value).IsValid()) return false;
 
-                foreach (var e in enumVals)
-                {
-                    if (e.ToString().ToLower() == o.ToString().ToLower())
-                        return true;
-                }
-            }
-
-            return false;
+            return true;
         }
 
+        public static bool IsValid<T>(this T value)
+        {
+            if(value == null) return false;
+            if(value.IsNumber()) return Convert.ToInt32(value) > -1;
+            if(value is string) return !string.IsNullOrWhiteSpace(value.ToString());
+            if(value.HasProp("Count")) return (int)value.GetType().GetProperty("Count").GetValue(value) > 0;
+
+            return true;
+        }
+        
         public static bool HasOnlyLetters(this string letters)
         {
-            foreach (var letter in letters)
+            foreach(var letter in letters)
             {
-                if (letter > 96 && letter < 123) continue;
-                if (letter > 64 && letter < 90) continue;
+                if(letter > 96 && letter < 123) continue;
+                if(letter > 64 && letter < 90) continue;
 
                 return false;
             }
@@ -95,10 +80,10 @@ namespace Tools.Extensions.Validation
 
         public static bool HasCharType(this string pw, Predicate<char> predicate, int count = 1)
         {
-            foreach (char letter in pw)
+            foreach(char letter in pw)
             {
-                if (predicate(letter)) count--;
-                if (count <= 0) return true;
+                if(predicate(letter)) count--;
+                if(count <= 0) return true;
             }
 
             return false;

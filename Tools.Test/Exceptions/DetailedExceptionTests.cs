@@ -19,6 +19,9 @@ namespace Tools.Test.Exceptions
                 string message = e.ToString();
 
                 System.Diagnostics.Debug.WriteLine(e);
+
+                Assert.IsNotNull(message);
+                Assert.IsTrue(message.Length > 0);
             }
         }
     }

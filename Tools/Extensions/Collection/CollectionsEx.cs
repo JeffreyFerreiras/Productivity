@@ -52,9 +52,7 @@ namespace Tools.Extensions.Collection
             Guard.AssertArgs(model.IsValid(), $"{typeof(T).Name} not valid");
             Guard.AssertArgs(dict.IsValid(), "Dictionary not valid");
 
-            Type t = model.GetType();
-
-            foreach(var prop in t.GetProperties())
+            foreach(var prop in model.GetType().GetProperties())
             {
                 if(!prop.CanWrite) continue;
                 if(!dict.ContainsKey(prop.Name)) continue;

@@ -55,7 +55,7 @@ namespace Tools.Test.Extensions
         }
 
         [TestMethod]
-        public void IsNumber_Number()
+        public void IsNumber_Number_ReturnsTrue()
         {
             object num = 5;
             Assert.IsTrue(num.IsNumber());
@@ -69,24 +69,31 @@ namespace Tools.Test.Extensions
         }
 
         [TestMethod]
-        public void IsValidNumber_Test()
+        public void IsValidNumber_ValidStringNumber_ReturnsTrue()
         {
             string nums = "12365486";
             Assert.IsTrue(nums.IsValidNumber());
         }
 
         [TestMethod]
-        public void IsValidNumber_NotValid()
+        public void IsValidNumber_InvalidStringNumber_ReturnsFalse()
         {
             string nums = "la564dfad5";
             Assert.IsFalse(nums.IsValidNumber());
         }
 
         [TestMethod]
-        public void IsValidNumber_Empty()
+        public void IsValidNumber_EmptyString_ReturnsFalse()
         {
             string nums = "";
             Assert.IsFalse(nums.IsValidNumber());
+        }
+
+        [TestMethod]
+        public void IsValidNumber_NegativeNumber_ReturnsTrue()
+        {
+            Assert.IsTrue("-354".IsValidNumber());
+            Assert.IsTrue((-999).ToString().IsValidNumber());
         }
 
         [TestMethod]

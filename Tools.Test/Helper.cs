@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tools.Test
 {
@@ -21,10 +22,12 @@ namespace Tools.Test
 
     public class FakeMultiType
     {
-        public string A { get; set; }
-        public double B { get; set; }
-        public DateTime C { get; set; }
-        public Suits D { get; set; }
+        public string StringType { get; set; }
+        public double DoubleType { get; set; }
+        public DateTime DateType { get; set; }
+        public Suits EnumType { get; set; }
+        public string[] StringArrayType { get; set; }
+        public List<FakeTest> Fakes { get; set; }
     }
 
     public class Helper
@@ -39,6 +42,41 @@ namespace Tools.Test
             }
 
             return stringArray;
+        }
+
+        public static FakeMultiType GetFakeMultiType()
+        {
+            return new FakeMultiType
+            {
+                StringType = RandomString.NextAlphabet(),
+                DoubleType = 1.1,
+                DateType = DateTime.Now,
+                EnumType = Suits.Club,
+                StringArrayType = GeStringArray(),
+                Fakes = GetFakes(),
+            };
+        }
+        public static List<FakeTest> GetFakes(int len = 10)
+        {
+            var fakes = new List<FakeTest>(len);
+
+            for(int i = 0; i < len; i++)
+            {
+                fakes.Add(GetFake());
+            }
+
+            return fakes;
+        }
+
+        public static FakeTest GetFake()
+        {
+            return new FakeTest
+            {
+                A = "dddd",
+                B = 1.55,
+                C = DateTime.Now,
+                D = Suits.Club
+            };
         }
     }
 }
