@@ -79,34 +79,6 @@ namespace Tools.Test.Extensions
         }
 
         [TestMethod]
-        public void FromDictionary_MismatchedTypes_PopulatesObject()
-        {
-            var item = new
-            {
-                A = "dddd",
-                B = 1.55,
-                C = DateTime.Now,
-                D = Suits.Club
-            };
-
-            IDictionary<string, object> itemDictionary =
-                new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase)
-            {
-                { "a", (object)"a value" },
-                { "b", 5.55m},
-                { "c", DateTime.Now.ToString()},
-                { "d", Suits.Club }
-            };
-
-            object o = itemDictionary.FromDictionary(item);
-
-            Assert.IsTrue(item.A == (string)itemDictionary["a"]);
-            Assert.IsTrue(item.B == Convert.ToDouble(itemDictionary["b"]));
-            Assert.IsTrue(item.C == Convert.ToDateTime(itemDictionary["c"]));
-            Assert.IsTrue(item.D == (Suits)itemDictionary["d"]);
-        }
-
-        [TestMethod]
         public void TryGetValue_ValidDictANDIndex_IndexValue()
         {
             var dict = new Dictionary<string, string>();

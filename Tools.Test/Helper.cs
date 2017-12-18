@@ -28,6 +28,7 @@ namespace Tools.Test
         public Suits EnumType { get; set; }
         public string[] StringArrayType { get; set; }
         public List<FakeTest> Fakes { get; set; }
+        public IDictionary<string, object> DictionaryType { get; set; }
     }
 
     public class Helper
@@ -54,6 +55,11 @@ namespace Tools.Test
                 EnumType = Suits.Club,
                 StringArrayType = GeStringArray(),
                 Fakes = GetFakes(),
+                DictionaryType =    new Dictionary<string, object>
+                {
+                    ["one"] = GetFake(),
+                    ["two"] = GetFake()
+                }
             };
         }
         public static List<FakeTest> GetFakes(int len = 10)
@@ -72,7 +78,7 @@ namespace Tools.Test
         {
             return new FakeTest
             {
-                A = "dddd",
+                A = RandomString.NextAlphabet(),
                 B = 1.55,
                 C = DateTime.Now,
                 D = Suits.Club

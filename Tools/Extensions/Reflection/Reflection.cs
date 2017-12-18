@@ -5,6 +5,9 @@ namespace Tools.Extensions.Reflection
 {
     using Exceptions;
     using Extensions.Validation;
+    using System.Collections.Generic;
+    using System.Collections;
+    using System.Linq;
 
     public static class Reflection
     {
@@ -23,7 +26,7 @@ namespace Tools.Extensions.Reflection
 
             PropertyInfo p = value.GetType().GetTypeInfo().GetProperty(property);
 
-            if (p != null && p.CanRead)
+            if(p != null && p.CanRead)
             {
                 dynamic val = p.GetValue(value);
 
@@ -43,6 +46,15 @@ namespace Tools.Extensions.Reflection
         {
             if(source == null) return null;
 
+            if(source is ICollection<object> col)
+            {
+                return (T)DeepCloneCollection(col);
+            }
+            else if(source is IDictionary dict)
+            {
+                return (T)DeepCloneDictionary(dict);
+            }
+
             MethodInfo method = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
             T clone = (T)method.Invoke(source, null);
 
@@ -53,6 +65,36 @@ namespace Tools.Extensions.Reflection
 
                 object sourceValue = field.GetValue(source);
                 field.SetValue(clone, DeepClone(sourceValue));
+            }
+
+            return clone;
+        }
+
+        private static ICollection<object> DeepCloneCollection(ICollection<object> col)
+        {
+            object[] arry = (object[])Activator.CreateInstance(col.GetType(), new object[] { col.Count });
+
+            for(int i = 0; i < col.Count; i++)
+            {
+                object original = col.ElementAt(i);
+                object clone = DeepClone(original);
+
+                arry[i] = clone;
+            }
+
+            return arry;
+        }
+
+        private static IDictionary DeepCloneDictionary(IDictionary dict)
+        {
+            IDictionary clone = (IDictionary)Activator.CreateInstance(dict.GetType());
+
+            foreach(object pair in dict)
+            {
+                object key = pair.GetValueOf("Key");
+                object original = pair.GetValueOf("Value");
+
+                clone.Add(key, original.DeepClone());
             }
 
             return clone;
