@@ -19,9 +19,14 @@ namespace Tools.Test
         }
 
         [TestMethod]
-        public void LoadNETAssembly_InvalidArgs_ThrowsArgumentException()
+        public void LoadNETAssembly_NullArgs_ThrowsArgumentException()
         {
             Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly(null, null));
+        }
+
+        [TestMethod]
+        public void LoadNETAssembly_EmptyStringArgs_ThrowsArgumentException()
+        {
             Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly("", ""));
         }
     }

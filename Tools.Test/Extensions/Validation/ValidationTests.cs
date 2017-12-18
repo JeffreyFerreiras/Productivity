@@ -45,7 +45,7 @@ namespace Tools.Test.Extensions
         [TestMethod]
         public void IsNullOrWhiteSpace_Test()
         {
-            Assert.IsTrue(!"lasdkjfh".IsNullOrWhiteSpace());
+            Assert.IsFalse("lasdkjfh".IsNullOrWhiteSpace());
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace Tools.Test.Extensions
         }
 
         [TestMethod]
-        public void IsNumber_NotNumber()
+        public void IsNumber_EmptyString_ReturnsFalse()
         {
             object num = "";
             Assert.IsFalse(num.IsNumber());
@@ -97,24 +97,48 @@ namespace Tools.Test.Extensions
         }
 
         [TestMethod]
-        public void HasUpper_Test()
+        public void HasUpper_MixedString_ReturnsTrue()
         {
             string s = "AaBbCc12345!@#";
             Assert.IsTrue(s.HasUpper(3));
         }
 
         [TestMethod]
-        public void HasLower_Test()
+        public void HasLower_MixedString_ReturnsTrue()
         {
             string s = "AaBbCc12345!@#";
             Assert.IsTrue(s.HasLower(3));
         }
 
         [TestMethod]
-        public void HasNumber_Test()
+        public void HasNumber_MixedString_ReturnsTrue()
         {
             string s = "AaBbCc12345!@#";
             Assert.IsTrue(s.HasNumber(3));
+        }
+
+        [TestMethod]
+        public void HasOnlyLetters_LowerCaseLetters_ReturnsTrue()
+        {
+            string abc = "abc";
+
+            Assert.IsTrue(abc.HasOnlyLetters());
+        }
+
+        [TestMethod]
+        public void HasOnlyLetters_UpperCaseLetters_ReturnsTrue()
+        {
+            string abc = "ABC";
+
+            Assert.IsTrue(abc.HasOnlyLetters());
+        }
+
+        [TestMethod]
+        public void HasOnlyLetters_Numbers_ReturnsTrue()
+        {
+            string nums = "123456";
+
+            Assert.IsFalse(nums.HasOnlyLetters());
         }
     }
 }

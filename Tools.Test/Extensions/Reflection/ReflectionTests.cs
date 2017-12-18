@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Tools.Extensions.Reflection;
 
 namespace Tools.Test.Extensions.Reflection
@@ -10,9 +9,9 @@ namespace Tools.Test.Extensions.Reflection
     public class ReflectionTests
     {
         [TestMethod]
-        public void DeepClone_IEnumerable_Clones()
+        public void DeepClone_IEnumerable_ReturnsDeepClone()
         {
-            var enumerable = Enumerable.Repeat(Helper.GetFake(), 2);
+            var enumerable = Enumerable.Repeat(Helper.GetSimpleFake(), 2);
             var clone = enumerable.DeepClone();
 
             bool hasSameRefs = enumerable.SequenceEqual(clone);
@@ -21,9 +20,9 @@ namespace Tools.Test.Extensions.Reflection
         }
 
         [TestMethod]
-        public void DeepClone_ArrayOfReferenceTypes_Clones()
+        public void DeepClone_ArrayOfReferenceTypes_ReturnsDeepClone()
         {
-            var arr = Enumerable.Repeat(Helper.GetFake(), 2).ToArray();
+            var arr = Enumerable.Repeat(Helper.GetSimpleFake(), 2).ToArray();
             var arrClone = arr.DeepClone();
 
             arr[0].A = "original";
@@ -32,9 +31,9 @@ namespace Tools.Test.Extensions.Reflection
         }
 
         [TestMethod]
-        public void DeepClone_SimpleObject_Clones()
+        public void DeepClone_SimpleObject_ReturnsDeepClone()
         {
-            var original = Helper.GetFake();
+            var original = Helper.GetSimpleFake();
             var clone = original.DeepClone();
 
             original.A = "original";
@@ -43,75 +42,19 @@ namespace Tools.Test.Extensions.Reflection
         }
 
         [TestMethod]
-        public void DeepClone_Dictionary_Clones()
+        public void DeepClone_Dictionary_ReturnsDictionaryClone()
         {
-            var dict = new Dictionary<string, FakeTest>
+            var original = new Dictionary<string, SimpleFake>
             {
-                ["Jeff"] = Helper.GetFake(),
-                ["bob"] = Helper.GetFake()
+                ["Jeff"] = Helper.GetSimpleFake(),
+                ["bob"] = Helper.GetSimpleFake()
             };
 
-            var clone = dict.DeepClone();
-
-            dict["Jeff"].A = "original";
-
-            Assert.IsFalse(dict["Jeff"].A == clone["Jeff"].A);
-
-        }
-
-        [TestMethod]
-        public void DeepCopy_ValidClomplexObject_Clones()
-        {
-            var original = Helper.GetFakeMultiType();
             var clone = original.DeepClone();
 
-            foreach(var prop in original.GetType().GetTypeInfo().GetProperties())
-            {
-                var originalValue = prop.GetValue(original);
-                var cloneValue = prop.GetValue(clone);
+            original["Jeff"].A = "original";
 
-                if(originalValue == null) continue;
-
-                if(originalValue is IDictionary<string, object>)
-                {
-                    var orig = (IDictionary<string, object>)originalValue;
-                    var clon = (IDictionary<string, object>)cloneValue;
-
-                    orig["one"] = null;
-
-                    Assert.IsFalse(orig["one"] == clon["one"]);
-                }
-                else if(originalValue is List<FakeTest>)
-                {
-                    var orig = (List<FakeTest>)originalValue;
-                    var clon = (List<FakeTest>)cloneValue;
-
-                    orig[0].A = "Original";
-
-                    Assert.IsFalse(orig[0].A.Equals(clon[0].A));
-                }
-                else if(originalValue is string[])
-                {
-                    var orig = (string[])originalValue;
-                    var clon = (string[])cloneValue;
-
-                    Assert.IsFalse(cloneValue == originalValue);
-                    Assert.IsTrue(orig.SequenceEqual(clon));
-
-                    orig[0] = "Original";
-
-                    Assert.IsFalse(orig[0] == clon[0]);
-                }
-                else
-                {
-                    Assert.IsTrue(cloneValue.Equals(originalValue));    // Deep comparison
-                    Assert.IsFalse(cloneValue == originalValue);        // Reference comparison
-
-                    originalValue = null; //If a shallow copy was performed, the cloneValue will also be null.
-
-                    Assert.IsFalse(cloneValue.Equals(originalValue));   //Make sure references were not simply copied.
-                }
-            }
+            Assert.IsFalse(original["Jeff"].A == clone["Jeff"].A);
         }
     }
 }

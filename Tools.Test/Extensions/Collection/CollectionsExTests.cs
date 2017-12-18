@@ -32,7 +32,7 @@ namespace Tools.Test.Extensions
         [TestMethod]
         public void FromDictionary_EmptyObject_PopulateObject()
         {
-            var item = new FakeTest
+            var item = new SimpleFake
             {
                 A = null,
                 B = null,
@@ -59,7 +59,7 @@ namespace Tools.Test.Extensions
         [TestMethod]
         public void FromDictionary_PopulatedMultipleTypeProperties_PopulatesObject()
         {
-            var item = Helper.GetFakeMultiType();
+            var item = Helper.GetComplexFake();
 
             IDictionary<string, object> itemDictionary =
                 new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase)

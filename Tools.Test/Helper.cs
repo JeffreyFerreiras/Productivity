@@ -11,7 +11,7 @@ namespace Tools.Test
         Club
     }
 
-    public class FakeTest
+    public class SimpleFake
     {
         public object A { get; set; }
         public object B { get; set; }
@@ -20,18 +20,18 @@ namespace Tools.Test
         public object E { get; set; }
     }
 
-    public class FakeMultiType
+    public class ComplexFake
     {
         public string StringType { get; set; }
         public double DoubleType { get; set; }
         public DateTime DateType { get; set; }
         public Suits EnumType { get; set; }
         public string[] StringArrayType { get; set; }
-        public List<FakeTest> Fakes { get; set; }
+        public List<SimpleFake> Fakes { get; set; }
         public IDictionary<string, object> DictionaryType { get; set; }
     }
 
-    public class Helper
+    public static class Helper
     {
         public static string[] GeStringArray(int length = 10)
         {
@@ -45,38 +45,38 @@ namespace Tools.Test
             return stringArray;
         }
 
-        public static FakeMultiType GetFakeMultiType()
+        public static ComplexFake GetComplexFake()
         {
-            return new FakeMultiType
+            return new ComplexFake
             {
                 StringType = RandomString.NextAlphabet(),
                 DoubleType = 1.1,
                 DateType = DateTime.Now,
                 EnumType = Suits.Club,
                 StringArrayType = GeStringArray(),
-                Fakes = GetFakes(),
+                Fakes = GetSimpleFakes(),
                 DictionaryType =    new Dictionary<string, object>
                 {
-                    ["one"] = GetFake(),
-                    ["two"] = GetFake()
+                    ["one"] = GetSimpleFake(),
+                    ["two"] = GetSimpleFake()
                 }
             };
         }
-        public static List<FakeTest> GetFakes(int len = 10)
+        public static List<SimpleFake> GetSimpleFakes(int len = 10)
         {
-            var fakes = new List<FakeTest>(len);
+            var fakes = new List<SimpleFake>(len);
 
             for(int i = 0; i < len; i++)
             {
-                fakes.Add(GetFake());
+                fakes.Add(GetSimpleFake());
             }
 
             return fakes;
         }
 
-        public static FakeTest GetFake()
+        public static SimpleFake GetSimpleFake()
         {
-            return new FakeTest
+            return new SimpleFake
             {
                 A = RandomString.NextAlphabet(),
                 B = 1.55,

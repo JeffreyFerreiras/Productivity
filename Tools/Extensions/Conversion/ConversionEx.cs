@@ -97,6 +97,5 @@ namespace Tools.Extensions.Conversion
 
             return dict;
         }
-
     }
 }

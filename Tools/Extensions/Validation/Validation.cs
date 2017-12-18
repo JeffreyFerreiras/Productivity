@@ -67,7 +67,7 @@ namespace Tools.Extensions.Validation
         
         public static bool HasOnlyLetters(this string letters)
         {
-            foreach(var letter in letters)
+            foreach(char letter in letters)
             {
                 if(letter > 96 && letter < 123) continue;
                 if(letter > 64 && letter < 90) continue;

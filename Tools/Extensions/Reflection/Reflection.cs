@@ -5,8 +5,8 @@ namespace Tools.Extensions.Reflection
 {
     using Exceptions;
     using Extensions.Validation;
-    using System.Collections.Generic;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     public static class Reflection
@@ -18,7 +18,6 @@ namespace Tools.Extensions.Reflection
         /// <param name="value"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-
         public static dynamic GetValueOf<T>(this T value, string property)
         {
             Guard.AssertArgs(value.IsValid(), nameof(value));
@@ -50,11 +49,19 @@ namespace Tools.Extensions.Reflection
             {
                 return (T)DeepCloneCollection(col);
             }
-            else if(source is IDictionary dict)
+
+            if(source is IDictionary dict)
             {
                 return (T)DeepCloneDictionary(dict);
             }
 
+            T clone = InternalDeepClone(source);
+
+            return clone;
+        }
+
+        private static T InternalDeepClone<T>(T source) where T : class
+        {
             MethodInfo method = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
             T clone = (T)method.Invoke(source, null);
 
