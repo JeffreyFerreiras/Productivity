@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Collections;
 
 namespace Tools.Extensions.Collection
 {
     using Exceptions;
-    using System.Collections;
-    using Tools.Extensions.Conversion;
     using Validation;
 
     public static class CollectionsEx
@@ -39,6 +38,12 @@ namespace Tools.Extensions.Collection
         /// <returns></returns>
         public static IEnumerable<T> SubSequence<T>(this IEnumerable<T> source, int startIndex, int length)
         {
+            bool isValidSequenceRange = (startIndex + 1) + length == source.Count();
+
+            Guard.AssertArgs(isValidSequenceRange, "Sequence range out of bounds");
+            Guard.Throw<IndexOutOfRangeException>(length <= source.Count() && length > 0, "Length out of bounds");
+            Guard.Throw<IndexOutOfRangeException>(startIndex > 0 && startIndex < source.Count()-1, "Start index out of bounds");
+            
             T[] sequence = new T[length];
 
             for(int i = 0; i < length; i++)
@@ -50,8 +55,6 @@ namespace Tools.Extensions.Collection
 
             return sequence;
         }
-
-
 
         /// <summary>
         /// Gets a IEnumerable <typeparamref name="T"/> underlying type.

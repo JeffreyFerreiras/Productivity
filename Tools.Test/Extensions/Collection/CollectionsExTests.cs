@@ -6,12 +6,37 @@ using Tools.Extensions.Validation;
 
 namespace Tools.Test.Extensions
 {
-    using System.Collections;
     using Tools.Extensions.Collection;
 
     [TestClass]
     public class CollectionsExTests
     {
+        [TestMethod]
+        public void SubSequence_HighLength_ThrowsIndexOutOfRangeException()
+        {
+            var collection = Helper.GeStringArray();
+
+            Assert.ThrowsException<IndexOutOfRangeException>(() => collection.SubSequence(3, collection.Count() + 5));
+        }
+
+        [TestMethod]
+        public void SubSequence_HighStart_ThrowsIndexOutOfRangeException()
+        {
+            var collection = Helper.GeStringArray();
+
+            Assert.ThrowsException<IndexOutOfRangeException>(() => collection.SubSequence(collection.Count() + 2));
+        }
+
+        [TestMethod]
+        public void SubSequence_InvalidRange_ThrowsArgumentException()
+        {
+            var collection = Helper.GeStringArray();
+            int start = 8;
+            int len = 7;
+
+            Assert.ThrowsException<ArgumentException>(() => collection.SubSequence(start, len));
+        }
+
         [TestMethod]
         public void SubSequence_Array_ReturnsSubSequence()
         {
@@ -99,7 +124,6 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(underlyingType, typeof(SimpleFake));
         }
 
-
         [TestMethod]
         public void GetRandomElement_ValidCollection_ReturnsRandomElement()
         {
@@ -157,7 +181,7 @@ namespace Tools.Test.Extensions
                 { "DateType", DateTime.Now},
                 { "EnumType", Suits.Club }
             };
-            
+
             object o = itemDictionary.FromDictionary(item);
 
             Assert.IsTrue(item.StringType.Equals(itemDictionary["StringType"]));
