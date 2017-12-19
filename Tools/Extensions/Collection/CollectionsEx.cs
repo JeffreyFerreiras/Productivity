@@ -16,24 +16,71 @@ namespace Tools.Extensions.Collection
         private static readonly object _syncLock = new object();
 
         /// <summary>
+        /// Returns a sub collection from the starting index to the end of the collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> SubSequence<T>(this IEnumerable<T> source, int startIndex)
+        {
+            int length = (source.Count() - 1) - startIndex;
+
+            return source.SubSequence(startIndex, length);
+        }
+
+        /// <summary>
+        /// Returns a sub collection from the starting index to specified length of the collection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> SubSequence<T>(this IEnumerable<T> source, int startIndex, int length)
+        {
+            T[] sequence = new T[length];
+
+            for(int i = 0; i < length; i++)
+            {
+                T elem = source.ElementAt(i + startIndex);
+
+                sequence[i] = elem;
+            }
+
+            return sequence;
+        }
+
+
+
+        /// <summary>
+        /// Gets a IEnumerable <typeparamref name="T"/> underlying type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+
+        public static Type GetUnderlyingType<T>(this IEnumerable<T> source) => typeof(T);
+
+        /// <summary>
         /// Gets a random value within a collection
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
 
-        public static T GetRandomElement<T>(this IEnumerable<T> collection)
+        public static T GetRandomElement<T>(this IEnumerable<T> source)
         {
-            Guard.AssertArgs(collection.IsValid(), nameof(collection));
+            Guard.AssertArgs(source.IsValid(), nameof(source));
 
             int index = 0;
 
             lock(_syncLock)
             {
-                index = _random.Next(0, collection.Count() - 1);
+                index = _random.Next(0, source.Count() - 1);
             }
 
-            T element = collection.ElementAt(index);
+            T element = source.ElementAt(index);
 
             return element.IsValid() ? element : default(T);
         }

@@ -13,6 +13,94 @@ namespace Tools.Test.Extensions
     public class CollectionsExTests
     {
         [TestMethod]
+        public void SubSequence_Array_ReturnsSubSequence()
+        {
+            int startIndex = 4;
+            var collection = Helper.GeStringArray();
+            var sub = collection.SubSequence(startIndex);
+
+            for(int i = 0; i < sub.Count(); i++)
+            {
+                string colVal = collection.ElementAt(i + startIndex);
+                string subVal = sub.ElementAt(i);
+
+                Assert.AreEqual(colVal, subVal);
+            }
+        }
+
+        [TestMethod]
+        public void SubSequence_ReferenceTypeList_ReturnsSubSequence()
+        {
+            int startIndex = 4;
+            var collection = Helper.GetSimpleFakes();
+            var sub = collection.SubSequence(startIndex);
+
+            for(int i = 0; i < sub.Count(); i++)
+            {
+                var colVal = collection.ElementAt(i + startIndex);
+                var subVal = sub.ElementAt(i);
+
+                Assert.AreEqual(colVal, subVal);
+            }
+        }
+
+        [TestMethod]
+        public void SubSequence_IEnumerableTypeList_ReturnsSubSequence()
+        {
+            int startIndex = 4;
+            IEnumerable<SimpleFake> collection = Helper.GetSimpleFakes();
+            var sub = collection.SubSequence(startIndex);
+
+            for(int i = 0; i < sub.Count(); i++)
+            {
+                var colVal = collection.ElementAt(i + startIndex);
+                var subVal = sub.ElementAt(i);
+
+                Assert.AreEqual(colVal, subVal);
+            }
+        }
+
+        [TestMethod]
+        public void GetUnderlyingType_IEnumerableString_ReturnsStringType()
+        {
+            IEnumerable<string> collection = new List<string>
+            {
+                "Hello World!",
+                "stuff",
+            };
+
+            Type underlyingType = collection.GetUnderlyingType();
+            Assert.AreEqual(underlyingType, typeof(string));
+        }
+
+        [TestMethod]
+        public void GetUnderlyingType_Primitive_ReturnsPrimitiveType()
+        {
+            IEnumerable<int> collection = new List<int>
+            {
+                5,
+                50,
+            };
+
+            Type underlyingType = collection.GetUnderlyingType();
+            Assert.AreEqual(underlyingType, typeof(int));
+        }
+
+        [TestMethod]
+        public void GetUnderlyingType_CustomReferenceType_ReturnsType()
+        {
+            var collection = new SimpleFake[]
+            {
+                Helper.GetSimpleFake(),
+                Helper.GetSimpleFake()
+            };
+
+            Type underlyingType = collection.GetUnderlyingType();
+            Assert.AreEqual(underlyingType, typeof(SimpleFake));
+        }
+
+
+        [TestMethod]
         public void GetRandomElement_ValidCollection_ReturnsRandomElement()
         {
             string[] stringArry = Helper.GeStringArray(20);

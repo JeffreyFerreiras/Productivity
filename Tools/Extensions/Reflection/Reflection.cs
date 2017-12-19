@@ -106,5 +106,6 @@ namespace Tools.Extensions.Reflection
 
             return clone;
         }
+
     }
 }
