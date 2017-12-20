@@ -38,12 +38,8 @@ namespace Tools.Extensions.Collection
         /// <returns></returns>
         public static IEnumerable<T> SubSequence<T>(this IEnumerable<T> source, int startIndex, int length)
         {
-            bool isValidSequenceRange = (startIndex + 1) + length == source.Count();
+            ValidateSubSequenceArgs(source, startIndex, length);
 
-            Guard.AssertArgs(isValidSequenceRange, "Sequence range out of bounds");
-            Guard.Throw<IndexOutOfRangeException>(length <= source.Count() && length > 0, "Length out of bounds");
-            Guard.Throw<IndexOutOfRangeException>(startIndex > 0 && startIndex < source.Count()-1, "Start index out of bounds");
-            
             T[] sequence = new T[length];
 
             for(int i = 0; i < length; i++)
@@ -54,6 +50,17 @@ namespace Tools.Extensions.Collection
             }
 
             return sequence;
+        }
+
+        private static void ValidateSubSequenceArgs<T>(IEnumerable<T> source, int startIndex, int length)
+        {
+            Guard.AssertArgs(source != null, nameof(source));
+
+            bool isValidSequenceRange = (startIndex + 1) + length == source.Count();
+
+            Guard.Throw<IndexOutOfRangeException>(length <= source.Count() && length > 0, "Length out of bounds");
+            Guard.Throw<IndexOutOfRangeException>(startIndex > 0 && startIndex < source.Count() - 1, "Start index out of bounds");
+            Guard.AssertArgs(isValidSequenceRange, "Sequence range out of bounds");
         }
 
         /// <summary>

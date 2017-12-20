@@ -13,8 +13,10 @@ namespace Tools.Test
         {
             string randLetters = RandomString.NextAlphabet(6);
 
-            Assert.IsTrue(randLetters.Length == 6);
-            Assert.IsTrue(randLetters.HasOnlyLetters());
+            foreach(char c in randLetters)
+            {
+                Assert.IsTrue(char.IsLetter(c));
+            }     
         }
 
         [TestMethod]

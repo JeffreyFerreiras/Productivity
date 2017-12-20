@@ -11,6 +11,29 @@ namespace Tools.Extensions.Reflection
 
     public static class Reflection
     {
+        //TODO test / add description
+        public static IEnumerable<Type> GetCollectionTypes(this Type type)
+        {
+            foreach(PropertyInfo prop in type.GetProperties())
+            {
+                if(prop.PropertyType == typeof(ICollection))
+                {
+                    yield return prop.PropertyType;
+                }
+            }
+        }
+
+        //TODO test / add description
+        public static bool HasCollection(this Type type)
+        {
+            foreach(var prop in type.GetType().GetProperties())
+            {
+                if(prop.PropertyType == typeof(ICollection)) return true;
+            }
+                
+            return false;
+        }
+
         /// <summary>
         /// Get value of a property within object
         /// </summary>

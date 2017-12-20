@@ -80,11 +80,11 @@ namespace Tools.Extensions.Conversion
         /// <param name="model"></param>
         /// <returns></returns>
 
-        public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
+        public static IDictionary<string, dynamic> ToDictionary<T>(this T model) where T : class
         {
             Guard.AssertArgs(model.IsValid(), $"{typeof(T).Name} not valid");
 
-            IDictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
+            Dictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
 
             foreach(var p in typeof(T).GetProperties())
             {
@@ -93,6 +93,34 @@ namespace Tools.Extensions.Conversion
                 dynamic val = p.GetValue(model);
 
                 dict[p.Name] = val;
+            }
+
+            return dict;
+        }
+        
+        public static IDictionary<string, string> ToDictionary(this string text)
+        {
+            return text.ToDictionary(';');
+        }
+
+        public static IDictionary<string, string> ToDictionary(this string text, char seperator)
+        {
+            return text.ToDictionary(seperator, '=');
+        }
+
+        public static IDictionary<string, string> ToDictionary(this string text, char seperator, char keyValueSeperator)
+        {
+            if(!text.IsValid()) return new Dictionary<string, string>(0);
+
+            string[] pairs = text.Split(seperator);
+            string[] keyValue = new string[2];
+
+            var dict = new Dictionary<string, string>(pairs.Length);
+
+            for(int i = 0; i < pairs.Length; i++)
+            {
+                keyValue = pairs[i].Split(keyValueSeperator);
+                dict.Add(keyValue[0], keyValue[1]);
             }
 
             return dict;

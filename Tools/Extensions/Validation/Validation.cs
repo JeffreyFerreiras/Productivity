@@ -67,12 +67,12 @@ namespace Tools.Extensions.Validation
         
         public static bool HasOnlyLetters(this string letters)
         {
-            foreach(char letter in letters)
+            for(int i = 0; i < letters.Length; i++)
             {
-                if(letter > 96 && letter < 123) continue;
-                if(letter > 64 && letter < 90) continue;
-
-                return false;
+                if(!char.IsLetter(letters, i))
+                {
+                    return false;
+                }
             }
 
             return true;

@@ -7,16 +7,49 @@ using Tools.Extensions.Validation;
 namespace Tools.Test.Extensions
 {
     using Tools.Extensions.Collection;
+    using Tools.Extensions.Conversion;
 
     [TestClass]
     public class CollectionsExTests
     {
         [TestMethod]
+        public void ToDictionary_EmptyString_ReturnsEmptyDictionary()
+        {
+            IDictionary<string, string> dict = "".ToDictionary();
+
+            Assert.IsTrue(dict.Count == 0);
+        }
+
+        [TestMethod]
+        public void ToDictionary_Null_ReturnsEmptyDictionary()
+        {
+            string pair = null;
+
+            IDictionary<string, string> dict = pair.ToDictionary();
+
+            Assert.IsTrue(dict.Count == 0);
+        }
+
+        [TestMethod]
+        public void ToDictionary_KeyValuePairString_ReturnsDictionary()
+        {
+            string pair = "key=value;key2=value2;key3=value3";
+
+            IDictionary<string, string> dict = pair.ToDictionary();
+
+            Assert.AreEqual(dict["key"], "value");
+            Assert.AreEqual(dict["key2"], "value2");
+            Assert.AreEqual(dict["key3"], "value3");
+        }
+
+        [TestMethod]
         public void SubSequence_HighLength_ThrowsIndexOutOfRangeException()
         {
             var collection = Helper.GeStringArray();
+            int len = collection.Count() + 5;
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => collection.SubSequence(3, collection.Count() + 5));
+            Action action = () => collection.SubSequence(3, len);
+            Assert.ThrowsException<IndexOutOfRangeException>(action);
         }
 
         [TestMethod]
