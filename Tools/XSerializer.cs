@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
+using Tools.Exceptions;
 using Tools.Extensions.Reflection;
+using Tools.Extensions.Validation;
 
 namespace Tools
 {
@@ -14,11 +19,14 @@ namespace Tools
         /// <typeparam name="T"></typeparam>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static string ToXml<T>(T model) where T : class
+        public static string ToXml<T>(T model)
         {
+            Guard.AssertArgs(model.IsValid(), nameof(model));
+            Guard.AssertOperation(model.GetType() != typeof(string), "Cannot serialize string");
+
             using(var writer = new System.IO.StringWriter())
             {
-                XmlSerializer ser = BuildXmlSerializer<T>();
+                XmlSerializer ser = BuildXmlSerializer(model);
 
                 ser.Serialize(writer, model);
                 return writer.ToString();
@@ -30,21 +38,20 @@ namespace Tools
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static XmlSerializer BuildXmlSerializer<T>()
+        public static XmlSerializer BuildXmlSerializer<T>(T model)
         {
-            Type type = typeof(T);
-            Type[] extraTypes = type.HasCollection() 
-                ? type.GetCollectionTypes().ToArray() 
-                : null;
+            Type type = model.GetType();
+
+            List<Type> extraTypes = model.HasCollection() 
+                ? model.GetCollectionTypes().ToList() 
+                : new List<Type>();
             
-            XmlSerializer ser;
+            extraTypes.AddRange(type.GenericTypeArguments);
 
-            if(extraTypes == null)
-                ser = new XmlSerializer(type);
+            if(extraTypes.Any())
+                return new XmlSerializer(type, extraTypes.ToArray()); 
             else
-                ser = new XmlSerializer(type, extraTypes);
-
-            return ser;
+                return new XmlSerializer(type);
         }
 
         /// <summary>

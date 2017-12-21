@@ -1,8 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.Xml;
+using System.Runtime.Serialization;
 
 namespace Tools.Test
 {
+    public struct SampleStruct
+    {
+        public int Count { get; set; }
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+        public DateTime Time { get; set; }
+
+        public int[] Numbers => new int[] { 1, 2, 3, 4, 5, 6 };
+    }
+
+    [XmlRoot(ElementName = "catalog")]
+    public class Catalog
+    {
+        [XmlElement(ElementName = "book")]
+        public List<Book> BookList
+        {
+            get;
+            set;
+        }
+
+        public Catalog()
+        {
+            BookList = new List<Book>();
+        }
+    }
+
+    public class Book
+    {
+        //public string ID { get; set; }
+        [XmlElement(ElementName = "author")]
+        public string Author { get; set; }
+
+        [XmlElement(ElementName = "title")]
+        public string Title { get; set; }
+
+        [XmlElement(ElementName = "genre")]
+        public string Genre { get; set; }
+
+        [XmlElement(ElementName = "price")]
+        public decimal Price { get; set; }
+
+        [XmlElement(ElementName = "publish_date")]
+        public DateTime Publish_Date { get; set; }
+
+        [XmlElement(ElementName = "description")]
+        public string Description { get; set; }
+    }
+
     public enum Suits
     {
         Spade,
@@ -33,6 +85,8 @@ namespace Tools.Test
 
     public static class Helper
     {
+        private readonly static Random s_random = new Random();
+
         public static string[] GeStringArray(int length = 10)
         {
             string[] stringArray = new string[length];
@@ -79,7 +133,7 @@ namespace Tools.Test
             return new SimpleFake
             {
                 A = RandomString.NextAlphabet(),
-                B = 1.55,
+                B = s_random.NextDouble(),
                 C = DateTime.Now,
                 D = Suits.Club
             };

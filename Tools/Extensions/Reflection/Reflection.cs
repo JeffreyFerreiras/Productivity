@@ -11,26 +11,31 @@ namespace Tools.Extensions.Reflection
 
     public static class Reflection
     {
-        //TODO test / add description
-        public static IEnumerable<Type> GetCollectionTypes(this Type type)
+        public static IEnumerable<Type> GetCollectionTypes<T>(this T model)
         {
-            foreach(PropertyInfo prop in type.GetProperties())
+            foreach(var m in model.GetType().GetProperties())
             {
-                if(prop.PropertyType == typeof(ICollection))
-                {
-                    yield return prop.PropertyType;
-                }
+                if(!m.CanRead) continue;
+
+                object col = m.GetValue(model);
+
+                if(col is ICollection)
+                    yield return col.GetType();
             }
         }
 
-        //TODO test / add description
-        public static bool HasCollection(this Type type)
+        public static bool HasCollection<T>(this T model)
         {
-            foreach(var prop in type.GetType().GetProperties())
+            foreach(var m in model.GetType().GetProperties())
             {
-                if(prop.PropertyType == typeof(ICollection)) return true;
+                Type inter = m.PropertyType.GetTypeInfo().GetInterface(nameof(ICollection));
+
+                if(inter != null)
+                {
+                    return true;
+                }
             }
-                
+
             return false;
         }
 
@@ -129,6 +134,5 @@ namespace Tools.Extensions.Reflection
 
             return clone;
         }
-
     }
 }
