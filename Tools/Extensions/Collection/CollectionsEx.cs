@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Collections;
+using Tools.Exceptions;
+using Tools.Extensions.Validation;
 
 namespace Tools.Extensions.Collection
 {
-    using Exceptions;
-    using Validation;
-
     public static class CollectionsEx
     {
         private static readonly Random _random = new Random();

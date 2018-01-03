@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Tools.Exceptions;
 
 namespace Tools
 {
-    using Tools.Exceptions;
-
     public static class IOHelper
     {
         /// <summary>

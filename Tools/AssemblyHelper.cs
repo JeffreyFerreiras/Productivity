@@ -1,12 +1,11 @@
 ﻿using System.IO;
 using System.Reflection;
+using Tools.Exceptions;
+using Tools.Extensions.IO;
+using Tools.Extensions.Validation;
 
 namespace Tools
 {
-    using Exceptions;
-    using Extensions.Validation;
-    using Extensions.IO;
-
     public static class AssemblyHelper
     {
         /// <summary>

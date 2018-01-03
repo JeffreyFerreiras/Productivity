@@ -64,7 +64,7 @@ namespace Tools.Extensions.Validation
 
             return true;
         }
-        
+
         public static bool HasOnlyLetters(this string letters)
         {
             for(int i = 0; i < letters.Length; i++)

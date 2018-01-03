@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Tools.Exceptions;
@@ -10,9 +9,13 @@ namespace Tools.Extensions.Conversion
     public static class ConversionEx
     {
         public static int ToInt32(this object o) => Convert.ToInt32(o);
+
         public static long ToInt64(this object o) => Convert.ToInt64(o);
+
         public static float ToFloat(this object o) => Convert.ToSingle(o);
+
         public static double ToDouble(this object o) => Convert.ToDouble(o);
+
         public static decimal ToDecimal(this object o) => Convert.ToDecimal(o);
 
         public static T ChangeType<T>(this object o)
@@ -42,14 +45,15 @@ namespace Tools.Extensions.Conversion
         /// <returns></returns>
         public static dynamic ToEnum(this string s, Type type, bool ignoreCase = true)
         {
-            Array modeTypes = type.GetTypeInfo().GetEnumValues();
+            Array enumValues = type.GetTypeInfo().GetEnumValues();
 
-            foreach(object mode in modeTypes)
+            foreach(object enumValue in enumValues)
             {
-                if(ignoreCase && s.Equals(mode.ToString(), StringComparison.OrdinalIgnoreCase)
-                    || !ignoreCase && s.Equals(mode.ToString()))
+                if(ignoreCase
+                    && s.Equals(enumValue.ToString(), StringComparison.OrdinalIgnoreCase)
+                    || s.Equals(enumValue.ToString()))
                 {
-                    return mode;
+                    return enumValue;
                 }
             }
 
@@ -97,7 +101,7 @@ namespace Tools.Extensions.Conversion
 
             return dict;
         }
-        
+
         public static IDictionary<string, string> ToDictionary(this string text)
         {
             return text.ToDictionary(';');

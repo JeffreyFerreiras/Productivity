@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using Tools.Exceptions;
-using Tools.Extensions.Reflection;
 using Tools.Extensions.Validation;
 
 namespace Tools
@@ -22,7 +21,7 @@ namespace Tools
         public static string ToXml<T>(T model)
         {
             Guard.AssertArgs(model.IsValid(), nameof(model));
-            Guard.AssertOperation(model.GetType() != typeof(string), "Cannot serialize string");
+            Guard.AssertOperation(model.GetType() != typeof(string), "Cannot serialize type string");
 
             using(var writer = new System.IO.StringWriter())
             {
@@ -42,16 +41,33 @@ namespace Tools
         {
             Type type = model.GetType();
 
-            List<Type> extraTypes = model.HasCollection() 
-                ? model.GetCollectionTypes().ToList() 
-                : new List<Type>();
-            
+            List<Type> extraTypes = GetCollectionTypes(model);
+
             extraTypes.AddRange(type.GenericTypeArguments);
 
             if(extraTypes.Any())
-                return new XmlSerializer(type, extraTypes.ToArray()); 
+                return new XmlSerializer(type, extraTypes.ToArray());
             else
                 return new XmlSerializer(type);
+        }
+
+        private static List<Type> GetCollectionTypes<T>(T model)
+        {
+            var types = new List<Type>();
+
+            foreach(var m in model.GetType().GetProperties())
+            {
+                if(!m.CanRead) continue;
+
+                object col = m.GetValue(model);
+
+                if(col is ICollection)
+                {
+                    types.Add(col.GetType());
+                }
+            }
+
+            return types;
         }
 
         /// <summary>

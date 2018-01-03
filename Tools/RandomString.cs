@@ -1,10 +1,9 @@
 ﻿using System;
+using Tools.Exceptions;
+using Tools.Extensions.Validation;
 
 namespace Tools
 {
-    using Extensions.Validation;
-    using Tools.Exceptions;
-
     public class RandomString
     {
         private static readonly Random s_random = new Random();

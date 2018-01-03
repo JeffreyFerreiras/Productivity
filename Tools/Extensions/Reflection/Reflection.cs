@@ -1,29 +1,15 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using Tools.Exceptions;
+using Tools.Extensions.Validation;
 
 namespace Tools.Extensions.Reflection
 {
-    using Exceptions;
-    using Extensions.Validation;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
-
     public static class Reflection
     {
-        public static IEnumerable<Type> GetCollectionTypes<T>(this T model)
-        {
-            foreach(var m in model.GetType().GetProperties())
-            {
-                if(!m.CanRead) continue;
-
-                object col = m.GetValue(model);
-
-                if(col is ICollection)
-                    yield return col.GetType();
-            }
-        }
-
         public static bool HasCollection<T>(this T model)
         {
             foreach(var m in model.GetType().GetProperties())
@@ -90,8 +76,8 @@ namespace Tools.Extensions.Reflection
 
         private static T InternalDeepClone<T>(T source) where T : class
         {
-            MethodInfo method = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
-            T clone = (T)method.Invoke(source, null);
+            MethodInfo memberwiseClone = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
+            T clone = (T)memberwiseClone.Invoke(source, null);
 
             foreach(FieldInfo field in source.GetType().GetRuntimeFields())
             {
