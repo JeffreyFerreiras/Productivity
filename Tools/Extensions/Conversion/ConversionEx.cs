@@ -135,5 +135,17 @@ namespace Tools.Extensions.Conversion
 
             return source == "Y" || source == "YES" || source == "T" || source == "TRUE";
         }
+
+        public static char[] ToCharArray(this int[] numbers)
+        {
+            char[] chars = new char[numbers.Length];
+
+            for(int i = 0; i < numbers.Length; i++)
+            {
+                chars[i] = (char)numbers[i];
+            }
+
+            return chars;
+        }
     }
 }

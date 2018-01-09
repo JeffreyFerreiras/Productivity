@@ -1,4 +1,6 @@
-﻿namespace Tools
+﻿using Tools.RandomGenerator;
+
+namespace Tools
 {
     public class InstanceClass
     {

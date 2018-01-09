@@ -2,7 +2,7 @@
 using Tools.Exceptions;
 using Tools.Extensions.Validation;
 
-namespace Tools
+namespace Tools.RandomGenerator
 {
     public class RandomString
     {

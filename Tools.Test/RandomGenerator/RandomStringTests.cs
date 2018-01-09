@@ -4,6 +4,7 @@ using System;
 namespace Tools.Test
 {
     using Tools.Extensions.Validation;
+    using Tools.RandomGenerator;
 
     [TestClass]
     public class RandomStringTests

@@ -5,11 +5,6 @@ namespace Tools.Extensions.Text
 {
     public static class TextEx
     {
-        public static string ToCamelCase(string text)
-        {
-            throw new NotImplementedException();
-        }
-
         public static string Tab(this string text) => text.Tab(1);
 
         public static string Tab(this string text, int count)

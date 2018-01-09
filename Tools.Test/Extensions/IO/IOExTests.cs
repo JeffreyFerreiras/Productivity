@@ -6,6 +6,7 @@ namespace Tools.Test.Extensions.IO
     using System.Reflection;
     using Tools.Extensions.Collection;
     using Tools.Extensions.IO;
+    using Tools.RandomGenerator;
 
     [TestClass]
     public class IOExTests
