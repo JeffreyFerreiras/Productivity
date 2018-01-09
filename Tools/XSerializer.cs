@@ -55,15 +55,15 @@ namespace Tools
         {
             var types = new List<Type>();
 
-            foreach(var m in model.GetType().GetProperties())
+            foreach(PropertyInfo prop in model.GetType().GetProperties())
             {
-                if(!m.CanRead) continue;
+                if(!prop.CanRead) continue;
 
-                object col = m.GetValue(model);
+                object value = prop.GetValue(model);
 
-                if(col is ICollection)
+                if(value is ICollection)
                 {
-                    types.Add(col.GetType());
+                    types.Add(prop.PropertyType);
                 }
             }
 

@@ -18,7 +18,7 @@ namespace Tools.Test.Extensions
                 IsCom = false,
             };
 
-            Assert.IsTrue(o.ValidateProperties());
+            Assert.IsTrue(o.HasValidProperties());
         }
 
         [TestMethod]
@@ -32,14 +32,14 @@ namespace Tools.Test.Extensions
                 IsCom = false,
             };
 
-            Assert.IsFalse(o.ValidateProperties());
+            Assert.IsFalse(o.HasValidProperties());
         }
 
         [TestMethod]
         public void ValidateProperties_NullArgs()
         {
             object o = null;
-            Assert.IsFalse(o.ValidateProperties());
+            Assert.IsFalse(o.HasValidProperties());
         }
 
         [TestMethod]
@@ -139,6 +139,52 @@ namespace Tools.Test.Extensions
             string nums = "123456";
 
             Assert.IsFalse(nums.HasOnlyLetters());
+        }
+
+        [TestMethod]
+        public void EqualsIgnoreCase_EqualStrings_ReturnsTrue()
+        {
+            string first = "Hello World!";
+            string second = "HellO World!";
+
+            Assert.IsTrue(first.EqualsIgnoreCase(second));
+        }
+
+        [TestMethod]
+        public void EqualsIgnoreCase_Null_ReturnsFalse()
+        {
+            string first = null;
+            string second = null;
+
+            Assert.IsFalse(first.EqualsIgnoreCase(second));
+        }
+
+        [TestMethod]
+        public void EqualsIgnoreCase_Different_ReturnsFalse()
+        {
+            string first = "Hello World!";
+            string second = "HellO!";
+
+            Assert.IsFalse(first.EqualsIgnoreCase(second));
+        }
+
+        [TestMethod]
+        public void EqualsIgnoreCase_Empty_ReturnsTrue()
+        {
+            string first = "";
+            string second = "";
+
+            Assert.IsTrue(first.EqualsIgnoreCase(second));
+        }
+
+        [TestMethod]
+        public void EqualsIgnoreCase_NullEmpty_ReturnsFalse()
+        {
+            string first = null;
+            string second = "";
+
+            Assert.IsFalse(first.EqualsIgnoreCase(second));
+            Assert.IsFalse(second.EqualsIgnoreCase(first));
         }
     }
 }

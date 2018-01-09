@@ -7,10 +7,11 @@ namespace Tools.Test.Attributes
     public class DirectoryAttributeTests
     {
         [TestMethod()]
-        public void Directory_Test()
+        public void Directory_ValidDirectory_ReturnsTrue()
         {
             var dirAttribute = new DirectoryAttribute();
             bool valid = dirAttribute.IsValid(@"C:\Test\Test");
+
             Assert.IsTrue(valid);
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Reflection;
 
 namespace Tools.Test
@@ -18,16 +17,18 @@ namespace Tools.Test
 
         public static T PopulateModel<T>(T model)
         {
-            foreach (PropertyInfo propInfo in model.GetType().GetProperties())
+            foreach(PropertyInfo propInfo in model.GetType().GetProperties())
             {
                 var type = propInfo.PropertyType;
 
-                if (type.GetTypeInfo().IsEnum) continue;
-                if (!propInfo.CanWrite) continue;
+                if(type.GetTypeInfo().IsEnum) continue;
+                if(!propInfo.CanWrite) continue;
 
-                if (type.GetTypeInfo().IsValueType)
-                    propInfo.SetValue(model, TryGetRandom(type));
-                else if (type == typeof(string))
+                if(type.GetTypeInfo().IsValueType)
+                {
+                    propInfo.SetValue(model, GetRandomOrDefault(type));
+                }
+                else if(type == typeof(string))
                 {
                     string randString = RandomString.NextAlphabet(s_random.Next(5, 32));
                     propInfo.SetValue(model, randString);
@@ -37,13 +38,14 @@ namespace Tools.Test
             return model;
         }
 
-        private static object TryGetRandom(Type type)
+        private static dynamic GetRandomOrDefault(Type type)
         {
             try
             {
-                lock (s_syncLock)
+                lock(s_syncLock)
                 {
                     int rand = s_random.Next(1, 100);
+
                     return Convert.ChangeType(rand, type);
                 }
             }

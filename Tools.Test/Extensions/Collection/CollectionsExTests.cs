@@ -198,7 +198,7 @@ namespace Tools.Test.Extensions
 
             object o = itemDictionary.FromDictionary(item);
 
-            Assert.IsTrue(o.ValidateProperties());
+            Assert.IsTrue(o.HasValidProperties());
         }
 
         [TestMethod]
@@ -259,6 +259,31 @@ namespace Tools.Test.Extensions
             string defaultValue = dict.TryGetValue("DoesnotExist");
 
             Assert.AreEqual(default(string), defaultValue);
+        }
+
+        [TestMethod]
+        public void FromYN_TruthString_RetursTrue()
+        {
+            Assert.IsTrue("Y".FromYN());
+            Assert.IsTrue("Yes".FromYN());
+            Assert.IsTrue("T".FromYN());
+            Assert.IsTrue("true".FromYN());
+        }
+
+        [TestMethod]
+        public void FromYN_FalseString_RetursFalse()
+        {
+            Assert.IsFalse("".FromYN());
+            Assert.IsFalse("F".FromYN());
+            Assert.IsFalse("false".FromYN());
+            Assert.IsFalse("N".FromYN());
+        }
+
+        [TestMethod]
+        public void FromYN_NullString_RetursFalse()
+        {
+            string s = null;
+            Assert.IsFalse(s.FromYN());
         }
     }
 }

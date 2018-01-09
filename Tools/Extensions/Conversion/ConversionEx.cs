@@ -49,9 +49,7 @@ namespace Tools.Extensions.Conversion
 
             foreach(object enumValue in enumValues)
             {
-                if(ignoreCase
-                    && s.Equals(enumValue.ToString(), StringComparison.OrdinalIgnoreCase)
-                    || s.Equals(enumValue.ToString()))
+                if(ignoreCase && s.EqualsIgnoreCase(enumValue.ToString()) || s.Equals(enumValue.ToString()))
                 {
                     return enumValue;
                 }
@@ -70,6 +68,7 @@ namespace Tools.Extensions.Conversion
         public static string ToDateString(this object o)
         {
             string format = "MM/dd/yyyy h:mm:ss tt";
+
             if(o is DateTime) return ((DateTime)o).ToString(format);
             if(o is string && o.IsValid()) return Convert.ToDateTime(o).ToString(format);
 
@@ -128,6 +127,13 @@ namespace Tools.Extensions.Conversion
             }
 
             return dict;
+        }
+
+        public static bool FromYN(this string source)
+        {
+            source = source?.ToUpper();
+
+            return source == "Y" || source == "YES" || source == "T" || source == "TRUE";
         }
     }
 }

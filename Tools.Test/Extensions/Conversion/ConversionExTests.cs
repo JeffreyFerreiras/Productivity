@@ -67,7 +67,5 @@ namespace Tools.Test.Extensions.Conversion
 
             Assert.IsTrue(itemDictionary.Count > 0);
         }
-
-
     }
 }

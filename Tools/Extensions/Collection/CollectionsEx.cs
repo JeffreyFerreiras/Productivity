@@ -10,8 +10,8 @@ namespace Tools.Extensions.Collection
 {
     public static class CollectionsEx
     {
-        private static readonly Random _random = new Random();
-        private static readonly object _syncLock = new object();
+        private static readonly Random s_random = new Random();
+        private static readonly object s_syncLock = new object();
 
         /// <summary>
         /// Returns a sub collection from the starting index to the end of the collection
@@ -84,9 +84,9 @@ namespace Tools.Extensions.Collection
 
             int index = 0;
 
-            lock(_syncLock)
+            lock(s_syncLock)
             {
-                index = _random.Next(0, source.Count() - 1);
+                index = s_random.Next(0, source.Count() - 1);
             }
 
             T element = source.ElementAt(index);

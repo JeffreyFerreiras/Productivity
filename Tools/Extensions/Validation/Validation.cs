@@ -45,7 +45,7 @@ namespace Tools.Extensions.Validation
             return true;
         }
 
-        public static bool ValidateProperties<T>(this T value)
+        public static bool HasValidProperties<T>(this T value)
         {
             if(value == null) return false;
 
@@ -112,6 +112,15 @@ namespace Tools.Extensions.Validation
         {
             PropertyInfo property = value.GetType().GetTypeInfo().GetProperty(propName);
             return property != null;
+        }
+
+        public static bool EqualsIgnoreCase(this string source, string target)
+        {
+            if(source == null) return false;
+
+            bool areEqual = source.Equals(target, StringComparison.OrdinalIgnoreCase);
+
+            return areEqual;
         }
     }
 }

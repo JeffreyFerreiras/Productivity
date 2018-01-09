@@ -10,13 +10,20 @@ namespace Tools.Extensions.Reflection
 {
     public static class Reflection
     {
-        public static bool HasCollection<T>(this T model)
-        {
-            foreach(var m in model.GetType().GetProperties())
-            {
-                Type inter = m.PropertyType.GetTypeInfo().GetInterface(nameof(ICollection));
 
-                if(inter != null)
+        /// <summary>
+        /// Returns true if source object contains a collection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static bool HasCollection<T>(this T source)
+        {
+            foreach(PropertyInfo propInfo in source.GetType().GetProperties())
+            {
+                Type type = propInfo.PropertyType.GetTypeInfo().GetInterface(nameof(ICollection));
+
+                if(type != null)
                 {
                     return true;
                 }
@@ -29,24 +36,24 @@ namespace Tools.Extensions.Reflection
         /// Get value of a property within object
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
+        /// <param name="source"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-        public static dynamic GetValueOf<T>(this T value, string property)
+        public static dynamic GetValueOf<T>(this T source, string property)
         {
-            Guard.AssertArgs(value.IsValid(), nameof(value));
+            Guard.AssertArgs(source.IsValid(), nameof(source));
             Guard.AssertArgs(property.IsValid(), nameof(property));
 
-            PropertyInfo p = value.GetType().GetTypeInfo().GetProperty(property);
+            PropertyInfo propInfo = source.GetType().GetTypeInfo().GetProperty(property);
 
-            if(p != null && p.CanRead)
+            if(propInfo != null && propInfo.CanRead)
             {
-                dynamic val = p.GetValue(value);
+                dynamic val = propInfo.GetValue(source);
 
                 return val;
             }
 
-            return Activator.CreateInstance(p.PropertyType); //Property does not have  value, return default
+            return Activator.CreateInstance(propInfo.PropertyType); //Property does not have  value, return default
         }
 
         /// <summary>
@@ -91,19 +98,19 @@ namespace Tools.Extensions.Reflection
             return clone;
         }
 
-        private static ICollection<object> DeepCloneCollection(ICollection<object> col)
+        private static ICollection<object> DeepCloneCollection(ICollection<object> source)
         {
-            object[] arry = (object[])Activator.CreateInstance(col.GetType(), new object[] { col.Count });
+            object[] arr = (object[])Activator.CreateInstance(source.GetType(), new object[] { source.Count });
 
-            for(int i = 0; i < col.Count; i++)
+            for(int i = 0; i < source.Count; i++)
             {
-                object original = col.ElementAt(i);
+                object original = source.ElementAt(i);
                 object clone = DeepClone(original);
 
-                arry[i] = clone;
+                arr[i] = clone;
             }
 
-            return arry;
+            return arr;
         }
 
         private static IDictionary DeepCloneDictionary(IDictionary dict)
