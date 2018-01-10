@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Tools.Extensions.Validation
@@ -121,6 +123,19 @@ namespace Tools.Extensions.Validation
             bool areEqual = source.Equals(target, StringComparison.OrdinalIgnoreCase);
 
             return areEqual;
+        }
+
+        public static bool IsOrdered(this IEnumerable<int> arr)
+        {
+            for(int i = 1; i < arr.Count(); i++)
+            {
+                if(arr.ElementAt(i - 1) > arr.ElementAt(i))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

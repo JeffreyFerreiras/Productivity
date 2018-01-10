@@ -87,6 +87,22 @@ namespace Tools.Test
     public static class Helper
     {
         private readonly static Random s_random = new Random();
+        private static readonly object s_syncLock = new object();
+
+        public static int[] GetRandomArray(int size)
+        {
+            var arr = new int[size];
+
+            for(int i = 0; i < arr.Length; i++)
+            {
+                lock(s_syncLock)
+                {
+                    arr[i] = s_random.Next(0, 99999);
+                }
+            }
+
+            return arr;
+        }
 
         public static string[] GeStringArray(int length = 10)
         {
