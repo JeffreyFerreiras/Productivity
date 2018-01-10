@@ -4,56 +4,53 @@ namespace Tools.DataStructures
 {
     public class AVL_Tree<T> where T : IComparable<T>
     {
-        private int _count;
-        private TreeNode<T> _root;
+        public int Count { get; private set; }
 
-        public int Count { get => _count; private set => _count = value; }
-
-        public TreeNode<T> Root { get => _root; private set => _root = value; }
+        public TreeNode<T> Root { get ; private set; }
 
         public bool IsBalanced
         {
             get
             {
-                int balance = _root.GetBalance();
+                int balance = this.Root.GetBalance();
 
                 return Math.Abs(balance) < 2;
             }
         }
         public void Add(T value)
         {
-            if(_root == null)
+            if(Root == null)
             {
-                _root = new TreeNode<T>(value);
+                Root = new TreeNode<T>(value);
             }
             else
             {
-                _root.Add(value);
+                Root.Add(value);
             }
 
-            _count++;
+            this.Count++;
         }
 
         public int Height()
         {
-            if(_root == null)
+            if(this.Root == null)
                 return 0;
-            return _root.Height();
+            return this.Root.Height();
         }
 
         public int LeafCount()
         {
-            if(_root == null)
+            if(this.Root == null)
                 return 0;
 
-            return _root.LeafCount();
+            return this.Root.LeafCount();
         }
 
         public TreeNode<T> Find(T value)
         {
-            if(_root != null)
+            if(this.Root != null)
             {
-                return _root.Find(value);
+                return this.Root.Find(value);
             }
 
             return null;
@@ -61,19 +58,19 @@ namespace Tools.DataStructures
 
         public void Clear()
         {
-            _root = null;
+            this.Root = null;
         }
 
         public bool Contains(T value)
         {
-            TreeNode<T> node = _root?.Find(value);
+            TreeNode<T> node = this.Root?.Find(value);
 
             return node != null;
         }
 
         public void Delete(T value)
         {
-            TreeNode<T> node = _root.Find(value);
+            TreeNode<T> node = this.Root.Find(value);
 
             if(node != null)
             {
@@ -83,18 +80,18 @@ namespace Tools.DataStructures
 
         public T Min()
         {
-            if(_root == null)
+            if(this.Root == null)
                 throw new InvalidOperationException("Tree not initialized");
 
-            return _root.Min().Value;
+            return this.Root.Min().Value;
         }
 
         public T Max()
         {
-            if(_root == null)
+            if(this.Root == null)
                 throw new InvalidOperationException("Tree not initialized");
 
-            return _root.Max().Value;
+            return this.Root.Max().Value;
         }
 
         public void Remove(T value)
@@ -104,8 +101,8 @@ namespace Tools.DataStructures
 
         public void Remove(TreeNode<T> value)
         {
-            TreeNode<T> parent = _root;
-            TreeNode<T> current = _root;
+            TreeNode<T> parent = this.Root;
+            TreeNode<T> current = this.Root;
 
             bool isLeftChild = false;
 
@@ -129,8 +126,8 @@ namespace Tools.DataStructures
 
             if(current.IsLeafNode)
             {
-                if(current == _root)
-                    _root = null;
+                if(current == this.Root)
+                    this.Root = null;
                 else
                 {
                     if(isLeftChild)
@@ -141,8 +138,8 @@ namespace Tools.DataStructures
             }
             else if(current.RightChild == null)
             {
-                if(current == _root)
-                    _root = current.LeftChild;
+                if(current == this.Root)
+                    this.Root = current.LeftChild;
                 else if(isLeftChild)
                     parent.LeftChild = current.LeftChild;
                 else
@@ -150,8 +147,8 @@ namespace Tools.DataStructures
             }
             else if(current.LeftChild == null)
             {
-                if(current == _root)
-                    _root = current.RightChild;
+                if(current == this.Root)
+                    this.Root = current.RightChild;
                 else if(isLeftChild)
                     parent.LeftChild = current.RightChild;
                 else
@@ -161,8 +158,8 @@ namespace Tools.DataStructures
             {
                 TreeNode<T> successor = GetSuccessor(current);
 
-                if(current == _root)
-                    _root = successor;
+                if(current == this.Root)
+                    this.Root = successor;
                 if(isLeftChild)
                     parent.LeftChild = successor;
                 else
@@ -171,7 +168,7 @@ namespace Tools.DataStructures
                 successor.LeftChild = current.LeftChild;
             }
 
-            _count--;
+            this.Count--;
         }
 
         private TreeNode<T> GetSuccessor(TreeNode<T> node) //TODO: Method is obsolete, introduced "Parent"
@@ -198,33 +195,33 @@ namespace Tools.DataStructures
 
         public void TraverseInOrder(Action<TreeNode<T>> action)
         {
-            if(_root == null) return;
+            if(this.Root == null) return;
 
-            _root.LeftChild?.TraverseInOrder(action);
+            this.Root.LeftChild?.TraverseInOrder(action);
 
-            action(_root);
+            action(this.Root);
 
-            _root.RightChild?.TraverseInOrder(action);
+            this.Root.RightChild?.TraverseInOrder(action);
         }
 
         public void TraversePreOrder(Action<TreeNode<T>> action)
         {
-            if(_root == null) return;
+            if(this.Root == null) return;
 
-            action(_root);
+            action(this.Root);
 
-            _root.LeftChild?.TraversePreOrder(action);
-            _root.RightChild?.TraversePreOrder(action);
+            this.Root.LeftChild?.TraversePreOrder(action);
+            this.Root.RightChild?.TraversePreOrder(action);
         }
 
         public void TraversePostOrder(Action<TreeNode<T>> action)
         {
-            if(_root == null) return;
+            if(this.Root == null) return;
 
-            _root.LeftChild?.TraversePostOrder(action);
-            _root.RightChild?.TraversePostOrder(action);
+            this.Root.LeftChild?.TraversePostOrder(action);
+            this.Root.RightChild?.TraversePostOrder(action);
 
-            action(_root);
+            action(this.Root);
         }
     }
 }
