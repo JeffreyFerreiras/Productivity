@@ -67,5 +67,11 @@ namespace Tools.Test.Extensions.Conversion
 
             Assert.IsTrue(itemDictionary.Count > 0);
         }
+
+        [TestMethod]
+        public void ToByteArray_ValidInput_ReturnsByteArray()
+        {
+            Assert.Fail();
+        }
     }
 }

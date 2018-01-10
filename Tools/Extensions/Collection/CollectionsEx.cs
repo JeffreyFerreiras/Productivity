@@ -133,7 +133,7 @@ namespace Tools.Extensions.Collection
         /// <typeparam name="TValue"></typeparam>
         /// <param name="dict"></param>
         /// <param name="key"></param>
-        /// <returns></returns>
+        /// <returns ></returns>
         public static TValue TryGetValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key)
         {
             Guard.AssertArgs(key.IsValid(), $"{nameof(key)} not valid");

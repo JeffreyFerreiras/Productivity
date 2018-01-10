@@ -32,19 +32,19 @@ namespace Tools.Extensions.IO
 
         public static bool IsValidFileName(this string fileName)
         {
-            if(string.IsNullOrWhiteSpace(fileName)) return false;
+            if(string.IsNullOrWhiteSpace(fileName) || fileName.Length > 255) return false;
 
-            try
-            {
-                fileName = Path.GetFileName(fileName);
-                HashSet<char> invalidChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+            var invalidChars = Path.GetInvalidFileNameChars();
 
-                return !fileName.Any(x => invalidChars.Contains(x));
-            }
-            catch
+            foreach(char c in fileName)
             {
-                return false;
+                if(invalidChars.Contains(c))
+                {
+                    return false;
+                }
             }
+
+            return true;
         }
     }
 }

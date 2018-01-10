@@ -6,7 +6,7 @@ namespace Tools.DataStructures
     {
         public int Count { get; private set; }
 
-        public TreeNode<T> Root { get ; private set; }
+        public TreeNode<T> Root { get; private set; }
 
         public bool IsBalanced
         {
@@ -17,6 +17,7 @@ namespace Tools.DataStructures
                 return Math.Abs(balance) < 2;
             }
         }
+
         public void Add(T value)
         {
             if(Root == null)
@@ -35,6 +36,7 @@ namespace Tools.DataStructures
         {
             if(this.Root == null)
                 return 0;
+
             return this.Root.Height();
         }
 

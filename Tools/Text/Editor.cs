@@ -20,5 +20,20 @@ namespace Tools.Text
 
             return mask + last;
         }
+
+        public static string RemoveHtmlXmlTags(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string RemoveHtmlXmlTags(string text, string tagName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string Strip(string text, char c)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

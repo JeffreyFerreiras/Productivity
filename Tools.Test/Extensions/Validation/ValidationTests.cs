@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using Tools.Extensions.Conversion;
 using Tools.Extensions.Validation;
 
 namespace Tools.Test.Extensions
@@ -185,6 +186,13 @@ namespace Tools.Test.Extensions
 
             Assert.IsFalse(first.EqualsIgnoreCase(second));
             Assert.IsFalse(second.EqualsIgnoreCase(first));
+        }
+
+        [TestMethod]
+        public void ToByteArray_ValidInput_ReturnsByteArray()
+        {
+            object content = null;
+            byte[] byteArray = content.ToByteArray();
         }
     }
 }

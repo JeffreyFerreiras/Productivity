@@ -53,6 +53,13 @@ namespace Tools.Test.Text
             Assert.IsTrue(source == result);
         }
 
+        [TestMethod]
+        public void RemoveHtmlXmlTags_ValidHTML_ReturnsStrippedString()
+        {
+            string html = "";
+            string result = Editor.RemoveHtmlXmlTags(html);
 
+            Assert.Fail();
+        }
     }
 }

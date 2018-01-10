@@ -222,7 +222,7 @@ namespace Tools.DataStructures
             return RightChild.Max();
         }
 
-        internal int Height() //Note to self: Cannot memoize height because it's always changing...
+        internal int Height() //Note: Cannot memoize height because it's always changing...
         {
             if(this.IsLeafNode) return 1;
 

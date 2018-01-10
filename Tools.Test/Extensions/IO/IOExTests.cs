@@ -84,22 +84,19 @@ namespace Tools.Test.Extensions.IO
         [TestMethod]
         public void IsFile_ValidFileName_ReturnsTrue()
         {
-            string dir = Path.GetDirectoryName(this.GetType().GetTypeInfo().Assembly.Location);
-            string file = Path.Combine(dir, "testFile.txt");
-            bool pass = file.IsValidFileName();
+            bool pass = "testFile.txt".IsValidFileName();
 
             Assert.IsTrue(pass);
         }
 
         [TestMethod]
-        public void IsFile_OnlyFileName_ReturnsTrue()
+        public void IsFile_ValidLongFileName_ReturnsTrue()
         {
-            //string dir = Path.GetDirectoryName(this.GetType().GetTypeInfo().Assembly.Location);
-            string file = "testFile.txt";
+            bool pass = "testFileasdfasdfasdfsadfasdfkljhaslkdjfhlaskdjhgflaskhjdgflakshjdgflkashjgdflkasjhgdflkjashdflkjashdflkasjhdflksajdhf.txt".IsValidFileName();
 
-            Assert.IsTrue(file.IsValidFileName());
+            Assert.IsTrue(pass);
         }
-
+        
         [TestMethod]
         public void IsFile_Empty_ReturnsFalse()
         {
@@ -118,6 +115,7 @@ namespace Tools.Test.Extensions.IO
         public void IsFile_InvalidFileNameChars_ReturnsFalse()
         {
             string n = new string(Path.GetInvalidFileNameChars());
+
             Assert.IsFalse(n.IsValidFileName());
         }
     }

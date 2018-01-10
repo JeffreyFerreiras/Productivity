@@ -147,5 +147,10 @@ namespace Tools.Extensions.Conversion
 
             return chars;
         }
+
+        public static byte[] ToByteArray<T>(this T source)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

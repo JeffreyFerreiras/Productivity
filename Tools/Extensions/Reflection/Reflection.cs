@@ -53,7 +53,7 @@ namespace Tools.Extensions.Reflection
                 return val;
             }
 
-            return Activator.CreateInstance(propInfo.PropertyType); //Property does not have  value, return default
+            return Activator.CreateInstance(propInfo.PropertyType); //Property does not have value, return default
         }
 
         /// <summary>
