@@ -1,9 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using Tools.Extensions.Conversion;
 
 namespace Tools.Test.Extensions.Conversion
@@ -12,6 +10,7 @@ namespace Tools.Test.Extensions.Conversion
     public class ConversionExTests
     {
         #region ToEnum
+
         [TestMethod]
         public void ToEnum_ValidEnum_ConvertsToEnum()
         {
@@ -45,8 +44,9 @@ namespace Tools.Test.Extensions.Conversion
             string strEnum = "Club";
 
             Assert.IsTrue(Suits.Club == strEnum.ToEnum<Suits>(false));
-        } 
-        #endregion
+        }
+
+        #endregion ToEnum
 
         [TestMethod]
         public void ToDictionary_Object_IDictionary()
@@ -71,7 +71,18 @@ namespace Tools.Test.Extensions.Conversion
         [TestMethod]
         public void ToByteArray_ValidInput_ReturnsByteArray()
         {
-            Assert.Fail();
+            string s = "Hello World!";
+            byte[] bin = s.ToByteArray();
+
+            Assert.IsTrue(bin.Length > 0);
+        }
+
+        [TestMethod]
+        public void ToByteArray_InValidInput_Throws()
+        {
+            string s = null;
+
+            Assert.ThrowsException<ArgumentNullException>(()=>s.ToByteArray());
         }
     }
 }

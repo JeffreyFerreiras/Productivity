@@ -33,6 +33,20 @@ namespace Tools.Test.DataStructures
         }
 
         [TestMethod]
+        public void AddTest_CharTree_BalancedTree()
+        {
+            var sample = "the quick brown fox jumps over the lazy dog".ToCharArray();
+            var bst = new AVL_Tree<char>();
+
+            foreach(var x in sample)
+            {
+                bst.Add(x);
+            }
+
+            Assert.IsTrue(bst.IsBalanced);
+        }
+
+        [TestMethod]
         public void AddTest()
         {
             int[] sample = { 212, 580, 6, 7, 28, 84, 112, 434 };

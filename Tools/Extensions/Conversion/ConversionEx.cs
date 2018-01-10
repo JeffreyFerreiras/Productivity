@@ -148,9 +148,9 @@ namespace Tools.Extensions.Conversion
             return chars;
         }
 
-        public static byte[] ToByteArray<T>(this T source)
+        public static byte[] ToByteArray(this string text)
         {
-            throw new NotImplementedException();
+            return System.Text.Encoding.ASCII.GetBytes(text); 
         }
     }
 }

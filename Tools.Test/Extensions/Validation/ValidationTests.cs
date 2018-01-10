@@ -187,12 +187,6 @@ namespace Tools.Test.Extensions
             Assert.IsFalse(first.EqualsIgnoreCase(second));
             Assert.IsFalse(second.EqualsIgnoreCase(first));
         }
-
-        [TestMethod]
-        public void ToByteArray_ValidInput_ReturnsByteArray()
-        {
-            object content = null;
-            byte[] byteArray = content.ToByteArray();
-        }
+        
     }
 }

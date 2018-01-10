@@ -7,7 +7,7 @@ namespace Tools.Exceptions
     /// </summary>
     public static class Guard
     {
-        public static void Throw<TException>(bool assert, string message) where TException : Exception
+        public static void Assert<TException>(bool assert, string message) where TException : Exception
         {
             if (!assert)
             {

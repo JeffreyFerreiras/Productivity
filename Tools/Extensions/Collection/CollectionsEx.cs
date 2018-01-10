@@ -57,8 +57,8 @@ namespace Tools.Extensions.Collection
 
             bool isValidSequenceRange = (startIndex + 1) + length == source.Count();
 
-            Guard.Throw<IndexOutOfRangeException>(length <= source.Count() && length > 0, "Length out of bounds");
-            Guard.Throw<IndexOutOfRangeException>(startIndex > 0 && startIndex < source.Count() - 1, "Start index out of bounds");
+            Guard.Assert<IndexOutOfRangeException>(length <= source.Count() && length > 0, "Length out of bounds");
+            Guard.Assert<IndexOutOfRangeException>(startIndex > 0 && startIndex < source.Count() - 1, "Start index out of bounds");
             Guard.AssertArgs(isValidSequenceRange, "Sequence range out of bounds");
         }
 

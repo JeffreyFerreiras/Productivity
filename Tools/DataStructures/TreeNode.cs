@@ -234,10 +234,8 @@ namespace Tools.DataStructures
 
         internal int LeafCount()
         {
-            if(this.IsLeafNode) return 1;
-
-            int leftLeafCount = LeftChild != null ? LeftChild.LeafCount() : 0;
-            int rightLeafCount = RightChild != null ? RightChild.LeafCount() : 0;
+            int leftLeafCount = LeftChild != null ? 1 : 0;
+            int rightLeafCount = RightChild != null ? 1 : 0;
 
             return leftLeafCount + rightLeafCount;
         }
