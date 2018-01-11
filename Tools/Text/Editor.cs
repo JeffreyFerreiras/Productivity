@@ -54,6 +54,12 @@ namespace Tools.Text
             return text;
         }
 
+        /// <summary>
+        /// Removes all occurrences of a phrase within text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="phrase"></param>
+        /// <returns></returns>
         public static string Strip(string text, string phrase)
         {
             int? index = text?.IndexOf(phrase);
@@ -69,6 +75,12 @@ namespace Tools.Text
             return text;
         }
 
+        /// <summary>
+        /// Removes all occurrences of character from text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static string Strip(string text, char c)
         {
             int? index = text?.IndexOf(c);
@@ -82,6 +94,12 @@ namespace Tools.Text
             return text;
         }
 
+        /// <summary>
+        /// Removes all occurrences of character from text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="characters"></param>
+        /// <returns></returns>
         public static string Strip(string text, params char[] characters)
         {
             foreach(char c in characters)

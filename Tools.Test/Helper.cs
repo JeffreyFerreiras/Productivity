@@ -89,7 +89,13 @@ namespace Tools.Test
         private readonly static Random s_random = new Random();
         private static readonly object s_syncLock = new object();
 
+
         public static int[] GetRandomArray(int size)
+        {
+            return GetRandomArray(size, 0, 9999);
+        }
+
+        public static int[] GetRandomArray(int size, int minValue, int maxValue)
         {
             var arr = new int[size];
 
@@ -97,7 +103,7 @@ namespace Tools.Test
             {
                 lock(s_syncLock)
                 {
-                    arr[i] = s_random.Next(0, 99999);
+                    arr[i] = s_random.Next(minValue, maxValue);
                 }
             }
 
