@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
-using System.Linq;
-using System.Collections;
+using System.Text;
 using Tools.Exceptions;
-using Tools.Extensions.Validation;
 
 namespace Tools.Extensions.Text
 {
     public static class StringBuilderEx
     {
-        const string OutOfBoundsMessage = "Target out of bounds of string builder length from start index";
-
+        private const string OutOfBoundsMessage = "Target out of bounds of string builder length from start index";
 
         public static int IndexOf(this StringBuilder sb, char value)
         {
@@ -67,18 +63,13 @@ namespace Tools.Extensions.Text
 
             for(int i = startIndex; i < length; i++)
             {
-                int foundAtIndex = i;
                 if(sb[i] != phrase[0]) continue;
 
-                bool isMatch = false;
+                bool isMatch = true;
 
                 for(int j = 1; j < phrase.Length; j++)
                 {
-                    if(phrase[j] == sb[i + j])
-                    {
-                        isMatch = true;
-                    }
-                    else
+                    if(phrase[j] != sb[i + j])
                     {
                         isMatch = false;
                         i += j;
@@ -89,31 +80,26 @@ namespace Tools.Extensions.Text
 
                 if(isMatch)
                 {
-                    return foundAtIndex;
+                    return i;
                 }
             }
 
             return -1;
         }
 
-        private static void BoundsCheck(StringBuilder sb, int startIndex, int count, int length)
-        {
-            Guard.Assert<IndexOutOfRangeException>(startIndex >= 0 && sb.Length > startIndex, OutOfBoundsMessage);
-            Guard.Assert<IndexOutOfRangeException>(sb.Length >= count, OutOfBoundsMessage);
-            Guard.Assert<IndexOutOfRangeException>(sb.Length <= length, OutOfBoundsMessage);
-        }
-
         public static int IndexOfAny(this StringBuilder sb, char[] anyOf)
         {
             return sb.IndexOfAny(anyOf, 0);
         }
-        public static int IndexOfAny(this StringBuilder sb, char[]anyOf, int startIndex)
+
+        public static int IndexOfAny(this StringBuilder sb, char[] anyOf, int startIndex)
         {
             int length = sb?.Length ?? 0;
             int count = length - startIndex;
 
             return sb.IndexOfAny(anyOf, startIndex, count);
         }
+
         public static int IndexOfAny(this StringBuilder sb, char[] anyOf, int startIndex, int count)
         {
             Guard.AssertArgs(sb != null, "StringBuilder is null");
@@ -139,13 +125,26 @@ namespace Tools.Extensions.Text
 
         public static int LastIndexOf(this StringBuilder sb, char value)
         {
-            return sb.LastIndexOf(value, sb.Length -1);
+            return sb.LastIndexOf(value, 0);
         }
 
         public static int LastIndexOf(this StringBuilder sb, char value, int startIndex)
         {
-            //remember to look backwards;
-            for(int i = sb.Length - 1; i >= 0; i--)
+            int length = sb?.Length ?? 0;
+            int count = length - (startIndex + 1);
+
+            return sb.LastIndexOf(value, startIndex, count);
+        }
+
+        public static int LastIndexOf(this StringBuilder sb, char value, int startIndex, int count)
+        {
+            Guard.AssertArgs(sb != null, "StringBuilder is null");
+
+            int startPos = startIndex + count;
+
+            BoundsCheck(sb, startIndex, count, startPos + 1);
+
+            for(int i = startPos; i >= startIndex; i--)
             {
                 if(sb[i] == value) return i;
             }
@@ -155,14 +154,86 @@ namespace Tools.Extensions.Text
 
         public static int LastIndexOf(this StringBuilder sb, string phrase)
         {
-            sb[0] = 's';
+            return sb.LastIndexOf(phrase, 0);
+        }
 
-            throw new NotImplementedException();
+        public static int LastIndexOf(this StringBuilder sb, string phrase, int startIndex)
+        {
+            int length = sb?.Length ?? 0;
+            int count = length - (startIndex + 1);
+
+            return sb.LastIndexOf(phrase, startIndex, count);
+        }
+
+        public static int LastIndexOf(this StringBuilder sb, string phrase, int startIndex, int count)
+        {
+            Guard.AssertArgs(sb != null, "StringBuilder is null");
+            Guard.AssertArgs(phrase != null, nameof(phrase));
+
+            if(phrase.Length == 0) return -1;
+            int startPos = startIndex + count;
+
+            BoundsCheck(sb, startIndex, count, startPos + 1);
+
+            for(int i = startPos; i >= startIndex; i--)
+            {
+                if(sb[i] != phrase[phrase.Length - 1]) continue;
+
+                bool isMatch = true;
+
+                for(int j = phrase.Length - 2; j >= 0; j--)
+                {
+                    if(sb[--i] != phrase[j])
+                    {
+                        isMatch = false;
+                        break;
+                    }
+                }
+
+                if(isMatch)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         public static int LastIndexOfAny(this StringBuilder sb, char[] anyOf)
         {
-            throw new NotImplementedException();
+            return sb.LastIndexOfAny(anyOf, 0);
+        }
+
+        public static int LastIndexOfAny(this StringBuilder sb, char[] anyOf, int startIndex)
+        {
+            int length = sb?.Length ?? 0;
+            int count = length - (startIndex + 1);
+
+            return sb.LastIndexOfAny(anyOf, startIndex, count);
+        }
+
+        public static int LastIndexOfAny(this StringBuilder sb, char[] anyOf, int startIndex, int count)
+        {
+            Guard.AssertArgs(sb != null, "StringBuilder is null");
+
+            HashSet<char> anyOfSet = new HashSet<char>(anyOf); //128 chars max
+            int startPos = startIndex + count;
+
+            BoundsCheck(sb, startIndex, count, startPos + 1);
+
+            for(int i = startPos; i >= startIndex; i--)
+            {
+                if(anyOfSet.Contains(sb[i])) return i;
+            }
+
+            return -1;
+        }
+
+        private static void BoundsCheck(StringBuilder sb, int startIndex, int count, int length)
+        {
+            Guard.Assert<IndexOutOfRangeException>(startIndex >= 0 && sb.Length > startIndex, OutOfBoundsMessage);
+            Guard.Assert<IndexOutOfRangeException>(sb.Length >= count, OutOfBoundsMessage);
+            Guard.Assert<IndexOutOfRangeException>(sb.Length >= length, OutOfBoundsMessage);
         }
     }
 }
