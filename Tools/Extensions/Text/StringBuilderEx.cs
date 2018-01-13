@@ -56,35 +56,48 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
             Guard.AssertArgs(phrase != null, nameof(phrase));
 
-            if(phrase.Length == 0) return -1;
-            int length = startIndex + count;
+            if(phrase.Length > 0)
+            {
+                int length = startIndex + count;
+                BoundsCheck(sb, startIndex, count, length);
 
-            BoundsCheck(sb, startIndex, count, length);
+                return GetIndexOf(sb, phrase, startIndex, length);
+            }
 
+            return -1;
+        }
+
+        private static int GetIndexOf(StringBuilder sb, string phrase, int startIndex, int length)
+        {
             for(int i = startIndex; i < length; i++)
             {
                 if(sb[i] != phrase[0]) continue;
 
-                bool isMatch = true;
-
-                for(int j = 1; j < phrase.Length; j++)
-                {
-                    if(phrase[j] != sb[i + j])
-                    {
-                        isMatch = false;
-                        i += j;
-
-                        break;
-                    }
-                }
-
-                if(isMatch)
+                if(IsIndexOfMatch(sb, phrase, ref i))
                 {
                     return i;
                 }
             }
 
             return -1;
+        }
+
+        private static bool IsIndexOfMatch(StringBuilder sb, string phrase, ref int index)
+        {
+            bool isMatch = true;
+
+            for(int j = 1; j < phrase.Length; j++)
+            {
+                if(phrase[j] != sb[index + j])
+                {
+                    isMatch = false;
+                    index += j;
+
+                    break;
+                }
+            }
+
+            return isMatch;
         }
 
         public static int IndexOfAny(this StringBuilder sb, char[] anyOf)
@@ -105,9 +118,7 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
 
             int length = startIndex + count;
-
             BoundsCheck(sb, startIndex, count, length);
-
             var anyOfSet = new HashSet<char>(anyOf);
 
             for(int i = startIndex; i < length; i++)
@@ -170,33 +181,47 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
             Guard.AssertArgs(phrase != null, nameof(phrase));
 
-            if(phrase.Length == 0) return -1;
-            int startPos = startIndex + count;
+            if(phrase.Length > 0)
+            {
+                int startPos = startIndex + count;
 
-            BoundsCheck(sb, startIndex, count, startPos + 1);
+                BoundsCheck(sb, startIndex, count, startPos + 1);
 
+                return GetLastIndexOf(sb, phrase, startIndex, startPos);
+            };
+
+            return -1;
+        }
+
+        private static int GetLastIndexOf(StringBuilder sb, string phrase, int startIndex, int startPos)
+        {
             for(int i = startPos; i >= startIndex; i--)
             {
                 if(sb[i] != phrase[phrase.Length - 1]) continue;
 
-                bool isMatch = true;
-
-                for(int j = phrase.Length - 2; j >= 0; j--)
-                {
-                    if(sb[--i] != phrase[j])
-                    {
-                        isMatch = false;
-                        break;
-                    }
-                }
-
-                if(isMatch)
+                if(IsLastIndexOfMatch(sb, phrase, ref i))
                 {
                     return i;
                 }
             }
 
             return -1;
+        }
+
+        private static bool IsLastIndexOfMatch(StringBuilder sb, string phrase, ref int index)
+        {
+            bool isMatch = true;
+
+            for(int j = phrase.Length - 2; j >= 0; j--)
+            {
+                if(sb[--index] != phrase[j])
+                {
+                    isMatch = false;
+                    break;
+                }
+            }
+
+            return isMatch;
         }
 
         public static int LastIndexOfAny(this StringBuilder sb, char[] anyOf)
@@ -216,10 +241,9 @@ namespace Tools.Extensions.Text
         {
             Guard.AssertArgs(sb != null, "StringBuilder is null");
 
-            HashSet<char> anyOfSet = new HashSet<char>(anyOf); //128 chars max
             int startPos = startIndex + count;
-
             BoundsCheck(sb, startIndex, count, startPos + 1);
+            HashSet<char> anyOfSet = new HashSet<char>(anyOf); //128 chars max
 
             for(int i = startPos; i >= startIndex; i--)
             {

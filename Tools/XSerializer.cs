@@ -72,7 +72,8 @@ namespace Tools
 
         /// <summary>
         /// De-serializes an XML string into specified type.
-        /// Parent object name must fully match with XML root attribute.
+        /// Parent object name must fully match with XML root attribute
+        /// or implement 'XmlRootAttribute' attribute,
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="xml"></param>
@@ -82,13 +83,24 @@ namespace Tools
             using(var stringReader = new System.IO.StringReader(xml))
             using(var xmlReader = XmlReader.Create(stringReader))
             {
-                var xRoot = new XmlRootAttribute
-                {
-                    ElementName = typeof(T).Name,
-                    IsNullable = true
-                };
+                XmlRootAttribute attr = typeof(T).GetTypeInfo().GetCustomAttribute<XmlRootAttribute>(true);
+                XmlSerializer ser;
 
-                var ser = new XmlSerializer(typeof(T), xRoot);
+                if(attr == null)
+                {
+                    var xRoot = new XmlRootAttribute
+                    {
+                        ElementName = typeof(T).Name,
+                        IsNullable = true
+                    };
+
+                    ser = new XmlSerializer(typeof(T), xRoot);
+                }
+                else
+                {
+                    ser = new XmlSerializer(typeof(T));
+                }
+                
                 return (T)ser.Deserialize(xmlReader);
             }
         }

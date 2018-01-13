@@ -122,5 +122,14 @@ namespace Tools.Test
         }
 
         #endregion BuildXmlSerializer
+
+        [TestMethod]
+        public void FromXml_Xml_ReturnsObjectFromXml()
+        {
+            string xml = File.ReadAllText("books.xml");
+            var catalog = XSerializer.FromXml<Catalog>(xml);
+
+            Assert.IsNotNull(catalog);
+        }
     }
 }
