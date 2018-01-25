@@ -41,12 +41,12 @@ namespace Tools
         {
             Type type = model.GetType();
 
-            List<Type> extraTypes = GetCollectionTypes(model);
+            List<Type> extras = GetCollectionTypes(model);
 
-            extraTypes.AddRange(type.GenericTypeArguments);
+            extras.AddRange(type.GenericTypeArguments);
 
-            if(extraTypes.Any())
-                return new XmlSerializer(type, extraTypes.ToArray());
+            if(extras.Any())
+                return new XmlSerializer(type, extras.ToArray());
             else
                 return new XmlSerializer(type);
         }
@@ -80,7 +80,7 @@ namespace Tools
         /// <returns></returns>
         public static T FromXml<T>(string xml) where T : class
         {
-            using(var stringReader = new System.IO.StringReader(xml))
+            using(var stringReader = new System.IO.StringReader(xml.Trim()))
             using(var xmlReader = XmlReader.Create(stringReader))
             {
                 XmlRootAttribute attr = typeof(T).GetTypeInfo().GetCustomAttribute<XmlRootAttribute>(true);
@@ -91,7 +91,8 @@ namespace Tools
                     var xRoot = new XmlRootAttribute
                     {
                         ElementName = typeof(T).Name,
-                        IsNullable = true
+                        IsNullable = true,
+                        Namespace = typeof(T).GetTypeInfo().Namespace
                     };
 
                     ser = new XmlSerializer(typeof(T), xRoot);
