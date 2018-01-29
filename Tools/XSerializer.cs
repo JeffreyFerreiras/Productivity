@@ -40,15 +40,12 @@ namespace Tools
         public static XmlSerializer BuildXmlSerializer<T>(T model)
         {
             Type type = model.GetType();
-
             List<Type> extraTypes = GetCollectionTypes(model);
-
             extraTypes.AddRange(type.GenericTypeArguments);
 
-            if(extraTypes.Any())
-                return new XmlSerializer(type, extraTypes.ToArray());
-            else
-                return new XmlSerializer(type);
+            return extraTypes.Any() 
+                ? new XmlSerializer(type, extraTypes.ToArray()) 
+                : new XmlSerializer(type);
         }
 
         private static List<Type> GetCollectionTypes<T>(T model)
@@ -83,7 +80,10 @@ namespace Tools
             using(var stringReader = new System.IO.StringReader(xml))
             using(var xmlReader = XmlReader.Create(stringReader))
             {
-                XmlRootAttribute attr = typeof(T).GetTypeInfo().GetCustomAttribute<XmlRootAttribute>(true);
+                XmlRootAttribute attr = typeof(T)
+                    .GetTypeInfo()
+                    .GetCustomAttribute<XmlRootAttribute>(true);
+
                 XmlSerializer ser;
 
                 if(attr == null)
@@ -100,7 +100,7 @@ namespace Tools
                 {
                     ser = new XmlSerializer(typeof(T));
                 }
-                
+
                 return (T)ser.Deserialize(xmlReader);
             }
         }

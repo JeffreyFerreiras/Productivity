@@ -25,7 +25,7 @@ namespace Tools.Test.DataStructures
         }
 
         [TestMethod]
-        public void ContainsTest()
+        public void Contains_SampleData_ReturnsTrue()
         {
             var tree = BinTreeFactory();
 
@@ -45,20 +45,7 @@ namespace Tools.Test.DataStructures
 
             Assert.IsTrue(bst.IsBalanced);
         }
-
-        [TestMethod]
-        public void AddTest()
-        {
-            int[] sample = { 212, 580, 6, 7, 28, 84, 112, 434 };
-
-            var bst = new AVL_Tree<int>();
-
-            foreach(int x in sample)
-            {
-                bst.Add(x);
-            }
-        }
-
+        
         [TestMethod]
         public void AddTest_RotateTree_BalancedTree()
         {
