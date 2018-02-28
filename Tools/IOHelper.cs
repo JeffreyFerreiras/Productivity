@@ -47,18 +47,15 @@ namespace Tools
         /// <param name="path"></param>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        public static IEnumerable<FileInfo> GetFilesInfo(string path, string pattern = "*")
+        public static IEnumerable<FileInfo> GetFileInfoCollection(string path, string pattern = "*")
         {
             Guard.AssertArgs(Directory.Exists(path), $"Location does not exist: {path}");
 
-            if(Directory.Exists(path))
-            {
-                string[] files = Directory.GetFiles(path, pattern);
+            string[] files = Directory.GetFiles(path, pattern);
 
-                foreach(string file in files)
-                {
-                    yield return new FileInfo(file);
-                }
+            foreach(string file in files)
+            {
+                yield return new FileInfo(file);
             }
         }
 

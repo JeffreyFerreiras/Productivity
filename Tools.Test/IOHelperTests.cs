@@ -67,7 +67,7 @@ namespace Tools.Test
         {
             string path = GetExecutingAssemblyFolder();
 
-            var fileInfoList = IOHelper.GetFilesInfo(path);
+            var fileInfoList = IOHelper.GetFileInfoCollection(path);
 
             Assert.IsTrue(fileInfoList.Count() > 0);
         }

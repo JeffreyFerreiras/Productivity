@@ -118,7 +118,9 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
 
             int length = startIndex + count;
+
             BoundsCheck(sb, startIndex, count, length);
+
             var anyOfSet = new HashSet<char>(anyOf);
 
             for(int i = startIndex; i < length; i++)

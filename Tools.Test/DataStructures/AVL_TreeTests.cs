@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using Tools.DataStructures;
 
@@ -10,13 +11,13 @@ namespace Tools.Test.DataStructures
     [TestClass]
     public class AVL_TreeTests
     {
+        static readonly int[] s_sample = { 212, 580, 6, 7, 28, 84, 112, 434 };
+
         private AVL_Tree<int> BinTreeFactory()
         {
-            int[] sample = { 212, 580, 6, 7, 28, 84, 112, 434 };
-
             var bst = new AVL_Tree<int>();
 
-            foreach(int x in sample)
+            foreach(int x in s_sample)
             {
                 bst.Add(x);
             }
@@ -29,7 +30,7 @@ namespace Tools.Test.DataStructures
         {
             var tree = BinTreeFactory();
 
-            Assert.IsTrue(tree.Contains(6));
+            Assert.IsTrue(tree.Contains(s_sample.Min()));
         }
 
         [TestMethod]
@@ -99,7 +100,7 @@ namespace Tools.Test.DataStructures
         {
             var bst = BinTreeFactory();
 
-            Assert.IsTrue(bst.Max() == 580);
+            Assert.IsTrue(bst.Max() == s_sample.Max());
         }
 
         [TestMethod]

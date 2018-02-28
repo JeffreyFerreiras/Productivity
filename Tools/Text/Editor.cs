@@ -6,17 +6,28 @@ namespace Tools.Text
 {
     public class Editor
     {
+        /// <summary>
+        /// Mask the last 4 places in a given string.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static string Mask(string text)
         {
             return Mask(text, 4);
         }
 
-        public static string Mask(string text, int showLast)
+        /// <summary>
+        /// Mask the last positions of a string given a count.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static string Mask(string text, int count)
         {
-            if(text == null || showLast >= text.Trim().Length || showLast <= 0) return text;
+            if(text == null || count >= text.Trim().Length || count <= 0) return text;
 
-            string mask = new string('*', text.Length - showLast);
-            string last = text.Substring((text.Length) - showLast);
+            string mask = new string('*', text.Length - count);
+            string last = text.Substring((text.Length) - count);
 
             return mask + last;
         }
@@ -67,6 +78,7 @@ namespace Tools.Text
             if(index > -1)
             {
                 StringBuilder sb = new StringBuilder(text);
+
                 sb.Replace(phrase, "");
 
                 return sb.ToString();
@@ -88,6 +100,7 @@ namespace Tools.Text
             if(index > -1)
             {
                 text = text.Remove((int)index, 1);
+
                 return Strip(text, c);
             }
 

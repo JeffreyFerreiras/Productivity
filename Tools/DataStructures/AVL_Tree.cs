@@ -1,4 +1,5 @@
 ﻿using System;
+using Tools.Exceptions;
 
 namespace Tools.DataStructures
 {
@@ -82,16 +83,14 @@ namespace Tools.DataStructures
 
         public T Min()
         {
-            if(this.Root == null)
-                throw new InvalidOperationException("Tree not initialized");
+            Guard.AssertOperation(this.Root != null, "Tree not initialized");
 
             return this.Root.Min().Value;
         }
 
         public T Max()
         {
-            if(this.Root == null)
-                throw new InvalidOperationException("Tree not initialized");
+            Guard.AssertOperation(this.Root != null, "Tree not initialized");
 
             return this.Root.Max().Value;
         }

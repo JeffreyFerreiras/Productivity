@@ -5,6 +5,7 @@ using System.Linq;
 namespace Tools.Attributes
 {
     using Extensions.Validation;
+    using System.Collections.Generic;
 
     public class DirectoryAttribute : ValidationAttribute
     {
@@ -12,9 +13,15 @@ namespace Tools.Attributes
         {
             string dir = value as string;
             string root = Path.GetPathRoot(dir);
-            if (root.IsNullOrWhiteSpace()) return false;
 
-            return !Path.GetInvalidPathChars().Any(c => dir.Contains(c));
+            if(root.IsNullOrWhiteSpace())
+            {
+                return false;
+            }
+
+            var set = new HashSet<char>(dir);
+
+            return !Path.GetInvalidPathChars().Any(c => set.Contains(c));
         }
     }
 }

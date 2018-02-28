@@ -57,7 +57,7 @@ namespace Tools.Extensions.Conversion
 
             throw new InvalidOperationException(
                 "conversion failed because the input did" +
-                " not match any enum value of the given type");
+                " not match any enum values");
         }
 
         /// <summary>
@@ -123,6 +123,7 @@ namespace Tools.Extensions.Conversion
             for(int i = 0; i < pairs.Length; i++)
             {
                 keyValue = pairs[i].Split(keyValueSeperator);
+
                 dict.Add(keyValue[0], keyValue[1]);
             }
 

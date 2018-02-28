@@ -49,10 +49,18 @@ namespace Tools.Extensions.Validation
 
         public static bool HasValidProperties<T>(this T value)
         {
-            if(value == null) return false;
+            if(value == null)
+            {
+                return false;
+            }
 
             foreach(var m in value.GetType().GetTypeInfo().GetProperties())
-                if(!m.GetValue(value).IsValid()) return false;
+            {
+                if(!m.GetValue(value).IsValid())
+                {
+                    return false;
+                }
+            }
 
             return true;
         }
