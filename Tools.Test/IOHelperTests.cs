@@ -19,7 +19,7 @@ namespace Tools.Test
 
             Assert.IsTrue(stack.Count > 0);
         }
-
+        
         [TestMethod]
         public void GetDirectoryStack_NonExistingDirectory_ThrowsArgumentException()
         {
