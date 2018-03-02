@@ -1,17 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using Tools.DataStructures;
 
 namespace Tools.Test.DataStructures
 {
-    [TestClass]
+    [TestFixture]
     public class AVL_TreeTests
     {
-        static readonly int[] s_sample = { 212, 580, 6, 7, 28, 84, 112, 434 };
+        private static readonly int[] s_sample = { 212, 580, 6, 7, 28, 84, 112, 434 };
 
         private AVL_Tree<int> BinTreeFactory()
         {
@@ -25,7 +23,7 @@ namespace Tools.Test.DataStructures
             return bst;
         }
 
-        [TestMethod]
+        [Test]
         public void Contains_SampleData_ReturnsTrue()
         {
             var tree = BinTreeFactory();
@@ -33,7 +31,7 @@ namespace Tools.Test.DataStructures
             Assert.IsTrue(tree.Contains(s_sample.Min()));
         }
 
-        [TestMethod]
+        [Test]
         public void AddTest_CharTree_BalancedTree()
         {
             var sample = "the quick brown fox jumps over the lazy dog".ToCharArray();
@@ -46,11 +44,11 @@ namespace Tools.Test.DataStructures
 
             Assert.IsTrue(bst.IsBalanced);
         }
-        
-        [TestMethod]
+
+        [Test]
         public void AddTest_RotateTree_BalancedTree()
         {
-            int[] sample = { 43, 18, 22, 9, 21, 6, 8, 20, 63, 50, 62 , 51};
+            int[] sample = { 43, 18, 22, 9, 21, 6, 8, 20, 63, 50, 62, 51 };
 
             var bst = new AVL_Tree<int>();
 
@@ -58,11 +56,11 @@ namespace Tools.Test.DataStructures
             {
                 bst.Add(x);
             }
-            
+
             Assert.IsTrue(bst.IsBalanced);
         }
 
-        [TestMethod]
+        [Test]
         public void AddTest_RotateTreeStress_BalancedTree()
         {
             int[] sample = Helper.GetRandomArray(1000);
@@ -77,7 +75,7 @@ namespace Tools.Test.DataStructures
             Assert.IsTrue(bst.IsBalanced);
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveTest()
         {
             var bst = BinTreeFactory();
@@ -87,7 +85,7 @@ namespace Tools.Test.DataStructures
             Assert.IsFalse(bst.Contains(6));
         }
 
-        [TestMethod]
+        [Test]
         public void MinTest()
         {
             var bst = BinTreeFactory();
@@ -95,7 +93,7 @@ namespace Tools.Test.DataStructures
             Assert.IsTrue(bst.Min() == 6);
         }
 
-        [TestMethod]
+        [Test]
         public void MaxTest()
         {
             var bst = BinTreeFactory();
@@ -103,20 +101,20 @@ namespace Tools.Test.DataStructures
             Assert.IsTrue(bst.Max() == s_sample.Max());
         }
 
-        [TestMethod]
+        [Test]
         public void TraverseInOrderTest()
         {
             var bst = BinTreeFactory();
 
             Action<TreeNode<int>> action = (x) =>
-            {               
+            {
                 Debug.WriteLine($"Node value: {x.Value} \tIs Leaf: {x.IsLeafNode}");
             };
 
             bst.TraverseInOrder(action);
         }
 
-        [TestMethod]
+        [Test]
         public void LeafCountTest()
         {
             var bst = BinTreeFactory();

@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,10 +8,10 @@ using Tools.RandomGenerator;
 
 namespace Tools.Test
 {
-    [TestClass]
+    [TestFixture]
     public class IOHelperTests
     {
-        [TestMethod]
+        [Test]
         public void GetDirectoryStack_ValidDirectory_ValidDirectoryStack()
         {
             string executingDir = Directory.GetCurrentDirectory();
@@ -20,7 +20,7 @@ namespace Tools.Test
             Assert.IsTrue(stack.Count > 0);
         }
         
-        [TestMethod]
+        [Test]
         public void GetDirectoryStack_NonExistingDirectory_ThrowsArgumentException()
         {
             string currentDir = Directory.GetCurrentDirectory();
@@ -28,22 +28,22 @@ namespace Tools.Test
 
             if (Directory.Exists(nonExistantDir)) Directory.Delete(nonExistantDir, true);
 
-            Assert.ThrowsException<ArgumentException>( ()=>IOHelper.GetDirectoryStack(nonExistantDir));
+            Assert.Throws<ArgumentException>( ()=>IOHelper.GetDirectoryStack(nonExistantDir));
         }
 
-        [TestMethod]
+        [Test]
         public void GetDirectoryStack_EmptyDirectory_Throws()
         {
-            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetDirectoryStack(string.Empty));
+            Assert.Throws<ArgumentException>(() => IOHelper.GetDirectoryStack(string.Empty));
         }
 
-        [TestMethod]
+        [Test]
         public void GetDirectoryStack_NullDirectory_Throws()
         {
-            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetDirectoryStack(null));
+            Assert.Throws<ArgumentException>(() => IOHelper.GetDirectoryStack(null));
         }
 
-        [TestMethod]
+        [Test]
         public void GetFiles_ValidPath_ArrayOfFiles()
         {
             string path = GetExecutingAssemblyFolder();
@@ -52,17 +52,17 @@ namespace Tools.Test
             Assert.IsTrue(files.Length > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void GetFiles_InValidPath_ThrowsArgumentException()
         {
             string path = GetExecutingAssemblyFolder() + "\\alskd";
 
-            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetFiles(path));
-            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetFiles(""));
-            Assert.ThrowsException<ArgumentException>(() => IOHelper.GetFiles(null));
+            Assert.Throws<ArgumentException>(() => IOHelper.GetFiles(path));
+            Assert.Throws<ArgumentException>(() => IOHelper.GetFiles(""));
+            Assert.Throws<ArgumentException>(() => IOHelper.GetFiles(null));
         }
 
-        [TestMethod]
+        [Test]
         public void GetFileInfo_InValidPath_Throws()
         {
             string path = GetExecutingAssemblyFolder();
@@ -72,7 +72,7 @@ namespace Tools.Test
             Assert.IsTrue(fileInfoList.Count() > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteFiles_ValidLocation_DeletesAllFiles()
         {
             string path = Path.Combine(GetExecutingAssemblyFolder(), "TestLocation");
@@ -92,7 +92,7 @@ namespace Tools.Test
             Directory.Delete(path, true);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteFiles_ValidLocation_DeletesAllFilesFiltered()
         {
             string path = Path.Combine(GetExecutingAssemblyFolder(), "TestLocation");

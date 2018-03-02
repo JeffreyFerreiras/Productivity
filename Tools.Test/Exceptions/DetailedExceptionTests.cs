@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using Tools.Exceptions;
 
 namespace Tools.Test.Exceptions
 {
-    [TestClass]
+    [TestFixture]
     public class DetailedExceptionTests
     {
-        [TestMethod]
+        [Test]
         public void ToString_ReturnsDetailedToString()
         {
             try

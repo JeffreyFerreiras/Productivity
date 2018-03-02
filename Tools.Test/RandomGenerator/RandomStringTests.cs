@@ -1,15 +1,13 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
+using Tools.RandomGenerator;
 
 namespace Tools.Test
 {
-    using Tools.Extensions.Validation;
-    using Tools.RandomGenerator;
-
-    [TestClass]
+    [TestFixture]
     public class RandomStringTests
     {
-        [TestMethod]
+        [Test]
         public void NextAlphabet_ValidStringLength_RandomString()
         {
             string randLetters = RandomString.NextAlphabet(6);
@@ -17,50 +15,46 @@ namespace Tools.Test
             foreach(char c in randLetters)
             {
                 Assert.IsTrue(char.IsLetter(c));
-            }     
+            }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void NextAlphabet_NegativeLength()
         {
-            string randLetters = RandomString.NextAlphabet(-6);
+            Assert.Throws<ArgumentException>(() => RandomString.NextAlphabet(-6));
         }
 
-        [TestMethod]
+        [Test]
         public void NextPassword_Test()
         {
             string pw = RandomString.NextPassword(8);
             Assert.IsTrue(pw.Length == 8);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void NextPassword_NegativeLength()
         {
-            string randLetters = RandomString.NextPassword(-6);
+            Assert.Throws<ArgumentException>(()=>RandomString.NextPassword(-6));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]   
         public void NextPassword_NegativeLength_Upper()
         {
-            string randLetters = RandomString.NextPassword(6, -1);
+            Assert.Throws<ArgumentException>(()=> RandomString.NextPassword(6, -1));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void NextPassword_NegativeLength_Numbers()
         {
-            string randLetters = RandomString.NextPassword(6, 1, -7);
+            Assert.Throws<ArgumentException>(() => RandomString.NextPassword(6, 1, -7));
         }
 
-        [TestMethod]
+        [Test]
         public void NextRandomized_Test()
         {
             int count = 15;
 
-            while (count > 0)
+            while(count > 0)
             {
                 string randomized = RandomString.NextRandomized(8);
                 Assert.IsNotNull(randomized);
@@ -69,11 +63,10 @@ namespace Tools.Test
             }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void NextRandomized_NegativeLength()
         {
-            string randLetters = RandomString.NextRandomized(-7);
+            Assert.Throws<ArgumentException>(() => RandomString.NextRandomized(-7));
         }
     }
 }

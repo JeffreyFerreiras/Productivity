@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Linq;
 using Tools.Text;
 
 namespace Tools.Test.Text
 {
-    [TestClass]
+    [TestFixture]
     public class EditorTests
     {
-        [TestMethod]
+        [Test]
         public void Mask_ValidString_ReturnsMaskedString()
         {
             string source = "123456789";
@@ -19,7 +19,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(maskedChars.All(c => c == '*'));
         }
 
-        [TestMethod]
+        [Test]
         public void Mask_NegativeNumber_ReturnsSame()
         {
             int showlast = -4;
@@ -29,7 +29,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(source, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Mask_MaskLongerThanString_ReturnsSame()
         {
             int showlast = 10;
@@ -39,7 +39,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(source == result);
         }
 
-        [TestMethod]
+        [Test]
         public void Mask_Null_ReturnsSame()
         {
             int showlast = 4;
@@ -50,16 +50,16 @@ namespace Tools.Test.Text
             Assert.IsTrue(source == result);
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveHtmlXmlTags_ValidHTML_RemovesPTag()
         {
             string html =
                 @"<!DOCTYPE html>
                    <html>
                     <body>
-                    
+
                         <h1>My First Heading</h1>
-                   
+
                         <p style='text - align:right'> My first paragraph.</p>
 
                       </body>
@@ -71,16 +71,16 @@ namespace Tools.Test.Text
             Assert.IsTrue(result.IndexOf("</p>") == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveHtmlXmlTags_ValidHTML_RemovesBodyTag()
         {
             string html =
                 @"<!DOCTYPE html>
                    <html>
                     <body>
-                    
+
                         <h1>My First Heading</h1>
-                   
+
                         <p style='text - align:right'> My first paragraph.</p>
 
                       </body>
@@ -93,16 +93,16 @@ namespace Tools.Test.Text
             Assert.IsTrue(result.IndexOf("</body>") == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveHtmlXmlTags_MissingTag_ReturnsSameHtml()
         {
             string html =
                 @"<!DOCTYPE html>
                    <html>
                     <body>
-                    
+
                         <h1>My First Heading</h1>
-                   
+
                         <p style='text - align:right'> My first paragraph.</p>
 
                       </body>
@@ -114,17 +114,17 @@ namespace Tools.Test.Text
             Assert.IsTrue(result == html);
         }
 
-        [TestMethod]
+        [Test]
         public void RemoveHtmlXmlTags_InvalidInput_ReturnsEarly()
         {
             string html = null;
             string tag = null;
-            
-            Assert.ThrowsException<ArgumentException>(()=>Editor.RemoveHtmlTag(html, tag));
-            Assert.ThrowsException<ArgumentException>(() => Editor.RemoveHtmlTag("<body></body>", tag));
+
+            Assert.Throws<ArgumentException>(() => Editor.RemoveHtmlTag(html, tag));
+            Assert.Throws<ArgumentException>(() => Editor.RemoveHtmlTag("<body></body>", tag));
         }
 
-        [TestMethod]
+        [Test]
         public void Strip_ValidString_StripsChars()
         {
             string text = @"!Hello! World!";
@@ -133,7 +133,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(result.IndexOf('!') == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void Strip_ValidString_StripsMultipleChars()
         {
             string text = @"!Hello World!llll";
@@ -143,7 +143,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(result.IndexOf('l') == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void Strip_CharsNotPresent_ReturnsUnchanged()
         {
             string text = @"!Hello World!llll";
@@ -152,7 +152,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(text == result);
         }
 
-        [TestMethod]
+        [Test]
         public void Strip_InvalidInput_ReturnsUnchanged()
         {
             string text = null;
@@ -161,7 +161,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(text == result);
         }
 
-        [TestMethod]
+        [Test]
         public void Strip_ValidString_StripsPhrase()
         {
             string text = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog";
@@ -171,7 +171,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(result.IndexOf(phrase) == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void Strip_LargeString_StripsPhrase()
         {
             string text = "The quick brown fox jumps over the lazy dog.";

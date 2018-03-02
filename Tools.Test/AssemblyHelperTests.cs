@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Reflection;
 
 namespace Tools.Test
 {
-    [TestClass]
+    [TestFixture]
     public class AssemblyHelperTests
     {
-        [TestMethod]
+        [Test]
         public void LoadNETAssembly_ValidArgs_CreatesDynamicObject()
         {
             string assemblyName = this.GetType().GetTypeInfo().Assembly.Location;
@@ -18,16 +18,16 @@ namespace Tools.Test
             Assert.IsTrue(s.Length > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void LoadNETAssembly_NullArgs_ThrowsArgumentException()
         {
-            Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly(null, null));
+            Assert.Throws<ArgumentException>(() => AssemblyHelper.LoadNETAssembly(null, null));
         }
 
-        [TestMethod]
+        [Test]
         public void LoadNETAssembly_EmptyStringArgs_ThrowsArgumentException()
         {
-            Assert.ThrowsException<ArgumentException>(() => AssemblyHelper.LoadNETAssembly("", ""));
+            Assert.Throws<ArgumentException>(() => AssemblyHelper.LoadNETAssembly("", ""));
         }
     }
 }

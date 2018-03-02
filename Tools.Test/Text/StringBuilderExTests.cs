@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Text;
 using Tools.Extensions.Text;
 
 namespace Tools.Test.Text
 {
-    [TestClass]
+    [TestFixture]
     public class StringBuilderExTests
     {
         private const string Pangram = "The quick brown fox jumps over the lazy dog.";
@@ -17,7 +17,7 @@ namespace Tools.Test.Text
             return new StringBuilder(content);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_ValidInput_ReturnsIndex()
         {
             var sb = new StringBuilder("Hello World!");
@@ -26,7 +26,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == 4);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_Empty_ReturnsIndex()
         {
             var sb = new StringBuilder("");
@@ -35,15 +35,15 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_Null_Throws()
         {
             StringBuilder sb = null;
 
-            Assert.ThrowsException<ArgumentException>(() => sb.IndexOf('o'));
+            Assert.Throws<ArgumentException>(() => sb.IndexOf('o'));
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_Phrase_ReturnsIndex()
         {
             var sb = StringBuilderFactory();
@@ -52,7 +52,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == 16);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_PhraseStartInMiddle_ReturnsIndex()
         {
             var sb = StringBuilderFactory();
@@ -61,7 +61,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == 16);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_StartInMiddleWithCount_ReturnsIndex()
         {
             var sb = StringBuilderFactory();
@@ -70,15 +70,15 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == 16);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_InvalidCount_Throws()
         {
             var sb = StringBuilderFactory();
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.IndexOf("fox jumps", 10, sb.Length + 10));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.IndexOf("fox jumps", 10, sb.Length + 10));
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_EmptyPhrase_ReturnsIndex()
         {
             var sb = StringBuilderFactory();
@@ -88,23 +88,23 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOf_NullPhrase_Throws()
         {
             var sb = StringBuilderFactory();
 
-            Assert.ThrowsException<ArgumentException>(() => sb.IndexOf(null, 10, 10));
+            Assert.Throws<ArgumentException>(() => sb.IndexOf(null, 10, 10));
         }
 
-        [TestMethod]
-        public void IndexOf_InvalidStartIndex_ThrowsException()
+        [Test]
+        public void IndexOf_InvalidStartIndex_Throws()
         {
             var sb = StringBuilderFactory();
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.IndexOf("fox", sb.Length + 1, sb.Length));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.IndexOf("fox", sb.Length + 1, sb.Length));
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOfAny_Chars_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -114,7 +114,7 @@ namespace Tools.Test.Text
             Assert.IsTrue(index == 7);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOfAny_ValidStartIndex_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -124,25 +124,25 @@ namespace Tools.Test.Text
             Assert.IsFalse(index == -1);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOfAny_InvalidStartIndex_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
             char[] anyOf = new char[] { 'a', 'b', 'c' };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.IndexOfAny(anyOf, sb.Length + 1));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.IndexOfAny(anyOf, sb.Length + 1));
         }
 
-        [TestMethod]
+        [Test]
         public void IndexOfAny_InvalidCount_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
             char[] anyOf = new char[] { 'a', 'b', 'c' };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.IndexOfAny(anyOf, sb.Length / 2, sb.Length + 1));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.IndexOfAny(anyOf, sb.Length / 2, sb.Length + 1));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_StringBuilder_ReturnsLastIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -152,16 +152,16 @@ namespace Tools.Test.Text
             Assert.AreEqual(sb.Length - 3, lastIndex);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_Null_ReturnsLastIndex()
         {
             StringBuilder sb = null;
             char value = 'o';
 
-            Assert.ThrowsException<ArgumentException>(() => sb.LastIndexOf(value));
+            Assert.Throws<ArgumentException>(() => sb.LastIndexOf(value));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_StartIndex_ReturnsLastIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -171,7 +171,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(sb.Length - 3, lastIndex);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_StartIndexAndCount_ReturnsLastIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -185,7 +185,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(expected, lastIndex);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_IndexOutOfBounds_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -193,10 +193,10 @@ namespace Tools.Test.Text
             int start = sb.Length - 10;
             int count = 12;
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOf('b', start, count));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOf('b', start, count));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_StartOutOfBounds_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -204,10 +204,10 @@ namespace Tools.Test.Text
             int start = 0;
             int count = sb.Length + 1;
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOf('b', start, count));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOf('b', start, count));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_Chars_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -218,7 +218,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(index, sb.Length - 6);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_StartPosMiddle_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -231,7 +231,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(index, expected);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_StartPosAndCount_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -244,44 +244,44 @@ namespace Tools.Test.Text
             Assert.AreEqual(index, expected);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_Null_Throws()
         {
             StringBuilder sb = null;
 
             char[] anyOf = new char[] { 'x', 'y', 'z' };
 
-            Assert.ThrowsException<ArgumentException>(() => sb.LastIndexOfAny(anyOf));
+            Assert.Throws<ArgumentException>(() => sb.LastIndexOfAny(anyOf));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_StartOutOfBounds_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
             char[] anyOf = new char[] { 'x', 'y', 'z' };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOfAny(anyOf, sb.Length + 1));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOfAny(anyOf, sb.Length + 1));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_CountOutOfBounds_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
             char[] anyOf = new char[] { 'x', 'y', 'z' };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOfAny(anyOf, 0, sb.Length + 1));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOfAny(anyOf, 0, sb.Length + 1));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOfAny_StartCountOutOfBounds_Throws()
         {
             StringBuilder sb = StringBuilderFactory();
             char[] anyOf = new char[] { 'x', 'y', 'z' };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOfAny(anyOf, sb.Length - 15, 20));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOfAny(anyOf, sb.Length - 15, 20));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_PhraseStartCount_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
@@ -293,7 +293,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(index, expected);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_PhraseStart_ReturnsIndex()
         {
             StringBuilder sb = new StringBuilder(Pangram);
@@ -305,7 +305,7 @@ namespace Tools.Test.Text
             Assert.AreEqual(index, expected);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_Phrase_ReturnsIndex()
         {
             StringBuilder sb = new StringBuilder(Pangram);
@@ -317,40 +317,40 @@ namespace Tools.Test.Text
             Assert.AreEqual(index, expected);
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_PhraseNull_ReturnsIndex()
         {
             StringBuilder sb = null;
             string phrase = "brown";
 
-            Assert.ThrowsException<ArgumentException>(() => sb.LastIndexOf(phrase));
+            Assert.Throws<ArgumentException>(() => sb.LastIndexOf(phrase));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_PhraseStartOutOfBounds_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
             string phrase = "brown";
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOf(phrase, sb.Length + 5));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOf(phrase, sb.Length + 5));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_PhraseCountOutOfBounds_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
             string phrase = "brown";
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOf(phrase, 0, sb.Length + 5));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOf(phrase, 0, sb.Length + 5));
         }
 
-        [TestMethod]
+        [Test]
         public void LastIndexOf_PhraseStartCountOutOfBounds_ReturnsIndex()
         {
             StringBuilder sb = StringBuilderFactory();
             string phrase = "brown";
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => sb.LastIndexOf(phrase, sb.Length - 5, 10));
+            Assert.Throws<IndexOutOfRangeException>(() => sb.LastIndexOf(phrase, sb.Length - 5, 10));
         }
     }
 }

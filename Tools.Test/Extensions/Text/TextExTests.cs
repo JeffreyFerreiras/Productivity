@@ -1,21 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NUnit.Framework;
 using Tools.Extensions.Text;
 
 namespace Tools.Test.Extensions.Text
 {
-    [TestClass]
+    [TestFixture]
     public class TextExTests
     {
-        [TestMethod]
+        [Test]
         public void ToCamelCase_Phrase_ReturnsCamelCase()
         {
-            
         }
 
-        [TestMethod]
+        [Test]
         public void Tab_Word_AppendsTabs()
         {
             int tabCount = 4;
@@ -25,7 +21,7 @@ namespace Tools.Test.Extensions.Text
             Assert.IsTrue(result.Length == text.Length + tabCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Tab_Empty_AppendsTabs()
         {
             int tabCount = 4;
@@ -35,7 +31,7 @@ namespace Tools.Test.Extensions.Text
             Assert.IsTrue(result.Length == text.Length + tabCount);
         }
 
-        [TestMethod]
+        [Test]
         public void Tab_NegativeTabCount_ReturnsText()
         {
             int tabCount = -4;
@@ -45,7 +41,7 @@ namespace Tools.Test.Extensions.Text
             Assert.AreEqual(text, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Tab_InvalidText_ReturnsText()
         {
             string text = null;

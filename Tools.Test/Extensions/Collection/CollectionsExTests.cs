@@ -1,18 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tools.Extensions.Collection;
+using Tools.Extensions.Conversion;
 using Tools.Extensions.Validation;
 
 namespace Tools.Test.Extensions
 {
-    using Tools.Extensions.Collection;
-    using Tools.Extensions.Conversion;
-
-    [TestClass]
+    [TestFixture]
     public class CollectionsExTests
     {
-        [TestMethod]
+        [Test]
         public void ToDictionary_EmptyString_ReturnsEmptyDictionary()
         {
             IDictionary<string, string> dict = "".ToDictionary();
@@ -20,7 +19,7 @@ namespace Tools.Test.Extensions
             Assert.IsTrue(dict.Count == 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToDictionary_Null_ReturnsEmptyDictionary()
         {
             string pair = null;
@@ -30,7 +29,7 @@ namespace Tools.Test.Extensions
             Assert.IsTrue(dict.Count == 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToDictionary_KeyValuePairString_ReturnsDictionary()
         {
             string pair = "key=value;key2=value2;key3=value3";
@@ -42,35 +41,34 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(dict["key3"], "value3");
         }
 
-        [TestMethod]
+        [Test]
         public void SubSequence_HighLength_ThrowsIndexOutOfRangeException()
         {
             var collection = Helper.GeStringArray();
             int len = collection.Count() + 5;
-
-            Action action = () => collection.SubSequence(3, len);
-            Assert.ThrowsException<IndexOutOfRangeException>(action);
+            
+            Assert.Throws<IndexOutOfRangeException>(() => collection.SubSequence(3, len));
         }
 
-        [TestMethod]
+        [Test]
         public void SubSequence_HighStart_ThrowsIndexOutOfRangeException()
         {
             var collection = Helper.GeStringArray();
 
-            Assert.ThrowsException<IndexOutOfRangeException>(() => collection.SubSequence(collection.Count() + 2));
+            Assert.Throws<IndexOutOfRangeException>(() => collection.SubSequence(collection.Count() + 2));
         }
 
-        [TestMethod]
+        [Test]
         public void SubSequence_InvalidRange_ThrowsArgumentException()
         {
             var collection = Helper.GeStringArray();
             int start = 8;
             int len = 7;
 
-            Assert.ThrowsException<ArgumentException>(() => collection.SubSequence(start, len));
+            Assert.Throws<ArgumentException>(() => collection.SubSequence(start, len));
         }
 
-        [TestMethod]
+        [Test]
         public void SubSequence_Array_ReturnsSubSequence()
         {
             int startIndex = 4;
@@ -86,7 +84,7 @@ namespace Tools.Test.Extensions
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SubSequence_ReferenceTypeList_ReturnsSubSequence()
         {
             int startIndex = 4;
@@ -102,7 +100,7 @@ namespace Tools.Test.Extensions
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SubSequence_IEnumerableTypeList_ReturnsSubSequence()
         {
             int startIndex = 4;
@@ -118,7 +116,7 @@ namespace Tools.Test.Extensions
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetUnderlyingType_IEnumerableString_ReturnsStringType()
         {
             IEnumerable<string> collection = new List<string>
@@ -131,7 +129,7 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(underlyingType, typeof(string));
         }
 
-        [TestMethod]
+        [Test]
         public void GetUnderlyingType_Primitive_ReturnsPrimitiveType()
         {
             IEnumerable<int> collection = new List<int>
@@ -144,7 +142,7 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(underlyingType, typeof(int));
         }
 
-        [TestMethod]
+        [Test]
         public void GetUnderlyingType_CustomReferenceType_ReturnsType()
         {
             var collection = new SimpleFake[]
@@ -157,7 +155,7 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(underlyingType, typeof(SimpleFake));
         }
 
-        [TestMethod]
+        [Test]
         public void GetRandomElement_ValidCollection_ReturnsRandomElement()
         {
             string[] stringArry = Helper.GeStringArray(20);
@@ -166,15 +164,15 @@ namespace Tools.Test.Extensions
             Assert.IsTrue(stringArry.Contains(elem));
         }
 
-        [TestMethod]
+        [Test]
         public void GetRandomElement_InValidCollection_ReturnsDefaultValue()
         {
             string[] stringArry = null;
 
-            Assert.ThrowsException<ArgumentException>(() => stringArry.GetRandomElement());
+            Assert.Throws<ArgumentException>(() => stringArry.GetRandomElement());
         }
 
-        [TestMethod]
+        [Test]
         public void FromDictionary_EmptyObject_PopulateObject()
         {
             var item = new SimpleFake
@@ -201,7 +199,7 @@ namespace Tools.Test.Extensions
             Assert.IsTrue(o.HasValidProperties());
         }
 
-        [TestMethod]
+        [Test]
         public void FromDictionary_PopulatedMultipleTypeProperties_PopulatesObject()
         {
             var item = Helper.GetComplexFake();
@@ -223,7 +221,7 @@ namespace Tools.Test.Extensions
             Assert.IsTrue(item.EnumType.Equals(itemDictionary["EnumType"]));
         }
 
-        [TestMethod]
+        [Test]
         public void TryGetValue_ValidDictANDIndex_IndexValue()
         {
             var dict = new Dictionary<string, string>();
@@ -236,7 +234,7 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(value, dict.TryGetValue(key));
         }
 
-        [TestMethod]
+        [Test]
         public void TryGetValue_InvalidKey_ThrowsArgumentException()
         {
             var dict = new Dictionary<string, string>();
@@ -244,11 +242,11 @@ namespace Tools.Test.Extensions
             const string value = "value";
             dict.Add(key, value);
 
-            Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(""));
-            Assert.ThrowsException<ArgumentException>(() => dict.TryGetValue(null));
+            Assert.Throws<ArgumentException>(() => dict.TryGetValue(""));
+            Assert.Throws<ArgumentException>(() => dict.TryGetValue(null));
         }
 
-        [TestMethod]
+        [Test]
         public void TryGetValue_NonExistingKey_DefaultValue()
         {
             var dict = new Dictionary<string, string>
@@ -261,7 +259,7 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(default(string), defaultValue);
         }
 
-        [TestMethod]
+        [Test]
         public void FromYN_TruthString_RetursTrue()
         {
             Assert.IsTrue("Y".FromYN());
@@ -270,7 +268,7 @@ namespace Tools.Test.Extensions
             Assert.IsTrue("true".FromYN());
         }
 
-        [TestMethod]
+        [Test]
         public void FromYN_FalseString_RetursFalse()
         {
             Assert.IsFalse("".FromYN());
@@ -279,7 +277,7 @@ namespace Tools.Test.Extensions
             Assert.IsFalse("N".FromYN());
         }
 
-        [TestMethod]
+        [Test]
         public void FromYN_NullString_RetursFalse()
         {
             string s = null;

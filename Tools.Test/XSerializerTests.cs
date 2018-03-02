@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,12 +6,12 @@ using System.Xml.Serialization;
 
 namespace Tools.Test
 {
-    [TestClass]
+    [TestFixture]
     public class XSerializerTests
     {
         #region ToXml
 
-        [TestMethod]
+        [Test]
         public void ToXml_ValidObject_ReturnsXmlString()
         {
             var catalog = new Catalog();
@@ -30,7 +30,7 @@ namespace Tools.Test
             Assert.IsTrue(xml.Length > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToXml_ValidStruct_ReturnsXmlString()
         {
             var catalog = new SampleStruct
@@ -45,7 +45,7 @@ namespace Tools.Test
             Assert.IsTrue(xml.IndexOf("SampleStruct") > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToXml_ValidCollection_ReturnsXmlString()
         {
             ICollection<string> catalog = Helper.GeStringArray();
@@ -54,38 +54,35 @@ namespace Tools.Test
             Assert.IsTrue(xml.Length > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToXml_Null_ThrowsArgumentException()
         {
             Catalog catalog = null;
-            Action toXml = () => XSerializer.ToXml(catalog);
 
-            Assert.ThrowsException<ArgumentException>(toXml);
+            Assert.Throws<ArgumentException>(() => XSerializer.ToXml(catalog));
         }
 
-        [TestMethod]
+        [Test]
         public void ToXml_EmptyString_ThrowsArgumentException()
         {
             string catalog = "";
-            Action toXml = () => XSerializer.ToXml(catalog);
 
-            Assert.ThrowsException<ArgumentException>(toXml);
+            Assert.Throws<ArgumentException>(() => XSerializer.ToXml(catalog));
         }
 
-        [TestMethod]
+        [Test]
         public void ToXml_String_ThrowsInvalidOperation()
         {
             string catalog = File.ReadAllText("Books.xml");
-            Action toXml = () => XSerializer.ToXml(catalog);
 
-            Assert.ThrowsException<InvalidOperationException>(toXml);
+            Assert.Throws<InvalidOperationException>(() => XSerializer.ToXml(catalog));
         }
 
         #endregion ToXml
 
         #region BuildXmlSerializer
 
-        [TestMethod]
+        [Test]
         public void BuildXmlSerializer_ObjectType_ReturnsXmlSerializer()
         {
             SimpleFake fake = new SimpleFake();
@@ -94,7 +91,7 @@ namespace Tools.Test
             Assert.IsNotNull(ser);
         }
 
-        [TestMethod]
+        [Test]
         public void BuildXmlSerializer_CollectionType_ReturnsXmlSerializer()
         {
             ICollection<string> col = Helper.GeStringArray();
@@ -103,8 +100,7 @@ namespace Tools.Test
             Assert.IsNotNull(ser);
         }
 
-
-        [TestMethod]
+        [Test]
         public void BuildXmlSerializer_ArrayType_ReturnsXmlSerializer()
         {
             var arr = Helper.GeStringArray();
@@ -112,7 +108,7 @@ namespace Tools.Test
             Assert.IsNotNull(ser);
         }
 
-        [TestMethod]
+        [Test]
         public void BuildXmlSerializer_StructType_ReturnsXmlSerializer()
         {
             var stru = new SampleStruct();
@@ -123,7 +119,7 @@ namespace Tools.Test
 
         #endregion BuildXmlSerializer
 
-        [TestMethod]
+        [Test]
         public void FromXml_Xml_ReturnsObjectFromXml()
         {
             string xml = File.ReadAllText("books.xml");

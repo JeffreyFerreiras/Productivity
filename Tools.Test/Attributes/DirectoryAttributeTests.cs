@@ -1,12 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Tools.Attributes;
 
 namespace Tools.Test.Attributes
 {
-    [TestClass]
+    [TestFixture]
     public class DirectoryAttributeTests
     {
-        [TestMethod()]
+        
+        [Test]
         public void Directory_ValidDirectory_ReturnsTrue()
         {
             var attr = new DirectoryAttribute();
@@ -15,7 +16,7 @@ namespace Tools.Test.Attributes
             Assert.IsTrue(valid);
         }
 
-        [TestMethod()]
+        [Test]
         public void Directory_ValidNetworkDirectory_ReturnsTrue()
         {
             var attr = new DirectoryAttribute();
@@ -24,7 +25,7 @@ namespace Tools.Test.Attributes
             Assert.IsTrue(valid);
         }
 
-        [TestMethod()]
+        [Test]
         public void Directory_ValidIPDirectory_ReturnsTrue()
         {
             var attr = new DirectoryAttribute();
@@ -33,7 +34,7 @@ namespace Tools.Test.Attributes
             Assert.IsTrue(valid);
         }
 
-        [TestMethod()]
+        [Test]
         public void Directory_InvalidArgs_Returnsfalse()
         {
             var attr = new DirectoryAttribute();

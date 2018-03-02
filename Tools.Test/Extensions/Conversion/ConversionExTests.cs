@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +6,12 @@ using Tools.Extensions.Conversion;
 
 namespace Tools.Test.Extensions.Conversion
 {
-    [TestClass]
+    [TestFixture]
     public class ConversionExTests
     {
         #region ToEnum
 
-        [TestMethod]
+        [Test]
         public void ToEnum_ValidEnum_ConvertsToEnum()
         {
             string strEnum = "SPADE";
@@ -20,7 +20,7 @@ namespace Tools.Test.Extensions.Conversion
             Assert.IsTrue(suit.ToString().Equals(strEnum, StringComparison.OrdinalIgnoreCase));
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnum_ValidEnum_ConvertsToEnumWithGenericOverload()
         {
             string strEnum = "SPADE";
@@ -30,15 +30,15 @@ namespace Tools.Test.Extensions.Conversion
             Assert.IsTrue(suit.ToString().Equals(strEnum, StringComparison.OrdinalIgnoreCase));
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnum_InvalidEnumInput_ThrowsInvalidOperationException()
         {
             string strEnum = "SPADE";
 
-            Assert.ThrowsException<InvalidOperationException>(() => strEnum.ToEnum<Suits>(false));
+            Assert.Throws<InvalidOperationException>(() => strEnum.ToEnum<Suits>(false));
         }
 
-        [TestMethod]
+        [Test]
         public void ToEnum_ValidEnum_ConvertsToEnumWithoutIgnoringCase()
         {
             string strEnum = "Club";
@@ -48,7 +48,7 @@ namespace Tools.Test.Extensions.Conversion
 
         #endregion ToEnum
 
-        [TestMethod]
+        [Test]
         public void ToDictionary_Object_IDictionary()
         {
             var item = new
@@ -68,7 +68,7 @@ namespace Tools.Test.Extensions.Conversion
             Assert.IsTrue(itemDictionary.Count > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToByteArray_ValidInput_ReturnsByteArray()
         {
             string s = "Hello World!";
@@ -77,12 +77,12 @@ namespace Tools.Test.Extensions.Conversion
             Assert.IsTrue(bin.Length > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ToByteArray_InValidInput_Throws()
         {
             string s = null;
 
-            Assert.ThrowsException<ArgumentNullException>(()=>s.ToByteArray());
+            Assert.Throws<ArgumentNullException>(()=>s.ToByteArray());
         }
     }
 }

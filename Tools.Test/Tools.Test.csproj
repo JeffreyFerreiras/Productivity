@@ -14,10 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.0-preview-20171211-02" />
-    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0-preview-20180221-13" />
     <PackageReference Include="nunit" Version="3.9.0" />
+    <PackageReference Include="NUnit.Runners" Version="3.8.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
   </ItemGroup>

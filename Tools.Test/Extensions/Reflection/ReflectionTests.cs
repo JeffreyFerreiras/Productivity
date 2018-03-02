@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Tools.Extensions.Reflection;
 
 namespace Tools.Test.Extensions.Reflection
 {
-    [TestClass]
+    [TestFixture]
     public class ReflectionTests
     {
-        [TestMethod]
+        [Test]
         public void DeepClone_IEnumerable_ReturnsDeepClone()
         {
             var enumerable = Enumerable.Repeat(Helper.GetSimpleFake(), 2);
@@ -19,7 +19,7 @@ namespace Tools.Test.Extensions.Reflection
             Assert.IsFalse(hasSameRefs);
         }
 
-        [TestMethod]
+        [Test]
         public void DeepClone_ArrayOfReferenceTypes_ReturnsDeepClone()
         {
             var arr = Enumerable.Repeat(Helper.GetSimpleFake(), 2).ToArray();
@@ -30,7 +30,7 @@ namespace Tools.Test.Extensions.Reflection
             Assert.IsFalse(arr[0].A == arrClone[0].A);
         }
 
-        [TestMethod]
+        [Test]
         public void DeepClone_SimpleObject_ReturnsDeepClone()
         {
             var original = Helper.GetSimpleFake();
@@ -41,7 +41,7 @@ namespace Tools.Test.Extensions.Reflection
             Assert.IsFalse(original.A == clone.A);
         }
 
-        [TestMethod]
+        [Test]
         public void DeepClone_Dictionary_ReturnsDictionaryClone()
         {
             var original = new Dictionary<string, SimpleFake>

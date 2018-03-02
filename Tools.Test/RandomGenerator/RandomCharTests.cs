@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Tools.RandomGenerator;
 
 namespace Tools.Test.RandomGenerator
 {
-    [TestClass]
+    [TestFixture]
     public class RandomCharTests
     {
-        [TestMethod]
+        [Test]
         public void Next_ValidChar()
         {
             for(int i = 0; i < 1000; i++)
@@ -18,7 +18,7 @@ namespace Tools.Test.RandomGenerator
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NextAlphabet_ReturnsRandomAlphabetChar()
         {
             for(int i = 0; i < 1000; i++)
@@ -29,7 +29,7 @@ namespace Tools.Test.RandomGenerator
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NextNumber_ReturnsNumberChar()
         {
             for(int i = 0; i < 1000; i++)
@@ -40,7 +40,7 @@ namespace Tools.Test.RandomGenerator
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NextNumber_ReturnsSpecialChar()
         {
             for(int i = 0; i < 1000; i++)

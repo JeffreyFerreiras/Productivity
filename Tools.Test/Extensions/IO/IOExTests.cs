@@ -1,17 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.IO;
+using Tools.Extensions.Collection;
+using Tools.Extensions.IO;
+using Tools.RandomGenerator;
 
 namespace Tools.Test.Extensions.IO
 {
-    using System.Reflection;
-    using Tools.Extensions.Collection;
-    using Tools.Extensions.IO;
-    using Tools.RandomGenerator;
-
-    [TestClass]
+    [TestFixture]
     public class IOExTests
     {
-        [TestMethod]
+        [Test]
         public void CreateDirectory_ValidDirectoryName_CreatesDirectory()
         {
             string dir = @"C:\Test\";
@@ -21,7 +19,7 @@ namespace Tools.Test.Extensions.IO
             Directory.Delete(@"C:\Test\", true);
         }
 
-        [TestMethod]
+        [Test]
         public void CreateDirectory_InvalidDirectory_ReturnsFalse()
         {
             char invalidChar = Path.GetInvalidPathChars().GetRandomElement();
@@ -30,7 +28,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsFalse(invalidDirectoryName.CreateDirectory());
         }
 
-        [TestMethod]
+        [Test]
         public void IsValidPath_ValidPath_ReturnsTrue()
         {
             string validPath = @"c:\\TEST\";
@@ -40,7 +38,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsTrue(isValidPath);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValidPath_InvalidPath_ReturnsFalse()
         {
             string invalidPathName = $@"C:\";
@@ -54,7 +52,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsFalse(isValidPath);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValidPath_Null_ReturnsFalse()
         {
             string invalidPathName = null;
@@ -63,7 +61,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsFalse(isValidPath);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValidPath_Empty_ReturnsFalse()
         {
             string invalidPathName = string.Empty;
@@ -73,7 +71,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsFalse(isValidPath);
         }
 
-        [TestMethod]
+        [Test]
         public void IsValidPath_RandomString_ReturnsFalse()
         {
             bool isValidPath = RandomString.NextAlphabet().IsValidPath();
@@ -81,7 +79,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsTrue(isValidPath);
         }
 
-        [TestMethod]
+        [Test]
         public void IsFile_ValidFileName_ReturnsTrue()
         {
             bool pass = "testFile.txt".IsValidFileName();
@@ -89,7 +87,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsTrue(pass);
         }
 
-        [TestMethod]
+        [Test]
         public void IsFile_ValidLongFileName_ReturnsTrue()
         {
             bool pass = "testFileasdfasdfasdfsadfasdfkljhaslkdjfhlaskdjhgflaskhjdgflakshjdgflkashjgdflkasjhgdflkjashdflkjashdflkasjhdflksajdhf.txt".IsValidFileName();
@@ -97,13 +95,13 @@ namespace Tools.Test.Extensions.IO
             Assert.IsTrue(pass);
         }
         
-        [TestMethod]
+        [Test]
         public void IsFile_Empty_ReturnsFalse()
         {
             Assert.IsFalse(string.Empty.IsValidFileName());
         }
 
-        [TestMethod]
+        [Test]
         public void IsFile_Null_ReturnsFalse()
         {
             string n = null;
@@ -111,7 +109,7 @@ namespace Tools.Test.Extensions.IO
             Assert.IsFalse(n.IsValidFileName());
         }
 
-        [TestMethod]
+        [Test]
         public void IsFile_InvalidFileNameChars_ReturnsFalse()
         {
             string n = new string(Path.GetInvalidFileNameChars());
