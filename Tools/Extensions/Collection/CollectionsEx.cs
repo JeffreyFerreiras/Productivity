@@ -146,5 +146,23 @@ namespace Tools.Extensions.Collection
 
             return default(TValue);
         }
+
+        public static bool IsSortedAsc<T>(this IEnumerable<T> source)
+        {
+            return source.IsSortedAsc(Comparer.Default);
+        }
+
+        public static bool IsSortedAsc<T>(this IEnumerable<T> source, IComparer comparer)
+        {
+            for(int i = 1; i < source.Count(); i++)
+            {
+                if(comparer.Compare(source.ElementAt(i-1), source.ElementAt(i)) > 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

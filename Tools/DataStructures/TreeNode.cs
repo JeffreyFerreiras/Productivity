@@ -58,6 +58,7 @@ namespace Tools.DataStructures
 
         internal void Add(TreeNode<T> node)
         {
+            if(node == null) return;
             node.Parent = this;
 
             if(node > this)
@@ -136,9 +137,17 @@ namespace Tools.DataStructures
             SwapValues(this, rightTemp);
 
             this.RightChild = this.RightChild.RightChild;
+            this.RightChild.Parent = this;
 
             rightTemp.RightChild = rightTemp.LeftChild;
             rightTemp.LeftChild = this.LeftChild;
+
+            if(rightTemp.LeftChild != null)
+            {
+                rightTemp.LeftChild.Parent = rightTemp;
+            }
+
+            rightTemp.Parent = this;
 
             this.LeftChild = rightTemp;
         }
@@ -150,26 +159,36 @@ namespace Tools.DataStructures
             SwapValues(this, leftTemp);
 
             this.LeftChild = this.LeftChild.LeftChild;
-
+            this.LeftChild.Parent = this;
+            
             leftTemp.LeftChild = leftTemp.RightChild;
             leftTemp.RightChild = this.RightChild;
+
+            if(leftTemp.RightChild != null)
+            {
+                leftTemp.RightChild.Parent = leftTemp;
+            }
+
+            leftTemp.Parent = this;
 
             this.RightChild = leftTemp;
         }
 
-        private void RotateLeftRight()
+        internal void RotateLeftRight()
         {
             SwapValues(this, this.LeftChild.RightChild);
 
             this.RightChild = this.LeftChild.RightChild;
+            this.RightChild.Parent = this;
             this.LeftChild.RightChild = null;
         }
 
-        private void RotateRightLeft()
+        internal void RotateRightLeft()
         {
             SwapValues(this, this.RightChild.LeftChild);
-
+            
             this.LeftChild = this.RightChild.LeftChild;
+            this.LeftChild.Parent = this;
             this.RightChild.LeftChild = null;
         }
 

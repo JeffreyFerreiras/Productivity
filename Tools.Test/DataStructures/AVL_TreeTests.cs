@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Tools.DataStructures;
+using Tools.Extensions.Collection;
 
 namespace Tools.Test.DataStructures
 {
@@ -75,14 +77,20 @@ namespace Tools.Test.DataStructures
             Assert.IsTrue(bst.IsBalanced);
         }
 
-        [Test]
-        public void RemoveTest()
+        [Theory]
+        [TestCase(6)]
+        [TestCase(112)]
+        [TestCase(212)]
+        public void RemovesNodeIndifferentLevels(int num)
         {
             var bst = BinTreeFactory();
+            int countCache = bst.Count; //Keep track of count so we make sure to only remove one.
 
-            bst.Remove(6);
+            bst.Remove(num);
 
-            Assert.IsFalse(bst.Contains(6));
+            Assert.IsTrue(countCache == bst.Count + 1);
+            Assert.IsFalse(bst.Contains(num));
+            Assert.IsTrue(bst.IsSortedAsc());
         }
 
         [Test]
@@ -120,6 +128,69 @@ namespace Tools.Test.DataStructures
             var bst = BinTreeFactory();
 
             Assert.IsTrue(bst.LeafCount() > 0);
+        }
+
+        [Test]
+        public void Delete_ValidInput_DeletesNode()
+        {
+            var bst = BinTreeFactory();
+            bst.Delete(6);
+
+            Assert.IsFalse(bst.Contains(6));
+        }
+
+        [Test]
+        public void CopyTo_ValidInput_Copies()
+        {
+            var bst = BinTreeFactory();
+            int[] values = new int[bst.Count];
+
+            bst.CopyTo(values, 0);
+
+            Assert.IsTrue(values.IsSortedAsc());
+        }
+
+        [Test]
+        public void CopyTo_SmallArray_Copies()
+        {
+            var bst = BinTreeFactory();
+            int[] values = new int[bst.Count - 1];
+
+            Assert.Throws<IndexOutOfRangeException>(() => bst.CopyTo(values, 0));
+        }
+
+        [Test]
+        public void CopyTo_OutOfRange_Throws()
+        {
+            var bst = BinTreeFactory();
+            int[] values = new int[bst.Count + 2];
+
+            Assert.Throws<IndexOutOfRangeException>(() => bst.CopyTo(values, 3));
+        }
+
+        [Test]
+        public void GetEnumerator_ValidInput_Iterates()
+        {
+            var bst = BinTreeFactory();
+            var values = new List<int>();
+
+            foreach(var item in bst)
+            {
+                values.Add(item);
+            }
+
+            Assert.IsTrue(values.IsSortedAsc());
+        }
+
+        [Test]
+        public void GetEnumerator_UsesIEnumerableExtensions()
+        {
+            var bst = BinTreeFactory();
+
+            var where = bst.Where(x => x > 10);
+
+            Assert.True(bst.ToArray().Length == bst.Count);
+            Assert.True(bst.ToList().Count == bst.Count);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Tools.Exceptions;
 
 namespace Tools.DataStructures
 {
-    public class AVL_Tree<T> where T : IComparable<T>
+    public class AVL_Tree<T> : ICollection<T> where T : IComparable<T>
     {
         public int Count { get; private set; }
 
@@ -18,6 +20,8 @@ namespace Tools.DataStructures
                 return Math.Abs(balance) < 2;
             }
         }
+
+        public bool IsReadOnly => false;
 
         public void Add(T value)
         {
@@ -97,82 +101,48 @@ namespace Tools.DataStructures
 
         public void Remove(T value)
         {
-            Remove(new TreeNode<T>(value));
-        }
+            TreeNode<T> node = this.Root.Find(value);
 
-        public void Remove(TreeNode<T> value)
-        {
-            TreeNode<T> parent = this.Root;
-            TreeNode<T> current = this.Root;
+            if(node == null) return;
 
-            bool isLeftChild = false;
-
-            while(current != null && current != value)
+            if(this.Root == node)
             {
-                parent = current;
+                //Find lowest leaf on right.
+                //Assign as root.
 
-                if(current < value)
+                TreeNode<T> minRightNode = this.Root.RightChild.Min();
+                TreeNode<T> minRightNodeParent = minRightNode.Parent;
+                TreeNode<T> minRightNodeRightChild = minRightNode.RightChild;
+
+                this.Root.Value = minRightNode.Value;
+                minRightNodeParent.LeftChild = null;
+
+                if(minRightNodeRightChild != null)
                 {
-                    current = current.RightChild;
-                    isLeftChild = false;
+                    this.Root.Add(minRightNodeRightChild);
                 }
-                else
-                {
-                    current = current.LeftChild;
-                    isLeftChild = true;
-                }
-            }
-
-            if(current == null) return;
-
-            if(current.IsLeafNode)
-            {
-                if(current == this.Root)
-                    this.Root = null;
-                else
-                {
-                    if(isLeftChild)
-                        parent.LeftChild = null;
-                    else
-                        parent.RightChild = null;
-                }
-            }
-            else if(current.RightChild == null)
-            {
-                if(current == this.Root)
-                    this.Root = current.LeftChild;
-                else if(isLeftChild)
-                    parent.LeftChild = current.LeftChild;
-                else
-                    parent.RightChild = current.LeftChild;
-            }
-            else if(current.LeftChild == null)
-            {
-                if(current == this.Root)
-                    this.Root = current.RightChild;
-                else if(isLeftChild)
-                    parent.LeftChild = current.RightChild;
-                else
-                    parent.RightChild = current.RightChild;
             }
             else
             {
-                TreeNode<T> successor = GetSuccessor(current);
+                TreeNode<T> parent = node.Parent;
 
-                if(current == this.Root)
-                    this.Root = successor;
-                if(isLeftChild)
-                    parent.LeftChild = successor;
+                if(parent.LeftChild == node)
+                {
+                    parent.LeftChild = null;
+                }
                 else
-                    parent.RightChild = successor;
+                {
+                    parent.RightChild = null;
+                }
 
-                successor.LeftChild = current.LeftChild;
+                this.Root.Add(node.LeftChild);
+                this.Root.Add(node.RightChild);
             }
 
             this.Count--;
         }
 
-        private TreeNode<T> GetSuccessor(TreeNode<T> node) //TODO: Method is obsolete, introduced "Parent"
+        private TreeNode<T> GetSuccessor(TreeNode<T> node)
         {
             TreeNode<T> current = node.RightChild;
             TreeNode<T> successor = node;
@@ -223,6 +193,44 @@ namespace Tools.DataStructures
             this.Root.RightChild?.TraversePostOrder(action);
 
             action(this.Root);
+        }
+
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            int index = arrayIndex;
+
+            void copyToArray(TreeNode<T> x)
+            {
+                array[index] = x.Value;
+                index++;
+            }
+
+            TraverseInOrder(copyToArray);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            T[] values = new T[this.Count];
+
+            this.CopyTo(values, 0);
+            
+            foreach(T value in values)
+            {
+                yield return value;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        bool ICollection<T>.Remove(T item)
+        {
+            this.Remove(item);
+
+            return this.Contains(item);
         }
     }
 }
