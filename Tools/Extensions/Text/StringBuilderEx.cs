@@ -59,7 +59,7 @@ namespace Tools.Extensions.Text
             if(phrase.Length > 0)
             {
                 int length = startIndex + count;
-                BoundsCheck(sb, startIndex, count, length);
+                CheckBounds(sb, startIndex, count, length);
 
                 return GetIndexOf(sb, phrase, startIndex, length);
             }
@@ -119,7 +119,7 @@ namespace Tools.Extensions.Text
 
             int length = startIndex + count;
 
-            BoundsCheck(sb, startIndex, count, length);
+            CheckBounds(sb, startIndex, count, length);
 
             var anyOfSet = new HashSet<char>(anyOf);
 
@@ -155,7 +155,7 @@ namespace Tools.Extensions.Text
 
             int startPos = startIndex + count;
 
-            BoundsCheck(sb, startIndex, count, startPos + 1);
+            CheckBounds(sb, startIndex, count, startPos + 1);
 
             for(int i = startPos; i >= startIndex; i--)
             {
@@ -187,7 +187,7 @@ namespace Tools.Extensions.Text
             {
                 int startPos = startIndex + count;
 
-                BoundsCheck(sb, startIndex, count, startPos + 1);
+                CheckBounds(sb, startIndex, count, startPos + 1);
 
                 return GetLastIndexOf(sb, phrase, startIndex, startPos);
             };
@@ -244,7 +244,7 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
 
             int startPos = startIndex + count;
-            BoundsCheck(sb, startIndex, count, startPos + 1);
+            CheckBounds(sb, startIndex, count, startPos + 1);
             HashSet<char> anyOfSet = new HashSet<char>(anyOf); //128 chars max
 
             for(int i = startPos; i >= startIndex; i--)
@@ -255,7 +255,7 @@ namespace Tools.Extensions.Text
             return -1;
         }
 
-        private static void BoundsCheck(StringBuilder sb, int startIndex, int count, int length)
+        private static void CheckBounds(StringBuilder sb, int startIndex, int count, int length)
         {
             Guard.Assert<IndexOutOfRangeException>(startIndex >= 0 && sb.Length > startIndex, OutOfBoundsMessage);
             Guard.Assert<IndexOutOfRangeException>(sb.Length >= count, OutOfBoundsMessage);

@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using System;
 using System.IO;
+using System.Reflection;
 using Tools.Extensions.Collection;
 using Tools.Extensions.IO;
 using Tools.RandomGenerator;
@@ -115,6 +117,37 @@ namespace Tools.Test.Extensions.IO
             string n = new string(Path.GetInvalidFileNameChars());
 
             Assert.IsFalse(n.IsValidFileName());
+        }
+
+        [Test]
+        public void BuildFileShareSafeStreamWriter_ValidFile_CannotOpenSecondStreamForReads()
+        {
+            string testFile = Path.Combine(Directory.GetCurrentDirectory(), "UnitTesting", "TESTFILE.txt");
+            Directory.CreateDirectory(Path.GetDirectoryName(testFile));
+
+            using(StreamWriter sw = IOHelper.BuildFileShareSafeStreamWriter(testFile))
+            {
+                Assert.Throws<IOException>(() => File.OpenRead(testFile));
+            }
+        }
+
+        [Test]
+        public void BuildFileShareSafeStreamWriter_InvalidDir_ThrowsArgumentException()
+        {
+            string testFile = Path.Combine(Directory.GetCurrentDirectory(), "UnitTesting", "TESTFILE.txt");
+            Directory.CreateDirectory(Path.GetDirectoryName(testFile));
+            Directory.Delete(Path.GetDirectoryName(testFile), true);
+
+            Assert.Throws<ArgumentException>(() => IOHelper.BuildFileShareSafeStreamWriter(testFile));
+        }
+
+        [Test]
+        public void BuildFileShareSafeStreamWriter_InvalidFileName_ThrowsArgumentException()
+        {
+            string testFile = Path.Combine(Directory.GetCurrentDirectory(), "UnitTesting", "91872364)(.txt");
+            Directory.CreateDirectory(Path.GetDirectoryName(testFile));
+
+            Assert.Throws<ArgumentException>(() => IOHelper.BuildFileShareSafeStreamWriter(testFile));
         }
     }
 }

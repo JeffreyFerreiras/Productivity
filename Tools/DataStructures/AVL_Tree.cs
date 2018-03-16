@@ -115,6 +115,7 @@ namespace Tools.DataStructures
                 TreeNode<T> minRightNodeRightChild = minRightNode.RightChild;
 
                 this.Root.Value = minRightNode.Value;
+
                 minRightNodeParent.LeftChild = null;
 
                 if(minRightNodeRightChild != null)
@@ -140,28 +141,6 @@ namespace Tools.DataStructures
             }
 
             this.Count--;
-        }
-
-        private TreeNode<T> GetSuccessor(TreeNode<T> node)
-        {
-            TreeNode<T> current = node.RightChild;
-            TreeNode<T> successor = node;
-            TreeNode<T> parentOfSuccessor = node;
-
-            while(current != null)
-            {
-                parentOfSuccessor = successor;
-                successor = current;
-                current = current.LeftChild;
-            }
-
-            if(successor != node.RightChild)
-            {
-                parentOfSuccessor.LeftChild = successor.RightChild;
-                successor.RightChild = node.RightChild;
-            }
-
-            return successor;
         }
 
         public void TraverseInOrder(Action<TreeNode<T>> action)

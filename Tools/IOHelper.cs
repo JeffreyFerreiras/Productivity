@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Tools.Exceptions;
+using Tools.Extensions.IO;
 
 namespace Tools
 {
@@ -74,6 +75,18 @@ namespace Tools
             {
                 File.Delete(f);
             }
+        }
+
+        public static StreamWriter BuildFileShareSafeStreamWriter(string path)
+        {
+            Guard.AssertArgs(path.IsValidFileName(), "Invalid path");
+            Guard.AssertArgs(Directory.Exists(Path.GetDirectoryName(path)), "File does not exist");
+            
+            return new StreamWriter(File.Open(
+                    path,
+                    FileMode.OpenOrCreate,
+                    FileAccess.Write,
+                    FileShare.ReadWrite));
         }
     }
 }

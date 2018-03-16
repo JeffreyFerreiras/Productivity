@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Tools.Extensions.Collection;
 using Tools.Extensions.Conversion;
@@ -46,7 +47,7 @@ namespace Tools.Test.Extensions
         {
             var collection = Helper.GeStringArray();
             int len = collection.Count() + 5;
-            
+
             Assert.Throws<IndexOutOfRangeException>(() => collection.SubSequence(3, len));
         }
 
@@ -282,6 +283,103 @@ namespace Tools.Test.Extensions
         {
             string s = null;
             Assert.IsFalse(s.FromYN());
+        }
+
+        [Test]
+        public void Rotate_Ints_Rotates()
+        {
+            int[] input = { 1, 2, 3, 4, 5, 6 };
+            int[] expected = { 4, 5, 6, 1, 2, 3 };
+
+            input.Rotate(3);
+
+            Assert.AreEqual(input, expected);
+        }
+
+        [Test]
+        public void Rotate2_Ints_Rotates()
+        {
+            int[] input = { 1, 2, 3, 4, 5, 6 };
+            int[] expected = { 4, 5, 6, 1, 2, 3 };
+
+            input = input.Rotate(3).ToArray();
+
+            Assert.AreEqual(input, expected);
+        }
+
+        [Test]
+        public void Rotate_Performace_Test()
+        {
+            int[] input = Helper.GetRandomArray(10000);
+
+            var sw = Stopwatch.StartNew();
+            input.Rotate(5000);
+            sw.Stop();
+            string result = sw.ElapsedTicks.ToString();
+            Debug.WriteLine($"Array: {sw.ElapsedTicks}");
+
+            var input2 = input.ToList();
+            sw.Restart();
+            input2.Rotate(5000);
+            sw.Stop();
+            string result2 = sw.ElapsedTicks.ToString();
+            Debug.WriteLine($"Linq: {sw.ElapsedTicks}");
+
+            sw.Restart();
+            input.Rotate(5000);
+            sw.Stop();
+            string result3 = sw.ElapsedTicks.ToString();
+            Debug.WriteLine($"Array: {sw.ElapsedTicks}");
+        }
+
+        [Theory]
+        [TestCase(5)]
+        [TestCase(-8)]
+        public void Rotate_OutofRange_ThrowsIndexOutOfRangeException(int n)
+        {
+            int[] input = { 1, 2, 3, 4, 5, 6 };
+
+            Assert.Throws<IndexOutOfRangeException>(() => input.Rotate(input.Length + n));
+        }
+
+        [Test]
+        public void Rotate_null_ThrowsArgumentException()
+        {
+            int[] input = null;
+
+            Assert.Throws<ArgumentException>(() => input.Rotate(3));
+        }
+
+        [Test]
+        public void IsSortedAsc_SortedArray_ReturnsTrue()
+        {
+            var arr = Helper.GetRandomArray(100);
+
+            Array.Sort(arr);
+
+            Assert.IsTrue(arr.IsSortedAsc());
+        }
+
+        [Test]
+        public void IsSortedAsc_UnsortedArray_ReturnsFalse()
+        {
+            var arr = Helper.GetRandomArray(100);
+
+            Assert.IsFalse(arr.IsSortedAsc());
+        }
+
+        [Test]
+        public void IsSortedAsc_EmptyArray_ReturnsTrue()
+        {
+            var arr = new int[] { };
+            Assert.IsTrue(arr.IsSortedAsc());
+        }
+
+        [Test]
+        public void IsSortedAsc_NullArray_ThrowsArgumentException()
+        {
+            int[] arr = null;
+            Assert.Throws<ArgumentException>(() => arr.IsSortedAsc());
         }
     }
 }
