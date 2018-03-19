@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Tools.DataStructures
 {
@@ -11,6 +9,7 @@ namespace Tools.DataStructures
     public class PrefixTree
     {
         private Node _root;
+
         protected class Node
         {
             public bool IsWord { get; set; } = false;

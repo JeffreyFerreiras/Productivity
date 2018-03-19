@@ -123,6 +123,7 @@ namespace Tools.Test.Extensions.IO
         public void BuildFileShareSafeStreamWriter_ValidFile_CannotOpenSecondStreamForReads()
         {
             string testFile = Path.Combine(Directory.GetCurrentDirectory(), "UnitTesting", "TESTFILE.txt");
+
             Directory.CreateDirectory(Path.GetDirectoryName(testFile));
 
             using(StreamWriter sw = IOHelper.BuildFileShareSafeStreamWriter(testFile))

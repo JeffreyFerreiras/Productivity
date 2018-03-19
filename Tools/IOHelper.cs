@@ -79,8 +79,8 @@ namespace Tools
 
         public static StreamWriter BuildFileShareSafeStreamWriter(string path)
         {
-            Guard.AssertArgs(path.IsValidFileName(), "Invalid path");
-            Guard.AssertArgs(Directory.Exists(Path.GetDirectoryName(path)), "File does not exist");
+            Guard.AssertArgs(Path.GetFileName(path).IsValidFileName() , "File name is not valid");
+            Guard.AssertArgs(Directory.Exists(Path.GetDirectoryName(path)), "Directory does not exist");
             
             return new StreamWriter(File.Open(
                     path,
