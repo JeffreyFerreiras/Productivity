@@ -1,4 +1,5 @@
 ﻿using System;
+using Tools.Exceptions;
 
 namespace Tools.DataStructures
 {
@@ -26,11 +27,15 @@ namespace Tools.DataStructures
 
         internal TreeNode(T value)
         {
+            Guard.AssertOperation(value != null, $"{nameof(value)} cannot be null");
+
             Value = value;
         }
 
         internal static TreeNode<T> Create(T[] data)
         {
+            Array.Sort(data);
+
             return new TreeNode<T>().AddSorted(data, 0, data.Length - 1);
         }
 
@@ -59,6 +64,7 @@ namespace Tools.DataStructures
         internal void Add(TreeNode<T> node)
         {
             if(node == null) return;
+
             node.Parent = this;
 
             if(node > this)

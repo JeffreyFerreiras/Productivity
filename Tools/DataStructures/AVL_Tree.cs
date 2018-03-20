@@ -23,6 +23,12 @@ namespace Tools.DataStructures
 
         public bool IsReadOnly => false;
 
+        public AVL_Tree() { }
+        public AVL_Tree(T[] data)
+        {
+            this.Root = TreeNode<T>.Create(data);
+        }
+
         public void Add(T value)
         {
             if(Root == null)

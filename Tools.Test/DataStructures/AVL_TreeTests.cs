@@ -66,7 +66,7 @@ namespace Tools.Test.DataStructures
         [Test]
         public void AddTest_RotateTreeStress_BalancedTree()
         {
-            int[] sample = Helper.GetRandomArray(1000);
+            int[] sample = Helper.GetRandomArray(10000);
 
             var bst = new AVL_Tree<int>();
 
@@ -76,6 +76,7 @@ namespace Tools.Test.DataStructures
             }
 
             Assert.IsTrue(bst.IsBalanced);
+            Assert.IsTrue(bst.Count == sample.Length);
         }
 
         [Theory]

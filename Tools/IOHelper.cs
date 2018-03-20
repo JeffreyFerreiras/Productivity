@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Tools.Exceptions;
 
 namespace Tools
@@ -60,7 +62,7 @@ namespace Tools
         }
 
         /// <summary>
-        /// Delete files within a directory with optional filter
+        /// Delete files within a directory with optional pattern.
         /// </summary>
         /// <param name="path"></param>
         /// <param name="pattern"></param>
@@ -76,6 +78,33 @@ namespace Tools
             }
         }
 
+        /// <summary>
+        /// Delete files in a directory that meet specified conditions.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="predicate"></param>
+        public static void DeleteFiles(string path, Func<FileInfo, bool> predicate)
+        {
+            Guard.AssertArgs(predicate != null, $"{nameof(predicate)} is null");
+            Guard.AssertArgs(Directory.Exists(path), $"Location does not exist: {path}");
+
+            var fileInfos = Directory.EnumerateFiles(path).Select(f => new FileInfo(f));
+
+            foreach(var fi in fileInfos)
+            {
+                if(predicate(fi))
+                {
+                    fi.Delete();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Builds a File Shared safe tream writer that will not
+        /// allow other stream writers from blocking the file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static StreamWriter BuildFileShareSafeStreamWriter(string path)
         {
             Guard.AssertArgs(Directory.Exists(Path.GetDirectoryName(path)), "Directory does not exist");
