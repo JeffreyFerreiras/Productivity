@@ -10,7 +10,6 @@ namespace Tools.Extensions.Reflection
 {
     public static class Reflection
     {
-
         /// <summary>
         /// Returns true if source object contains a collection.
         /// </summary>

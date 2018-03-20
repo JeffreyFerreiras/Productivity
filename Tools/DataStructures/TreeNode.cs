@@ -160,7 +160,7 @@ namespace Tools.DataStructures
 
             this.LeftChild = this.LeftChild.LeftChild;
             this.LeftChild.Parent = this;
-            
+
             leftTemp.LeftChild = leftTemp.RightChild;
             leftTemp.RightChild = this.RightChild;
 
@@ -186,7 +186,7 @@ namespace Tools.DataStructures
         internal void RotateRightLeft()
         {
             SwapValues(this, this.RightChild.LeftChild);
-            
+
             this.LeftChild = this.RightChild.LeftChild;
             this.LeftChild.Parent = this;
             this.RightChild.LeftChild = null;

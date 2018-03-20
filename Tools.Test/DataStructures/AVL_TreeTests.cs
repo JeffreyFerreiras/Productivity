@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Tools.DataStructures;
 using Tools.Extensions.Collection;
+using Tools.Extensions.Validation;
 
 namespace Tools.Test.DataStructures
 {

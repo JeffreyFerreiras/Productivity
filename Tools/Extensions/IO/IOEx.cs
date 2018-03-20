@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Tools.Extensions.Validation;
@@ -32,6 +31,11 @@ namespace Tools.Extensions.IO
 
         public static bool IsValidFileName(this string fileName)
         {
+            /*
+             * Methods in the System.IO.Path class validate file names, making this method pretty useless.
+             * Leaving it here for now in case there is some use for it I havent thought of yet.
+             */
+
             if(string.IsNullOrWhiteSpace(fileName) || fileName.Length > 255) return false;
 
             var invalidChars = Path.GetInvalidFileNameChars();

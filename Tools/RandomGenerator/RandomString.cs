@@ -4,6 +4,9 @@ using Tools.Extensions.Validation;
 
 namespace Tools.RandomGenerator
 {
+    /// <summary>
+    /// Provides thread safe random string generator
+    /// </summary>
     public class RandomString
     {
         private static readonly Random s_random = new Random();

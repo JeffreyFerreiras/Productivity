@@ -174,7 +174,6 @@ namespace Tools.DataStructures
             action(this.Root);
         }
 
-
         public void CopyTo(T[] array, int arrayIndex)
         {
             int index = arrayIndex;
@@ -193,7 +192,7 @@ namespace Tools.DataStructures
             T[] values = new T[this.Count];
 
             this.CopyTo(values, 0);
-            
+
             foreach(T value in values)
             {
                 yield return value;

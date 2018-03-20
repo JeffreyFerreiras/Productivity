@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Tools.Exceptions;
 
 namespace Tools.Extensions.Validation
 {
@@ -34,8 +35,15 @@ namespace Tools.Extensions.Validation
 
         public static bool IsValidNumber(this string num)
         {
-            if(string.IsNullOrWhiteSpace(num)) return false;
-            if(num[0] == '-') num = num.Substring(1);
+            if(string.IsNullOrWhiteSpace(num))
+            {
+                return false;
+            }
+
+            if(num[0] == '-')
+            {
+                num = num.Substring(1);
+            }
 
             foreach(var c in num)
             {
@@ -101,29 +109,38 @@ namespace Tools.Extensions.Validation
 
         public static bool HasUpper(this string pw, int count = 1)
         {
-            Predicate<char> predicate = c => char.IsUpper(c);
+            bool predicate(char c) => char.IsUpper(c);
 
             return pw.HasCharType(predicate, count);
         }
 
         public static bool HasLower(this string pw, int count = 1)
         {
-            Predicate<char> predicate = c => char.IsLower(c);
+            bool predicate(char c) => char.IsLower(c);
+
             return pw.HasCharType(predicate, count);
         }
 
         public static bool HasNumber(this string pw, int count = 1)
         {
-            Predicate<char> predicate = c => char.IsDigit(c);
+            bool predicate(char c) => char.IsDigit(c);
+
             return pw.HasCharType(predicate, count);
         }
 
         public static bool HasProp<T>(this T value, string propName)
         {
             PropertyInfo property = value.GetType().GetTypeInfo().GetProperty(propName);
+
             return property != null;
         }
 
+        /// <summary>
+        /// Compares two string using <see cref="StringComparison.OrdinalIgnoreCase"/>
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static bool EqualsIgnoreCase(this string source, string target)
         {
             if(source == null) return false;
@@ -133,11 +150,30 @@ namespace Tools.Extensions.Validation
             return areEqual;
         }
 
-        public static bool IsOrdered(this IEnumerable<int> arr)
+        /// <summary>
+        /// Returns true if a collection is sorted in ascending order
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static bool IsSortedAsc<T>(this IEnumerable<T> source)
         {
-            for(int i = 1; i < arr.Count(); i++)
+            return source.IsSortedAsc(Comparer<T>.Default);
+        }
+
+        /// <summary>
+        /// Returns true if a collection is sorted in ascending order using provided <see cref="IComparer{T}"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static bool IsSortedAsc<T>(this IEnumerable<T> source, IComparer<T> comparer)
+        {
+            Guard.AssertArgs(source != null, "Collection is null");
+
+            for(int i = 1; i < source.Count(); i++)
             {
-                if(arr.ElementAt(i - 1) > arr.ElementAt(i))
+                if(comparer.Compare(source.ElementAt(i - 1), source.ElementAt(i)) > 0)
                 {
                     return false;
                 }

@@ -12,12 +12,13 @@ namespace Tools.Attributes
         public override bool IsValid(object value)
         {
             string dir = value as string;
-            string root = Path.GetPathRoot(dir);
 
-            if(root.IsNullOrWhiteSpace())
+            if(dir.IsNullOrWhiteSpace())
             {
                 return false;
             }
+
+            string root = Path.GetPathRoot(dir);
 
             var set = new HashSet<char>(dir);
 

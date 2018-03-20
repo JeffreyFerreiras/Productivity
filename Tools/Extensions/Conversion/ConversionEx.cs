@@ -65,7 +65,7 @@ namespace Tools.Extensions.Conversion
         /// </summary>
         /// <param name="o"></param>
         /// <returns></returns>
-        public static string ToDateString(this object o)
+        public static string ToDateTimeString(this object o)
         {
             string format = "MM/dd/yyyy h:mm:ss tt";
 
@@ -76,18 +76,18 @@ namespace Tools.Extensions.Conversion
         }
 
         /// <summary>
-        /// Converts an object into a dictioanry of key value pair.
+        /// Converts an object into a Dictionary of key value pair.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="model"></param>
         /// <returns></returns>
 
-        public static IDictionary<string, dynamic> ToDictionary<T>(this T model) where T : class
+        public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
         {
             Guard.AssertArgs(model.IsValid(), $"{typeof(T).Name} not valid");
 
-            Dictionary<string, dynamic> dict = new Dictionary<string, dynamic>();
+            var dict = new Dictionary<string, dynamic>();
 
             foreach(var p in typeof(T).GetProperties())
             {
@@ -130,13 +130,6 @@ namespace Tools.Extensions.Conversion
             return dict;
         }
 
-        public static bool FromYN(this string source)
-        {
-            source = source?.ToUpper();
-
-            return source == "Y" || source == "YES" || source == "T" || source == "TRUE";
-        }
-
         public static char[] ToCharArray(this int[] numbers)
         {
             char[] chars = new char[numbers.Length];
@@ -151,7 +144,14 @@ namespace Tools.Extensions.Conversion
 
         public static byte[] ToByteArray(this string text)
         {
-            return System.Text.Encoding.ASCII.GetBytes(text); 
+            return System.Text.Encoding.ASCII.GetBytes(text);
+        }
+
+        public static bool FromYN(this string source)
+        {
+            source = source?.ToUpper();
+
+            return source == "Y" || source == "YES" || source == "T" || source == "TRUE";
         }
     }
 }

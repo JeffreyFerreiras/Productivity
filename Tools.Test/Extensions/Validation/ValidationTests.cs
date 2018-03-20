@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using Tools.Extensions.Validation;
 
@@ -185,6 +186,39 @@ namespace Tools.Test.Extensions
 
             Assert.IsFalse(first.EqualsIgnoreCase(second));
             Assert.IsFalse(second.EqualsIgnoreCase(first));
+        }
+
+
+        [Test]
+        public void IsSortedAsc_SortedArray_ReturnsTrue()
+        {
+            var arr = Helper.GetRandomArray(100);
+
+            Array.Sort(arr);
+
+            Assert.IsTrue(arr.IsSortedAsc());
+        }
+
+        [Test]
+        public void IsSortedAsc_UnsortedArray_ReturnsFalse()
+        {
+            var arr = Helper.GetRandomArray(100);
+
+            Assert.IsFalse(arr.IsSortedAsc());
+        }
+
+        [Test]
+        public void IsSortedAsc_EmptyArray_ReturnsTrue()
+        {
+            var arr = new int[] { };
+            Assert.IsTrue(arr.IsSortedAsc());
+        }
+
+        [Test]
+        public void IsSortedAsc_NullArray_ThrowsArgumentException()
+        {
+            int[] arr = null;
+            Assert.Throws<ArgumentException>(() => arr.IsSortedAsc());
         }
     }
 }

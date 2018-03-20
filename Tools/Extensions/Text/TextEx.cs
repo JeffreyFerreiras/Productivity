@@ -1,7 +1,4 @@
-﻿using System;
-using Tools.Extensions.Validation;
-
-namespace Tools.Extensions.Text
+﻿namespace Tools.Extensions.Text
 {
     public static class TextEx
     {

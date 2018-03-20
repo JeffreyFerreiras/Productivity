@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Tools.Exceptions;
 using Tools.Extensions.Validation;
 
@@ -13,44 +12,43 @@ namespace Tools.Extensions.Collection
         private static readonly Random s_random = new Random();
         private static readonly object s_syncLock = new object();
 
-
         /// <summary>
-        /// Rotates a list or array to the right by a given offset
+        /// Rotates a collection to the right by the given off set
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="offSet"></param>
         /// <returns></returns>
-        public static IList<T> Rotate<T>(this IList<T> source, int offSet)
+        public static IEnumerable<T> Rotate<T>(this IEnumerable<T> source, int offSet)
         {
-            Asserts();
+            AssertRotateParams(source, offSet);
 
-            if(source is T[] array)
-            {
-                return RotateArray(array);
-            }
-            else
-            {
-                return RotateArray(source.ToArray());
-            }
+            return source.Skip(offSet).Concat(source.Take(offSet));
+        }
 
-            //return source.Skip(offSet).Concat(source.Take(offSet));
+        /// <summary>
+        /// Rotates a collection to the right by the given off set
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="arr"></param>
+        /// <param name="offSet"></param>
+        /// <returns></returns>
+        public static T[] Rotate<T>(this T[] arr, int offSet)
+        {
+            AssertRotateParams(arr, offSet);
 
-            void Asserts()
-            {
-                Guard.AssertArgs(source != null, "source array is null");
-                Guard.Assert<IndexOutOfRangeException>(offSet < source.Count(), "Out of range");
-                Guard.Assert<IndexOutOfRangeException>(offSet > 0, "Out of range");
-            }
+            Array.Reverse(arr, 0, offSet);
+            Array.Reverse(arr, offSet, arr.Count() - offSet);
+            Array.Reverse(arr, 0, arr.Count());
 
-            T[] RotateArray(T[] arr)
-            {
-                Array.Reverse(arr, 0, offSet);
-                Array.Reverse(arr, offSet, arr.Count() - offSet);
-                Array.Reverse(arr, 0, arr.Count());
+            return arr;
+        }
 
-                return arr;
-            }
+        private static void AssertRotateParams<T>(IEnumerable<T> source, int offSet)
+        {
+            Guard.AssertArgs(source != null, "source array is null");
+            Guard.Assert<IndexOutOfRangeException>(offSet < source.Count(), "Out of range");
+            Guard.Assert<IndexOutOfRangeException>(offSet > 0, "Out of range");
         }
 
         /// <summary>
@@ -126,9 +124,7 @@ namespace Tools.Extensions.Collection
                 index = s_random.Next(0, source.Count() - 1);
             }
 
-            T element = source.ElementAt(index);
-
-            return element.IsValid() ? element : default(T);
+            return source.ElementAt(index);
         }
 
         /// <summary>
@@ -182,38 +178,6 @@ namespace Tools.Extensions.Collection
             }
 
             return default(TValue);
-        }
-
-        /// <summary>
-        /// Check if a collection is sorted in ascending order
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static bool IsSortedAsc<T>(this IEnumerable<T> source)
-        {
-            return source.IsSortedAsc(Comparer.Default);
-        }
-
-        /// <summary>
-        /// Check if a collection is sorted in ascending order
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static bool IsSortedAsc<T>(this IEnumerable<T> source, IComparer comparer)
-        {
-            Guard.AssertArgs(source != null, "Collection is null");
-
-            for(int i = 1; i < source.Count(); i++)
-            {
-                if(comparer.Compare(source.ElementAt(i - 1), source.ElementAt(i)) > 0)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

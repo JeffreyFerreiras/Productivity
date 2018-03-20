@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Tools.Extensions.Collection;
 using Tools.Extensions.IO;
@@ -145,8 +146,10 @@ namespace Tools.Test.Extensions.IO
         [Test]
         public void BuildFileShareSafeStreamWriter_InvalidFileName_ThrowsArgumentException()
         {
-            string testFile = Path.Combine(Directory.GetCurrentDirectory(), "UnitTesting", "91872364)(.txt");
+            string testFile = Path.Combine(Directory.GetCurrentDirectory(), "UnitTesting\\");
             Directory.CreateDirectory(Path.GetDirectoryName(testFile));
+
+            testFile += new string(Path.GetInvalidFileNameChars().Take(6).ToArray());
 
             Assert.Throws<ArgumentException>(() => IOHelper.BuildFileShareSafeStreamWriter(testFile));
         }

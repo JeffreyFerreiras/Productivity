@@ -43,8 +43,8 @@ namespace Tools
             List<Type> extraTypes = GetCollectionTypes(model);
             extraTypes.AddRange(type.GenericTypeArguments);
 
-            return extraTypes.Any() 
-                ? new XmlSerializer(type, extraTypes.ToArray()) 
+            return extraTypes.Any()
+                ? new XmlSerializer(type, extraTypes.ToArray())
                 : new XmlSerializer(type);
         }
 

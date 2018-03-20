@@ -260,30 +260,7 @@ namespace Tools.Test.Extensions
             Assert.AreEqual(default(string), defaultValue);
         }
 
-        [Test]
-        public void FromYN_TruthString_RetursTrue()
-        {
-            Assert.IsTrue("Y".FromYN());
-            Assert.IsTrue("Yes".FromYN());
-            Assert.IsTrue("T".FromYN());
-            Assert.IsTrue("true".FromYN());
-        }
-
-        [Test]
-        public void FromYN_FalseString_RetursFalse()
-        {
-            Assert.IsFalse("".FromYN());
-            Assert.IsFalse("F".FromYN());
-            Assert.IsFalse("false".FromYN());
-            Assert.IsFalse("N".FromYN());
-        }
-
-        [Test]
-        public void FromYN_NullString_RetursFalse()
-        {
-            string s = null;
-            Assert.IsFalse(s.FromYN());
-        }
+        
 
         [Test]
         public void Rotate_Ints_Rotates()
@@ -303,6 +280,17 @@ namespace Tools.Test.Extensions
             int[] expected = { 4, 5, 6, 1, 2, 3 };
 
             input = input.Rotate(3).ToArray();
+
+            Assert.AreEqual(input, expected);
+        }
+
+        [Test]
+        public void Rotate_ListOfInts_Rotates()
+        {
+            var input = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var expected = new List<int>{ 4, 5, 6, 1, 2, 3 };
+
+            input = input.Rotate(3).ToList();
 
             Assert.AreEqual(input, expected);
         }
@@ -350,36 +338,5 @@ namespace Tools.Test.Extensions
             Assert.Throws<ArgumentException>(() => input.Rotate(3));
         }
 
-        [Test]
-        public void IsSortedAsc_SortedArray_ReturnsTrue()
-        {
-            var arr = Helper.GetRandomArray(100);
-
-            Array.Sort(arr);
-
-            Assert.IsTrue(arr.IsSortedAsc());
-        }
-
-        [Test]
-        public void IsSortedAsc_UnsortedArray_ReturnsFalse()
-        {
-            var arr = Helper.GetRandomArray(100);
-
-            Assert.IsFalse(arr.IsSortedAsc());
-        }
-
-        [Test]
-        public void IsSortedAsc_EmptyArray_ReturnsTrue()
-        {
-            var arr = new int[] { };
-            Assert.IsTrue(arr.IsSortedAsc());
-        }
-
-        [Test]
-        public void IsSortedAsc_NullArray_ThrowsArgumentException()
-        {
-            int[] arr = null;
-            Assert.Throws<ArgumentException>(() => arr.IsSortedAsc());
-        }
     }
 }

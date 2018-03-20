@@ -21,7 +21,7 @@ namespace Tools.Exceptions
 
             int count = 0;
 
-            while (ex != null)
+            while(ex != null)
             {
                 sb.AppendLine($"{++count}: {ex.GetType().Name} ---- Message: {ex.Message}");
 

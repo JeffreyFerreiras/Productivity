@@ -62,8 +62,7 @@ namespace Tools.Test.Extensions.Conversion
                 g = DateTime.Now,
             };
 
-            IDictionary<string, object> itemDictionary;
-            itemDictionary = item.ToDictionary();
+            var itemDictionary = item.ToDictionary();
 
             Assert.IsTrue(itemDictionary.Count > 0);
         }
@@ -83,6 +82,31 @@ namespace Tools.Test.Extensions.Conversion
             string s = null;
 
             Assert.Throws<ArgumentNullException>(()=>s.ToByteArray());
+        }
+
+        [Test]
+        public void FromYN_TruthString_RetursTrue()
+        {
+            Assert.IsTrue("Y".FromYN());
+            Assert.IsTrue("Yes".FromYN());
+            Assert.IsTrue("T".FromYN());
+            Assert.IsTrue("true".FromYN());
+        }
+
+        [Test]
+        public void FromYN_FalseString_RetursFalse()
+        {
+            Assert.IsFalse("".FromYN());
+            Assert.IsFalse("F".FromYN());
+            Assert.IsFalse("false".FromYN());
+            Assert.IsFalse("N".FromYN());
+        }
+
+        [Test]
+        public void FromYN_NullString_RetursFalse()
+        {
+            string s = null;
+            Assert.IsFalse(s.FromYN());
         }
     }
 }

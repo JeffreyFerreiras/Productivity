@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using Tools.Exceptions;
-using Tools.Extensions.IO;
 
 namespace Tools
 {
@@ -79,9 +78,8 @@ namespace Tools
 
         public static StreamWriter BuildFileShareSafeStreamWriter(string path)
         {
-            Guard.AssertArgs(Path.GetFileName(path).IsValidFileName() , "File name is not valid");
             Guard.AssertArgs(Directory.Exists(Path.GetDirectoryName(path)), "Directory does not exist");
-            
+
             return new StreamWriter(File.Open(
                     path,
                     FileMode.OpenOrCreate,
