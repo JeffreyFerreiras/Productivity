@@ -23,7 +23,10 @@ namespace Tools.DataStructures
 
         public bool IsReadOnly => false;
 
-        public AVL_Tree() { }
+        public AVL_Tree()
+        {
+        }
+
         public AVL_Tree(T[] data)
         {
             this.Root = TreeNode<T>.Create(data);
@@ -81,6 +84,10 @@ namespace Tools.DataStructures
             return node != null;
         }
 
+        /// <summary>
+        /// Applies a soft delete to the node with the given value.
+        /// </summary>
+        /// <param name="value"></param>
         public void Delete(T value)
         {
             TreeNode<T> node = this.Root.Find(value);
@@ -109,12 +116,15 @@ namespace Tools.DataStructures
         {
             TreeNode<T> node = this.Root.Find(value);
 
-            if(node == null) return;
+            if(node == null)
+            {
+                return; //if node not found get out now.
+            }
 
             if(this.Root == node)
             {
-                //Find lowest leaf on right.
-                //Assign as root.
+                /* Find leaf with lowest value on the right sub tree
+                 * then assign it as the new root */
 
                 TreeNode<T> minRightNode = this.Root.RightChild.Min();
                 TreeNode<T> minRightNodeParent = minRightNode.Parent;
@@ -133,6 +143,8 @@ namespace Tools.DataStructures
             {
                 TreeNode<T> parent = node.Parent;
 
+                //Remove the appropriate leaf reference from the parent.
+
                 if(parent.LeftChild == node)
                 {
                     parent.LeftChild = null;
@@ -142,6 +154,7 @@ namespace Tools.DataStructures
                     parent.RightChild = null;
                 }
 
+                //Re-Add the children nodes, this will also balance the tree.
                 this.Root.Add(node.LeftChild);
                 this.Root.Add(node.RightChild);
             }

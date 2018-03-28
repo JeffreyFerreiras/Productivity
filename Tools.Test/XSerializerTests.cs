@@ -18,9 +18,9 @@ namespace Tools.Test
             var book = new Book();
             var book2 = new Book();
 
-            DummyData.PopulateModel(book);
-            DummyData.PopulateModel(book2);
-            DummyData.PopulateModel(catalog);
+            Dummy.Populate(book);
+            Dummy.Populate(book2);
+            Dummy.Populate(catalog);
 
             catalog.BookList.Add(book);
             catalog.BookList.Add(book2);
@@ -111,14 +111,29 @@ namespace Tools.Test
         [Test]
         public void BuildXmlSerializer_StructType_ReturnsXmlSerializer()
         {
-            var stru = new SampleStruct();
+            var stru = new SampleStruct
+            {
+                Count = 5,
+                FirstName = "Bob",
+                LastName = "Marly",
+                Time = DateTime.Now,
+            };
 
             XmlSerializer ser = XSerializer.BuildXmlSerializer(stru);
             Assert.IsNotNull(ser);
         }
 
+        [Theory]
+        [TestCase("")]
+        [TestCase(null)]
+        public void BuildXmlSerializer_InvalidArgs_ThrowsArgumentException(object arg)
+        {
+            Assert.Throws<ArgumentException>(() => XSerializer.BuildXmlSerializer(arg));
+        }
+
         #endregion BuildXmlSerializer
 
+        #region FromXml
         [Test]
         public void FromXml_Xml_ReturnsObjectFromXml()
         {
@@ -127,5 +142,14 @@ namespace Tools.Test
 
             Assert.IsNotNull(catalog);
         }
+
+        [Theory]
+        [TestCase("")]
+        [TestCase(null)]
+        public void FromXml_InvalidArgs_ThrowsArgumentException(string xml)
+        {
+            Assert.Throws<ArgumentException>(() => XSerializer.FromXml<Catalog>(xml));
+        }
+        #endregion
     }
 }

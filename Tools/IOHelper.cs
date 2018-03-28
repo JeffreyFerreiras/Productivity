@@ -36,11 +36,25 @@ namespace Tools
         /// <param name="path"></param>
         /// <param name="pattern"></param>
         /// <returns></returns>
-        public static string[] GetFiles(string path, string pattern = "*")
+        public static string[] GetFiles(string path, string pattern = "*", SearchOption searchOptions = SearchOption.TopDirectoryOnly)
         {
             Guard.AssertArgs(Directory.Exists(path), $"Does not exist \"{path}\"");
 
-            return Directory.GetFiles(path, pattern);
+            return Directory.GetFiles(path, pattern, searchOptions);
+        }
+
+        /// <summary>
+        /// Retrieve an array of file names that meet a spefied criteria
+        /// based on the FileInfo properties.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static string[] GetFiles(string path, Func<FileInfo, bool> predicate)
+        {
+            return Directory.EnumerateFiles(path)
+                .Where(f => predicate(new FileInfo(f)))
+                .ToArray();
         }
 
         /// <summary>

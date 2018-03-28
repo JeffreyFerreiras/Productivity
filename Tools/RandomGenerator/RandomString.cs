@@ -29,6 +29,7 @@ namespace Tools.RandomGenerator
                 {
                     char c = (char)(s_random.Next(0, 26) + 97); //use ASCII to get lower case letters.
                     if(s_random.Next(0, 2) == 1) c = char.ToUpper(c);
+
                     result += c;
                 }
             }

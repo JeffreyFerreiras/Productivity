@@ -39,6 +39,8 @@ namespace Tools
         /// <returns></returns>
         public static XmlSerializer BuildXmlSerializer<T>(T model)
         {
+            Guard.AssertArgs(model.IsValid(), "Invalid Argument");
+
             Type type = model.GetType();
             List<Type> extraTypes = GetCollectionTypes(model);
             extraTypes.AddRange(type.GenericTypeArguments);
@@ -77,6 +79,8 @@ namespace Tools
         /// <returns></returns>
         public static T FromXml<T>(string xml) where T : class
         {
+            Guard.AssertArgs(xml.IsValid(), "null or empty XML string");
+
             using(var stringReader = new System.IO.StringReader(xml))
             using(var xmlReader = XmlReader.Create(stringReader))
             {

@@ -13,6 +13,16 @@ namespace Tools.Extensions.IO
             return null != Directory.CreateDirectory(path);
         }
 
+        /// <summary>
+        /// Returns the directory information of the specified path string.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetDirectoryName(this string path)
+        {
+            return Path.GetDirectoryName(path);
+        }
+
         public static bool IsValidPath(this string path)
         {
             if(!path.IsValid()) return false;

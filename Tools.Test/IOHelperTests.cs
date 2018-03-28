@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Tools.RandomGenerator;
+using Tools.Extensions.IO;
 
 namespace Tools.Test
 {
@@ -70,6 +71,18 @@ namespace Tools.Test
             var fileInfoList = IOHelper.GetFileInfoCollection(path);
 
             Assert.IsTrue(fileInfoList.Count() > 0);
+        }
+
+        [Test]
+        public void GetFiles_ValidFiles_CallsPredicateOverload_GetsFilesWithCriteria()
+        {
+            var fileNames = CreateTestFiles();
+            string path = fileNames.First().GetDirectoryName();
+
+            //Get all files ending with '.txt' file extensions
+            var filesWithTxtEx = IOHelper.GetFiles(path, fi => fi.Name.EndsWith(".txt", StringComparison.OrdinalIgnoreCase));
+
+            Assert.IsTrue(filesWithTxtEx.Count() > 0);
         }
 
         [Test]

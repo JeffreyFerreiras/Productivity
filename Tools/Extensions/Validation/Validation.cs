@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -78,7 +79,8 @@ namespace Tools.Extensions.Validation
             if(value == null) return false;
             if(value.IsNumber()) return Convert.ToInt32(value) > -1;
             if(value is string) return !string.IsNullOrWhiteSpace(value.ToString());
-            if(value.HasProp("Count")) return (int)value.GetType().GetProperty("Count").GetValue(value) > 0;
+            if(value is IEnumerable<object> col) return col.Any();
+            if(value is DBNull) return false;
 
             return true;
         }
