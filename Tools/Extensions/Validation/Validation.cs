@@ -19,7 +19,7 @@ namespace Tools.Extensions.Validation
 
         public static bool IsNumber(this object value)
         {
-            if(value is string) return value.ToString().IsValidNumber();
+            if(value is string || value is char) return value.ToString().IsValidNumber();
 
             return value is sbyte
                 || value is byte

@@ -38,6 +38,28 @@ namespace Tools.RandomGenerator
         }
 
         /// <summary>
+        /// Generate a random string of number characters.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string NextNumeric(int length = 8)
+        {
+            Guard.AssertArgs(length > 0, nameof(length));
+
+            string result = string.Empty;
+
+            lock(s_syncLock)
+            {
+                for(int i = 0; i < length; i++)
+                {
+                    result += (char)(s_random.Next(0, 10) + 48);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Generates a string with specified length that meet minumum password requireents.
         /// </summary>
         /// <param name="length"></param>
