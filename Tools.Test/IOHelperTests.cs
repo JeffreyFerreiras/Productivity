@@ -54,13 +54,12 @@ namespace Tools.Test
         }
 
         [Test]
-        public void GetFiles_InValidPath_ThrowsArgumentException()
+        [TestCase("\\alskd")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void GetFiles_InValidPath_ThrowsArgumentException(string path)
         {
-            string path = GetExecutingAssemblyFolder() + "\\alskd";
-
             Assert.Throws<ArgumentException>(() => IOHelper.GetFiles(path));
-            Assert.Throws<ArgumentException>(() => IOHelper.GetFiles(""));
-            Assert.Throws<ArgumentException>(() => IOHelper.GetFiles(null));
         }
 
         [Test]

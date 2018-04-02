@@ -13,7 +13,7 @@ namespace Tools
     public static class XSerializer
     {
         /// <summary>
-        /// Serializes <typeparamref name="T"/> into xml string
+        /// Serializes <see cref="T"/> into xml string
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="model"></param>
@@ -33,7 +33,7 @@ namespace Tools
         }
 
         /// <summary>
-        /// Creates <typeparamref name="T"/> XmlSerializer
+        /// Creates XmlSerializer from provided object type
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>

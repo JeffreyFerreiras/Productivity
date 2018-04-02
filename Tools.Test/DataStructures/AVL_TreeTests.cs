@@ -66,7 +66,7 @@ namespace Tools.Test.DataStructures
         [Test]
         public void AddTest_RotateTreeStress_BalancedTree()
         {
-            int[] sample = Helper.GetRandomArray(10000);
+            int[] sample = Helper.GetRandomArray(1000);
 
             var bst = new AVL_Tree<int>();
 

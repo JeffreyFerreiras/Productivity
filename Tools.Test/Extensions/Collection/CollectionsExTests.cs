@@ -338,5 +338,28 @@ namespace Tools.Test.Extensions
             Assert.Throws<ArgumentException>(() => input.Rotate(3));
         }
 
+        [Test]
+        //[TestCase()]
+        public void Page_Strings_PagesWithIEnumerableOverload()
+        {
+            string[] words = Helper.GeStringArray(100);
+
+            for(int i = 0; i < words.Length/10; i++)
+            {
+                AssertPageResult(words.Page(i + 1, 10));
+            }
+        }
+
+        private static void AssertPageResult(IEnumerable<string> result)
+        {
+            if(result.Count() > 0)
+            {
+                Assert.True(result.Count() == 10);
+            }
+            else
+            {
+                Assert.IsNotNull(result);
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Tools.DataStructures
         {
             public bool IsWord { get; set; } = false;
             public string Word { get; set; }
+
             public Dictionary<char, Node> Children { get; set; } = new Dictionary<char, Node>();
 
             public Node(string word)

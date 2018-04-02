@@ -179,5 +179,51 @@ namespace Tools.Extensions.Collection
 
             return default(TValue);
         }
+
+        /// <summary>
+        /// Provides paging for IEnumerable sources.       
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">data source</param>
+        /// <param name="pageNum">page number</param>
+        /// <param name="count">number of items per page</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        /// <returns></returns>
+        public static IEnumerable<T> Page<T>(this IEnumerable<T> source, int pageNum, int count)
+        {
+            int product = pageNum * count;
+
+            Assert();
+
+            var result = source.Skip(product).Take(count);
+
+            return result.IsValid() ? result : Enumerable.Empty<T>();
+
+            void Assert()
+            {
+                Guard.AssertArgs(source.IsValid(), "Invalid source");
+                Guard.AssertArgs(pageNum > 0, $"{nameof(pageNum)} must be > 0");
+                Guard.Assert<ArgumentOutOfRangeException>(count > 0 && count < source.Count(), $"{nameof(count)} is out of range");
+                Guard.Assert<ArgumentOutOfRangeException>(product >= 0 && product <= source.Count(), $"product of {nameof(pageNum)} and {nameof(count)} is out of range");               
+            }
+        }
+
+        /// <summary>
+        /// Provides paging for IQueriable sources.       
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">data source</param>
+        /// <param name="pageNum">page number</param>
+        /// <param name="count">number of items per page</param>
+        /// <returns></returns>
+        public static IQueryable<T> Page<T>(this IQueryable<T> source, int pageNum, int count)
+        {
+            throw new NotImplementedException();
+            //AssertPageArgs(source, pageNum)
+            //return source.Skip(pageNum * count).Take(count);
+        }
+
+
     }
 }

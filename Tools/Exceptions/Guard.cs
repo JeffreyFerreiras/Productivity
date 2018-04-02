@@ -19,7 +19,7 @@ namespace Tools.Exceptions
         {
             if(!assert)
             {
-                throw new ArgumentException($"Invlaid argument: {message}");
+                Assert<ArgumentException>(assert, $"Invlaid argument: {message}");
             }
         }
 
