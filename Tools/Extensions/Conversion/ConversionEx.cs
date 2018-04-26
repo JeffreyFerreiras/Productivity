@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using Tools.Exceptions;
 using Tools.Extensions.Validation;
@@ -47,9 +48,9 @@ namespace Tools.Extensions.Conversion
         {
             Array enumValues = type.GetTypeInfo().GetEnumValues();
 
-            foreach(object enumValue in enumValues)
+            foreach (object enumValue in enumValues)
             {
-                if(ignoreCase && s.EqualsIgnoreCase(enumValue.ToString()) || s.Equals(enumValue.ToString()))
+                if (ignoreCase && s.EqualsIgnoreCase(enumValue.ToString()) || s.Equals(enumValue.ToString()))
                 {
                     return enumValue;
                 }
@@ -58,6 +59,17 @@ namespace Tools.Extensions.Conversion
             throw new InvalidOperationException(
                 "conversion failed because the input did" +
                 " not match any enum values");
+        }
+
+        public static DateTime ToDateTime(this int num)
+        {
+            bool parsed = DateTime.TryParseExact(num.ToString(),
+                "yyyyMMdd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out DateTime result);
+
+            return parsed ? result : throw new InvalidOperationException("Invalid number format");
         }
 
         /// <summary>
@@ -69,8 +81,8 @@ namespace Tools.Extensions.Conversion
         {
             string format = "MM/dd/yyyy h:mm:ss tt";
 
-            if(o is DateTime) return ((DateTime)o).ToString(format);
-            if(o is string && o.IsValid()) return Convert.ToDateTime(o).ToString(format);
+            if (o is DateTime) return ((DateTime)o).ToString(format);
+            if (o is string && o.IsValid()) return Convert.ToDateTime(o).ToString(format);
 
             return string.Empty;
         }
@@ -89,9 +101,9 @@ namespace Tools.Extensions.Conversion
 
             var dict = new Dictionary<string, dynamic>();
 
-            foreach(var p in typeof(T).GetProperties())
+            foreach (var p in typeof(T).GetProperties())
             {
-                if(!p.CanRead) continue;
+                if (!p.CanRead) continue;
 
                 dynamic val = p.GetValue(model);
 
@@ -113,14 +125,14 @@ namespace Tools.Extensions.Conversion
 
         public static IDictionary<string, string> ToDictionary(this string text, char seperator, char keyValueSeperator)
         {
-            if(!text.IsValid()) return new Dictionary<string, string>(0);
+            if (!text.IsValid()) return new Dictionary<string, string>(0);
 
             string[] pairs = text.Split(seperator);
             string[] keyValue = new string[2];
 
             var dict = new Dictionary<string, string>(pairs.Length);
 
-            for(int i = 0; i < pairs.Length; i++)
+            for (int i = 0; i < pairs.Length; i++)
             {
                 keyValue = pairs[i].Split(keyValueSeperator);
 
@@ -134,7 +146,7 @@ namespace Tools.Extensions.Conversion
         {
             char[] chars = new char[numbers.Length];
 
-            for(int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < numbers.Length; i++)
             {
                 chars[i] = (char)numbers[i];
             }

@@ -108,5 +108,19 @@ namespace Tools.Test.Extensions.Conversion
             string s = null;
             Assert.IsFalse(s.FromYN());
         }
+
+        [Test]
+        public void ToDateTime_ValidInt_ReturnsDateTime()
+        {
+            DateTime dateTime = 20180425.ToDateTime();
+
+            Assert.IsFalse(default(DateTime) == dateTime);
+        }
+
+        [Test]
+        public void ToDateTime_InvalidFormat_ReturnsNull()
+        {
+            Assert.Throws<InvalidOperationException>(() => 112233.ToDateTime());
+        }
     }
 }
