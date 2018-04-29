@@ -182,5 +182,19 @@ namespace Tools.Test.Text
             string result = Editor.Strip(text, phrase);
             Assert.IsTrue(result.IndexOf(phrase) == -1);
         }
+
+        [Theory]
+        public void Strip_MultiplePhrases_StripsText()
+        {
+            string text = "The quick brown fox jumps over the lazy dog.";
+            string[] phrases = { "quick", "brown", "fox" };
+
+            string result = Editor.Strip(text, "quick", "brown", "fox");
+
+            foreach (var phrase in phrases)
+            {
+                Assert.IsFalse(result.Contains(phrase));
+            }
+        }
     }
 }

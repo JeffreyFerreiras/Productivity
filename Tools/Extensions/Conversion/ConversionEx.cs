@@ -61,6 +61,11 @@ namespace Tools.Extensions.Conversion
                 " not match any enum values");
         }
 
+        /// <summary>
+        /// Converts an int to DateTime (must be in format yyyyMMdd)
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static DateTime ToDateTime(this int num)
         {
             bool parsed = DateTime.TryParseExact(num.ToString(),

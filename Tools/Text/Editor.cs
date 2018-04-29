@@ -88,6 +88,27 @@ namespace Tools.Text
         }
 
         /// <summary>
+        /// Removes all occurences of all provided phrases within text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="phrases"></param>
+        /// <returns></returns>
+        public static string Strip(string text, params string[] phrases)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return text;
+            }
+
+            foreach(string phrase in phrases)
+            {
+                text = Strip(text, phrase);
+            }
+
+            return text;
+        }
+
+        /// <summary>
         /// Removes all occurrences of character from text.
         /// </summary>
         /// <param name="text"></param>
