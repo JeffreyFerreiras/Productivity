@@ -3235,33 +3235,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sephn\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\XBBND77\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sephn\\Documents\\GitHub\\Tools.NET-Core\\Tools\\Tools.csproj",
-      "projectName": "UnitTestTools",
-      "projectPath": "C:\\Users\\sephn\\Documents\\GitHub\\Tools.NET-Core\\Tools\\Tools.csproj",
-      "packagesPath": "C:\\Users\\sephn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sephn\\Documents\\GitHub\\Tools.NET-Core\\Tools\\obj\\",
+      "projectUniqueName": "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\Tools.csproj",
+      "projectName": "Tools.NET-Standard",
+      "projectPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\Tools.csproj",
+      "packagesPath": "C:\\Users\\XBBND77\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\Git\\Tools.NET-Core\\Tools\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\sephn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\XBBND77\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Projects\\Git\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

@@ -131,6 +131,18 @@ namespace Tools.Extensions.Collection
         /// Assigns matching key value pairs to object properties.
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="dict"></param>
+        /// <returns></returns>
+        public static T FromDictionary<T>(this IDictionary<string, object> dict)
+        {
+            return dict.FromDictionary<T>(Activator.CreateInstance<T>());
+        }
+
+
+        /// <summary>
+        /// Assigns matching key value pairs to object properties.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue"></typeparam>
         /// <param name="dict"></param>
         /// <param name="model"></param>
