@@ -2,65 +2,6 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "CoreCompat.System.ComponentModel.Attributes/4.2.3-rg": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Win32.Registry": "4.0.0",
-          "System.Collections.NonGeneric": "4.0.1",
-          "System.Collections.Specialized": "4.0.1",
-          "System.ComponentModel": "4.0.1",
-          "System.ComponentModel.Primitives": "4.1.0",
-          "System.ComponentModel.TypeConverter": "4.1.0",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Diagnostics.Tools": "4.0.1",
-          "System.Reflection.TypeExtensions": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Runtime.InteropServices": "4.1.0",
-          "System.Text.RegularExpressions": "4.1.0",
-          "System.Threading": "4.0.11"
-        },
-        "compile": {
-          "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll": {}
-        }
-      },
-      "CoreCompat.System.ComponentModel.DataAnnotations/4.2.3-r7": {
-        "type": "package",
-        "dependencies": {
-          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rg",
-          "CoreCompat.System.ComponentModel.Design": "4.2.3-r3",
-          "System.ComponentModel.Annotations": "4.1.0",
-          "System.Linq": "4.1.0",
-          "System.Reflection": "4.1.0",
-          "System.Reflection.Extensions": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1"
-        },
-        "compile": {
-          "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll": {}
-        }
-      },
-      "CoreCompat.System.ComponentModel.Design/4.2.3-r3": {
-        "type": "package",
-        "dependencies": {
-          "CoreCompat.System.ComponentModel.Attributes": "4.2.3-rf",
-          "System.Collections": "4.0.11",
-          "System.Collections.Specialized": "4.0.1",
-          "System.ComponentModel": "4.0.1",
-          "System.ComponentModel.Primitives": "4.1.0",
-          "System.ComponentModel.TypeConverter": "4.1.0"
-        },
-        "compile": {
-          "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll": {}
-        }
-      },
       "Microsoft.CodeCoverage/1.0.3": {
         "type": "package",
         "compile": {
@@ -626,7 +567,7 @@
           "System.Runtime.InteropServices": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/Microsoft.Win32.Registry.dll": {}
+          "ref/netstandard1.3/_._": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/Microsoft.Win32.Registry.dll": {
@@ -856,7 +797,7 @@
           "System.Threading": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/System.Collections.Specialized.dll": {}
+          "ref/netstandard1.3/_._": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
@@ -874,26 +815,13 @@
           "lib/netstandard1.3/System.ComponentModel.dll": {}
         }
       },
-      "System.ComponentModel.Annotations/4.1.0": {
+      "System.ComponentModel.Annotations/4.4.1": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.ComponentModel": "4.0.1",
-          "System.Globalization": "4.0.11",
-          "System.Linq": "4.1.0",
-          "System.Reflection": "4.1.0",
-          "System.Reflection.Extensions": "4.0.1",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Text.RegularExpressions": "4.1.0",
-          "System.Threading": "4.0.11"
-        },
         "compile": {
-          "ref/netstandard1.4/System.ComponentModel.Annotations.dll": {}
+          "ref/netcoreapp2.0/_._": {}
         },
         "runtime": {
-          "lib/netstandard1.4/System.ComponentModel.Annotations.dll": {}
+          "lib/netcoreapp2.0/_._": {}
         }
       },
       "System.ComponentModel.EventBasedAsync/4.3.0": {
@@ -1030,7 +958,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/System.Diagnostics.Tools.dll": {}
+          "ref/netstandard1.0/_._": {}
         }
       },
       "System.Diagnostics.TraceSource/4.0.0": {
@@ -1770,11 +1698,11 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "Tools.NET-Standard/1.0.0": {
+      "Tools.NET-Standard/1.0.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
-          "CoreCompat.System.ComponentModel.DataAnnotations": "4.2.3-r7",
+          "System.ComponentModel.Annotations": "4.4.1",
           "System.Dynamic.Runtime": "4.3.0",
           "System.Xml.XmlSerializer": "4.3.0"
         },
@@ -1788,36 +1716,6 @@
     }
   },
   "libraries": {
-    "CoreCompat.System.ComponentModel.Attributes/4.2.3-rg": {
-      "sha512": "M6wlcIE3i30JhRZNF/tfE0mUShLhnc54bKrRLCGHU9Cs9XvZ09O+7dtBzDSj5f5Y8RgRF5vT9gxySTnT7pVAKg==",
-      "type": "package",
-      "path": "corecompat.system.componentmodel.attributes/4.2.3-rg",
-      "files": [
-        "corecompat.system.componentmodel.attributes.4.2.3-rg.nupkg.sha512",
-        "corecompat.system.componentmodel.attributes.nuspec",
-        "lib/netstandard1.3/CoreCompat.System.ComponentModel.Attributes.dll"
-      ]
-    },
-    "CoreCompat.System.ComponentModel.DataAnnotations/4.2.3-r7": {
-      "sha512": "k02b4WM6GWw78s04yuwDjrjeY3eutgwo0L7g+xq6F9j8flgJif14DDQkD/ijl5HDADa53UStmIrmjNvbwpLE5A==",
-      "type": "package",
-      "path": "corecompat.system.componentmodel.dataannotations/4.2.3-r7",
-      "files": [
-        "corecompat.system.componentmodel.dataannotations.4.2.3-r7.nupkg.sha512",
-        "corecompat.system.componentmodel.dataannotations.nuspec",
-        "lib/netstandard1.5/CoreCompat.System.ComponentModel.DataAnnotations.dll"
-      ]
-    },
-    "CoreCompat.System.ComponentModel.Design/4.2.3-r3": {
-      "sha512": "wjbA4GTTAB0cVbKaxRJSGPwdb8svbCLfTLsd1YR/NKWeuiuPPhfuLujW+RVCOWl7twIVyf35VTya63S6THEXbw==",
-      "type": "package",
-      "path": "corecompat.system.componentmodel.design/4.2.3-r3",
-      "files": [
-        "corecompat.system.componentmodel.design.4.2.3-r3.nupkg.sha512",
-        "corecompat.system.componentmodel.design.nuspec",
-        "lib/netstandard1.5/CoreCompat.System.ComponentModel.Design.dll"
-      ]
-    },
     "Microsoft.CodeCoverage/1.0.3": {
       "sha512": "5KfX12XPfvBomjrZv9nCBfQ6lhZdroVxXvGnY6MqzG83bjqdq6SQ3xxJFdPgHv6oli83M9oNhZlynYehjmboUg==",
       "type": "package",
@@ -3205,19 +3103,21 @@
         "system.componentmodel.nuspec"
       ]
     },
-    "System.ComponentModel.Annotations/4.1.0": {
-      "sha512": "rhnz80h8NnHJzoi0nbQJLRR2cJznyqG168q1bgoSpe5qpaME2SguXzuEzpY68nFCi2kBgHpbU4bRN2cP3unYRA==",
+    "System.ComponentModel.Annotations/4.4.1": {
+      "sha512": "ToiYqSCioqhtspq2O/jYKtyTC/T0uwWHBTYlzCi6PRbSSHArN1IaRWeHffDamvms5sye5FDUWCfNZgubQpNRsA==",
       "type": "package",
-      "path": "system.componentmodel.annotations/4.1.0",
+      "path": "system.componentmodel.annotations/4.4.1",
       "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
         "lib/net45/_._",
         "lib/net461/System.ComponentModel.Annotations.dll",
         "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netcoreapp2.0/_._",
         "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
         "lib/portable-net45+win8/_._",
         "lib/win8/_._",
         "lib/xamarinios10/_._",
@@ -3228,6 +3128,7 @@
         "ref/MonoTouch10/_._",
         "ref/net45/_._",
         "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
         "ref/netcore50/System.ComponentModel.Annotations.dll",
         "ref/netcore50/System.ComponentModel.Annotations.xml",
         "ref/netcore50/de/System.ComponentModel.Annotations.xml",
@@ -3239,6 +3140,7 @@
         "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
         "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
         "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netcoreapp2.0/_._",
         "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
         "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
         "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
@@ -3272,14 +3174,18 @@
         "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
         "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
         "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
         "ref/portable-net45+win8/_._",
         "ref/win8/_._",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._",
-        "system.componentmodel.annotations.4.1.0.nupkg.sha512",
-        "system.componentmodel.annotations.nuspec"
+        "system.componentmodel.annotations.4.4.1.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.ComponentModel.EventBasedAsync/4.3.0": {
@@ -6077,7 +5983,7 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "Tools.NET-Standard/1.0.0": {
+    "Tools.NET-Standard/1.0.1": {
       "type": "project",
       "path": "../Tools/Tools.csproj",
       "msbuildProject": "../Tools/Tools.csproj"
@@ -6085,14 +5991,13 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "CoreCompat.System.ComponentModel.DataAnnotations >= 4.2.3-r7",
       "Microsoft.NET.Test.Sdk >= 15.7.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "NUnit.Runners >= 3.8.0",
       "NUnit3TestAdapter >= 3.10.0",
       "System.Dynamic.Runtime >= 4.3.0",
       "System.Runtime.Serialization.Xml >= 4.3.0",
-      "Tools.NET-Standard >= 1.0.0",
+      "Tools.NET-Standard >= 1.0.1",
       "nuget.commandline >= 4.6.2",
       "nunit >= 3.10.1"
     ]
@@ -6143,10 +6048,6 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "CoreCompat.System.ComponentModel.DataAnnotations": {
-            "target": "Package",
-            "version": "[4.2.3-r7, )"
-          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[15.7.0, )"

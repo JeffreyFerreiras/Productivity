@@ -9,30 +9,30 @@ namespace Tools.Extensions.Conversion
 {
     public static class ConversionEx
     {
-        public static int ToInt32(this object o) => Convert.ToInt32(o);
+        public static int ToInt32(this object source) => Convert.ToInt32(source);
 
-        public static long ToInt64(this object o) => Convert.ToInt64(o);
+        public static long ToInt64(this object source) => Convert.ToInt64(source);
 
-        public static float ToFloat(this object o) => Convert.ToSingle(o);
+        public static float ToFloat(this object source) => Convert.ToSingle(source);
 
-        public static double ToDouble(this object o) => Convert.ToDouble(o);
+        public static double ToDouble(this object source) => Convert.ToDouble(source);
 
-        public static decimal ToDecimal(this object o) => Convert.ToDecimal(o);
+        public static decimal ToDecimal(this object source) => Convert.ToDecimal(source);
 
-        public static T ChangeType<T>(this object o)
+        public static T ChangeType<T>(this object source)
         {
-            return (T)Convert.ChangeType(o, typeof(T));
+            return (T)Convert.ChangeType(source, typeof(T));
         }
 
         /// <summary>
         /// Converts string representation of enum to given type of enum
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="source"></param>
         /// <param name="ignoreCase"></param>
         /// <returns></returns>
-        public static T ToEnum<T>(this string s, bool ignoreCase = true)
+        public static T ToEnum<T>(this string source, bool ignoreCase = true)
         {
-            object item = s.ToEnum(typeof(T), ignoreCase); //Boxing because of compiler error with converting dynamic
+            object item = source.ToEnum(typeof(T), ignoreCase); //Boxing because of compiler error with converting dynamic
 
             return (T)item;
         }
@@ -40,17 +40,17 @@ namespace Tools.Extensions.Conversion
         /// <summary>
         /// Converts string representation of enum to given type of enum
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="type"></param>
+        /// <param name="source"></param>
+        /// <param name="enumType"></param>
         /// <param name="ignoreCase"></param>
         /// <returns></returns>
-        public static dynamic ToEnum(this string s, Type type, bool ignoreCase = true)
+        public static dynamic ToEnum(this string source, Type enumType, bool ignoreCase = true)
         {
-            Array enumValues = type.GetTypeInfo().GetEnumValues();
+            Array enumValues = enumType.GetTypeInfo().GetEnumValues();
 
             foreach (object enumValue in enumValues)
             {
-                if (ignoreCase && s.EqualsIgnoreCase(enumValue.ToString()) || s.Equals(enumValue.ToString()))
+                if (ignoreCase && source.EqualsIgnoreCase(enumValue.ToString()) || source.Equals(enumValue.ToString()))
                 {
                     return enumValue;
                 }
@@ -80,20 +80,20 @@ namespace Tools.Extensions.Conversion
         /// <summary>
         /// Converts an object to standard Date Time format MM/dd/yyyy h:mm:ss tt
         /// </summary>
-        /// <param name="o"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        public static string ToDateTimeString(this object o)
+        public static string ToDateTimeString(this object source)
         {
             string format = "MM/dd/yyyy h:mm:ss tt";
 
-            if (o is DateTime) return ((DateTime)o).ToString(format);
-            if (o is string && o.IsValid()) return Convert.ToDateTime(o).ToString(format);
+            if (source is DateTime) return ((DateTime)source).ToString(format);
+            if (source is string && source.IsValid()) return Convert.ToDateTime(source).ToString(format);
 
             return string.Empty;
         }
 
         /// <summary>
-        /// Converts an object into a Dictionary of key value pair.
+        /// Converts an object into a Dictionary of key value pair
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TValue"></typeparam>
@@ -118,16 +118,34 @@ namespace Tools.Extensions.Conversion
             return dict;
         }
 
+        /// <summary>
+        /// Converts a string seperated by ';' into a dictionary
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static IDictionary<string, string> ToDictionary(this string text)
         {
             return text.ToDictionary(';');
         }
 
+        /// <summary>
+        /// Converts a string seperated by <see cref="seperator"/> into a dictionary
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="seperator"></param>
+        /// <returns></returns>
         public static IDictionary<string, string> ToDictionary(this string text, char seperator)
         {
             return text.ToDictionary(seperator, '=');
         }
 
+        /// <summary>
+        /// Converts a string seperated by <see cref="seperator"/> and key values seperated by <see cref="keyValueSeperator"/> into a dictionary
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="seperator"></param>
+        /// <param name="keyValueSeperator"></param>
+        /// <returns></returns>
         public static IDictionary<string, string> ToDictionary(this string text, char seperator, char keyValueSeperator)
         {
             if (!text.IsValid()) return new Dictionary<string, string>(0);
