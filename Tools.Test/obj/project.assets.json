@@ -151,11 +151,11 @@
           "lib/netstandard1.6/Microsoft.Extensions.DependencyModel.dll": {}
         }
       },
-      "Microsoft.NET.Test.Sdk/15.7.0-preview-20180320-02": {
+      "Microsoft.NET.Test.Sdk/15.7.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CodeCoverage": "1.0.3",
-          "Microsoft.TestPlatform.TestHost": "15.7.0-preview-20180320-02"
+          "Microsoft.TestPlatform.TestHost": "15.7.0"
         },
         "build": {
           "build/netcoreapp1.0/Microsoft.Net.Test.Sdk.props": {},
@@ -354,7 +354,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.TestPlatform.ObjectModel/15.7.0-preview-20180320-02": {
+      "Microsoft.TestPlatform.ObjectModel/15.7.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
@@ -463,11 +463,11 @@
           }
         }
       },
-      "Microsoft.TestPlatform.TestHost/15.7.0-preview-20180320-02": {
+      "Microsoft.TestPlatform.TestHost/15.7.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyModel": "1.0.3",
-          "Microsoft.TestPlatform.ObjectModel": "15.7.0-preview-20180320-02",
+          "Microsoft.TestPlatform.ObjectModel": "15.7.0",
           "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
@@ -1918,10 +1918,10 @@
         "microsoft.extensions.dependencymodel.nuspec"
       ]
     },
-    "Microsoft.NET.Test.Sdk/15.7.0-preview-20180320-02": {
-      "sha512": "Sfen72K4mbjcR4z+XGMAp7moauNF3UE9Ub44+ydqGIV9iyDhPEgq2ANBXPmnOYklu1roOmPHkIGpxyGkp0CMtw==",
+    "Microsoft.NET.Test.Sdk/15.7.0": {
+      "sha512": "1oc0SxLGsNDRzzYpMEKkRbb07IQGAZTHgiz0QY1XzwpPLX+GpGj6oZoeqqYe0+9kKy7B0CxtfV4OWipNG0ytng==",
       "type": "package",
-      "path": "microsoft.net.test.sdk/15.7.0-preview-20180320-02",
+      "path": "microsoft.net.test.sdk/15.7.0",
       "files": [
         "build/net45/Microsoft.Net.Test.Sdk.props",
         "build/net45/Microsoft.Net.Test.Sdk.targets",
@@ -1929,7 +1929,7 @@
         "build/netcoreapp1.0/Microsoft.Net.Test.Sdk.targets",
         "build/uap10.0/Microsoft.Net.Test.Sdk.props",
         "buildMultiTargeting/Microsoft.Net.Test.Sdk.props",
-        "microsoft.net.test.sdk.15.7.0-preview-20180320-02.nupkg.sha512",
+        "microsoft.net.test.sdk.15.7.0.nupkg.sha512",
         "microsoft.net.test.sdk.nuspec"
       ]
     },
@@ -2275,10 +2275,10 @@
         "runtime.json"
       ]
     },
-    "Microsoft.TestPlatform.ObjectModel/15.7.0-preview-20180320-02": {
-      "sha512": "gHdEMAXWnj3feOV+4nRvYD9XJbeNyGkG6A3NvXm3hO8Rm2T+MpEbqz9HR/Fp/xDBKgFUKP1IbYAl3YtA3MbLLw==",
+    "Microsoft.TestPlatform.ObjectModel/15.7.0": {
+      "sha512": "K6jnxdv/WR3h0HbdkqTVCq27Vpt0ac+jv5AXU17XKVLETB1aW8EfuMY2kXFTKHGz512IbBZEtXulf4mtAFBkkw==",
       "type": "package",
-      "path": "microsoft.testplatform.objectmodel/15.7.0-preview-20180320-02",
+      "path": "microsoft.testplatform.objectmodel/15.7.0",
       "files": [
         "lib/net451/Microsoft.TestPlatform.CoreUtilities.dll",
         "lib/net451/Microsoft.TestPlatform.PlatformAbstractions.dll",
@@ -2341,14 +2341,14 @@
         "lib/netstandard1.5/zh-Hans/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
         "lib/netstandard1.5/zh-Hant/Microsoft.TestPlatform.CoreUtilities.resources.dll",
         "lib/netstandard1.5/zh-Hant/Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll",
-        "microsoft.testplatform.objectmodel.15.7.0-preview-20180320-02.nupkg.sha512",
+        "microsoft.testplatform.objectmodel.15.7.0.nupkg.sha512",
         "microsoft.testplatform.objectmodel.nuspec"
       ]
     },
-    "Microsoft.TestPlatform.TestHost/15.7.0-preview-20180320-02": {
-      "sha512": "CDEXrPvMQ1mqXPcKJNMGWWuUnxUQA5v+h6VR2QiaLEi4/ZvLdbdWYoUgdVBBeGgIivApJX5jnyCvzqB5zvzVgg==",
+    "Microsoft.TestPlatform.TestHost/15.7.0": {
+      "sha512": "fXlYkUe81TqUMGyy9TReA2fBq57PQLFyQ16AfXymPFdFtifMa1zZaNFQZgniQ/AxwsJHNHvOJxp2DkEvKUNvWg==",
       "type": "package",
-      "path": "microsoft.testplatform.testhost/15.7.0-preview-20180320-02",
+      "path": "microsoft.testplatform.testhost/15.7.0",
       "files": [
         "ThirdPartyNotices.txt",
         "build/uap10.0/Microsoft.TestPlatform.TestHost.props",
@@ -2485,7 +2485,7 @@
         "lib/uap10.0/Microsoft.TestPlatform.Utilities.dll",
         "lib/uap10.0/Microsoft.VisualStudio.TestPlatform.Common.dll",
         "lib/uap10.0/testhost.dll",
-        "microsoft.testplatform.testhost.15.7.0-preview-20180320-02.nupkg.sha512",
+        "microsoft.testplatform.testhost.15.7.0.nupkg.sha512",
         "microsoft.testplatform.testhost.nuspec"
       ]
     },
@@ -6072,7 +6072,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "CoreCompat.System.ComponentModel.DataAnnotations >= 4.2.3-r7",
-      "Microsoft.NET.Test.Sdk >= 15.7.0-preview-20180320-02",
+      "Microsoft.NET.Test.Sdk >= 15.7.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "NUnit.Runners >= 3.8.0",
       "NUnit3TestAdapter >= 3.10.0",
@@ -6084,7 +6084,6 @@
   },
   "packageFolders": {
     "C:\\Users\\NinJask\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -6097,13 +6096,11 @@
       "outputPath": "D:\\Development\\Git\\Tools.NET-Core\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\NinJask\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -6137,7 +6134,7 @@
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
-            "version": "[15.7.0-preview-20180320-02, )"
+            "version": "[15.7.0, )"
           },
           "Microsoft.NETCore.App": {
             "target": "Package",

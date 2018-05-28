@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Tools.Exceptions;
 using Tools.Extensions.Validation;
@@ -21,6 +22,28 @@ namespace Tools.Extensions.Conversion
         public static T ChangeType<T>(this object o)
         {
             return (T)Convert.ChangeType(o, typeof(T));
+        }
+
+        public static T Create<T>(this object source)
+        {
+            //TODO: Needs unit test
+            T target = Activator.CreateInstance<T>();
+
+            var sourceProps = source.GetType().GetProperties();
+            var targetProps = target.GetType().GetProperties();
+
+            foreach(PropertyInfo srcProp in sourceProps)
+            {
+                var targetProp = targetProps.SingleOrDefault(p => p.Name == srcProp.Name);
+                var srcValue = srcProp.GetValue(source);
+
+                if(targetProp != null && srcValue != null)
+                {
+                    targetProp.SetValue(target, srcValue);
+                }
+            }
+
+            return target;
         }
 
         /// <summary>

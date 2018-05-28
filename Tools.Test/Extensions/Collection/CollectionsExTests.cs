@@ -339,7 +339,6 @@ namespace Tools.Test.Extensions
         }
 
         [Test]
-        //[TestCase()]
         public void Page_Strings_PagesWithIEnumerableOverload()
         {
             string[] words = Helper.GeStringArray(100);
