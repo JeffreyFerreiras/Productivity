@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
+//NOTE TO SELF - Prefix trees don't need generic implementations... it defeats their purpose..
 
 namespace Tools.DataStructures
 {
@@ -28,7 +31,7 @@ namespace Tools.DataStructures
             _root = new Node(string.Empty);
         }
 
-        public PrefixTree(IEnumerable<string> dictionary)
+        public PrefixTree(IEnumerable<string> dictionary): this()
         {
             foreach(string word in dictionary.Distinct())
             {

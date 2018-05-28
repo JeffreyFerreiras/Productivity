@@ -3,16 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Tools</AssemblyName>
-    <PackageId>UnitTestTools</PackageId>
+    <PackageId>Tools.NET-Standard</PackageId>
     <!--<NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>-->
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Jeffrey E. Ferreiras</Authors>
+    <PackageProjectUrl>https://github.com/BotJeff/Tools.NET-Core</PackageProjectUrl>
+    <Description>This Toolkit was created to aid in general functionality that is not business logic. This toolkit is created to be performant and take the place of common functionality that cannot be used in performance critical paths such as regex. Additionally many convinience extension methods are included.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreCompat.System.ComponentModel.DataAnnotations" Version="4.2.3-r7" />
+    <None Remove="publish_nuget.cmd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
