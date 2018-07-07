@@ -13,7 +13,7 @@ namespace Tools.Attributes
         {
             string dir = value as string;
 
-            if(dir.IsNullOrWhiteSpace())
+            if (dir.IsNullOrWhiteSpace())
             {
                 return false;
             }

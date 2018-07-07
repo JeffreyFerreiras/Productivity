@@ -30,7 +30,7 @@ namespace Tools.RandomGenerator
 
         public static char Next()
         {
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
                 return (char)s_random.Next(0, 128);
             }
@@ -38,11 +38,11 @@ namespace Tools.RandomGenerator
 
         public static char NextAlphabet()
         {
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
                 char result = (char)(s_random.Next(0, 26) + 'a');
 
-                if(s_random.Next(0, 2) == 1)
+                if (s_random.Next(0, 2) == 1)
                     result = char.ToUpper(result);
 
                 return result;
@@ -51,7 +51,7 @@ namespace Tools.RandomGenerator
 
         public static char NextNumber()
         {
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
                 char result = (char)s_random.Next(48, 58);
 
@@ -61,7 +61,7 @@ namespace Tools.RandomGenerator
 
         public static char NextSpecialCharacter()
         {
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
                 int index = s_random.Next(0, s_specialChars.Count);
 

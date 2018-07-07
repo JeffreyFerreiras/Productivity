@@ -34,7 +34,7 @@ namespace Tools.DataStructures
 
         public void Add(T value)
         {
-            if(Root == null)
+            if (Root == null)
             {
                 Root = new TreeNode<T>(value);
             }
@@ -48,7 +48,7 @@ namespace Tools.DataStructures
 
         public int Height()
         {
-            if(this.Root == null)
+            if (this.Root == null)
                 return 0;
 
             return this.Root.Height();
@@ -56,7 +56,7 @@ namespace Tools.DataStructures
 
         public int LeafCount()
         {
-            if(this.Root == null)
+            if (this.Root == null)
                 return 0;
 
             return this.Root.LeafCount();
@@ -64,7 +64,7 @@ namespace Tools.DataStructures
 
         public TreeNode<T> Find(T value)
         {
-            if(this.Root != null)
+            if (this.Root != null)
             {
                 return this.Root.Find(value);
             }
@@ -92,7 +92,7 @@ namespace Tools.DataStructures
         {
             TreeNode<T> node = this.Root.Find(value);
 
-            if(node != null)
+            if (node != null)
             {
                 node.IsDeleted = true;
             }
@@ -116,12 +116,12 @@ namespace Tools.DataStructures
         {
             TreeNode<T> node = this.Root.Find(value);
 
-            if(node == null)
+            if (node == null)
             {
                 return; //if node not found get out now.
             }
 
-            if(this.Root == node)
+            if (this.Root == node)
             {
                 /* Find leaf with lowest value on the right sub tree
                  * then assign it as the new root */
@@ -134,7 +134,7 @@ namespace Tools.DataStructures
 
                 minRightNodeParent.LeftChild = null;
 
-                if(minRightNodeRightChild != null)
+                if (minRightNodeRightChild != null)
                 {
                     this.Root.Add(minRightNodeRightChild);
                 }
@@ -145,7 +145,7 @@ namespace Tools.DataStructures
 
                 //Remove the appropriate leaf reference from the parent.
 
-                if(parent.LeftChild == node)
+                if (parent.LeftChild == node)
                 {
                     parent.LeftChild = null;
                 }
@@ -164,7 +164,7 @@ namespace Tools.DataStructures
 
         public void TraverseInOrder(Action<TreeNode<T>> action)
         {
-            if(this.Root == null) return;
+            if (this.Root == null) return;
 
             this.Root.LeftChild?.TraverseInOrder(action);
 
@@ -175,7 +175,7 @@ namespace Tools.DataStructures
 
         public void TraversePreOrder(Action<TreeNode<T>> action)
         {
-            if(this.Root == null) return;
+            if (this.Root == null) return;
 
             action(this.Root);
 
@@ -185,7 +185,7 @@ namespace Tools.DataStructures
 
         public void TraversePostOrder(Action<TreeNode<T>> action)
         {
-            if(this.Root == null) return;
+            if (this.Root == null) return;
 
             this.Root.LeftChild?.TraversePostOrder(action);
             this.Root.RightChild?.TraversePostOrder(action);
@@ -212,7 +212,7 @@ namespace Tools.DataStructures
 
             this.CopyTo(values, 0);
 
-            foreach(T value in values)
+            foreach (T value in values)
             {
                 yield return value;
             }

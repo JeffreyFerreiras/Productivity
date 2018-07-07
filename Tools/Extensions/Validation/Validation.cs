@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,9 +16,32 @@ namespace Tools.Extensions.Validation
 
         public static bool IsNullOrEmpty(this string s) => string.IsNullOrEmpty(s);
 
+        /// <summary>
+        ///  Indicates whether URL is well-formed
+        ///  and is not required to be further escaped.
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns>A System.Boolean value that is true if the string was well-formed; else false.</returns>
+        public static bool IsValidUrl(this string url)
+        {
+            try
+            {
+                return new Uri(url)?.IsWellFormedOriginalString() ?? false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Confirms if a given object is a number.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static bool IsNumber(this object value)
         {
-            if(value is string || value is char) return value.ToString().IsValidNumber();
+            if (value is string || value is char) return value.ToString().IsValidNumber();
 
             return value is sbyte
                 || value is byte
@@ -34,21 +56,26 @@ namespace Tools.Extensions.Validation
                 || value is decimal;
         }
 
+        /// <summary>
+        /// Confirms if a given string is a number.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static bool IsValidNumber(this string num)
         {
-            if(string.IsNullOrWhiteSpace(num))
+            if (string.IsNullOrWhiteSpace(num))
             {
                 return false;
             }
 
-            if(num[0] == '-')
+            if (num[0] == '-')
             {
                 num = num.Substring(1);
             }
 
-            foreach(var c in num)
+            foreach (var c in num)
             {
-                if(c >= 48 && c <= 57) continue;
+                if (c >= 48 && c <= 57) continue;
 
                 return false;
             }
@@ -56,16 +83,22 @@ namespace Tools.Extensions.Validation
             return true;
         }
 
+        /// <summary>
+        /// Validates all properties
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static bool HasValidProperties<T>(this T value)
         {
-            if(value == null)
+            if (value == null)
             {
                 return false;
             }
 
-            foreach(var m in value.GetType().GetTypeInfo().GetProperties())
+            foreach (var m in value.GetType().GetTypeInfo().GetProperties())
             {
-                if(!m.GetValue(value).IsValid())
+                if (!m.GetValue(value).IsValid())
                 {
                     return false;
                 }
@@ -74,22 +107,28 @@ namespace Tools.Extensions.Validation
             return true;
         }
 
+        /// <summary>
+        /// Checks a value for null, negative numbers, empty strings, count of a collection not zero and not DBNull
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static bool IsValid<T>(this T value)
         {
-            if(value == null) return false;
-            if(value.IsNumber()) return Convert.ToInt32(value) > -1;
-            if(value is string) return !string.IsNullOrWhiteSpace(value.ToString());
-            if(value is IEnumerable<object> col) return col.Any();
-            if(value is DBNull) return false;
+            if (value == null) return false;
+            if (value.IsNumber()) return Convert.ToInt32(value) > -1;
+            if (value is string) return !string.IsNullOrWhiteSpace(value.ToString());
+            if (value is IEnumerable<object> col) return col.Any();
+            if (value is DBNull) return false;
 
             return true;
         }
 
         public static bool HasOnlyLetters(this string letters)
         {
-            for(int i = 0; i < letters.Length; i++)
+            for (int i = 0; i < letters.Length; i++)
             {
-                if(!char.IsLetter(letters, i))
+                if (!char.IsLetter(letters, i))
                 {
                     return false;
                 }
@@ -100,10 +139,10 @@ namespace Tools.Extensions.Validation
 
         public static bool HasCharType(this string pw, Predicate<char> predicate, int count = 1)
         {
-            foreach(char letter in pw)
+            foreach (char letter in pw)
             {
-                if(predicate(letter)) count--;
-                if(count <= 0) return true;
+                if (predicate(letter)) count--;
+                if (count <= 0) return true;
             }
 
             return false;
@@ -145,7 +184,7 @@ namespace Tools.Extensions.Validation
         /// <returns></returns>
         public static bool EqualsIgnoreCase(this string source, string target)
         {
-            if(source == null) return false;
+            if (source == null) return false;
 
             bool areEqual = source.Equals(target, StringComparison.OrdinalIgnoreCase);
 
@@ -173,9 +212,9 @@ namespace Tools.Extensions.Validation
         {
             Guard.AssertArgs(source != null, "Collection is null");
 
-            for(int i = 1; i < source.Count(); i++)
+            for (int i = 1; i < source.Count(); i++)
             {
-                if(comparer.Compare(source.ElementAt(i - 1), source.ElementAt(i)) > 0)
+                if (comparer.Compare(source.ElementAt(i - 1), source.ElementAt(i)) > 0)
                 {
                     return false;
                 }

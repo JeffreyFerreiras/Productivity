@@ -21,7 +21,7 @@ namespace Tools
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             Stack<DirectoryInfo> stack = new Stack<DirectoryInfo>();
 
-            while(dirInfo != null)
+            while (dirInfo != null)
             {
                 stack.Push(dirInfo);
                 dirInfo = dirInfo?.Parent;
@@ -69,7 +69,7 @@ namespace Tools
 
             string[] files = Directory.GetFiles(path, pattern);
 
-            foreach(string file in files)
+            foreach (string file in files)
             {
                 yield return new FileInfo(file);
             }
@@ -86,7 +86,7 @@ namespace Tools
 
             string[] files = GetFiles(path, pattern);
 
-            foreach(var f in files)
+            foreach (var f in files)
             {
                 File.Delete(f);
             }
@@ -104,9 +104,9 @@ namespace Tools
 
             var fileInfos = Directory.EnumerateFiles(path).Select(f => new FileInfo(f));
 
-            foreach(var fi in fileInfos)
+            foreach (var fi in fileInfos)
             {
-                if(predicate(fi))
+                if (predicate(fi))
                 {
                     fi.Delete();
                 }

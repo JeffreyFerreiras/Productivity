@@ -30,9 +30,9 @@ namespace Tools.Extensions.Text
 
             Guard.Assert<IndexOutOfRangeException>(sb.Length <= length, OutOfBoundsMessage);
 
-            for(int i = startIndex; i < length; i++)
+            for (int i = startIndex; i < length; i++)
             {
-                if(value == sb[i]) return i;
+                if (value == sb[i]) return i;
             }
 
             return -1;
@@ -56,7 +56,7 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
             Guard.AssertArgs(phrase != null, nameof(phrase));
 
-            if(phrase.Length > 0)
+            if (phrase.Length > 0)
             {
                 int length = startIndex + count;
                 CheckBounds(sb, startIndex, count, length);
@@ -69,11 +69,11 @@ namespace Tools.Extensions.Text
 
         private static int GetIndexOf(StringBuilder sb, string phrase, int startIndex, int length)
         {
-            for(int i = startIndex; i < length; i++)
+            for (int i = startIndex; i < length; i++)
             {
-                if(sb[i] != phrase[0]) continue;
+                if (sb[i] != phrase[0]) continue;
 
-                if(IsIndexOfMatch(sb, phrase, ref i))
+                if (IsIndexOfMatch(sb, phrase, ref i))
                 {
                     return i;
                 }
@@ -86,9 +86,9 @@ namespace Tools.Extensions.Text
         {
             bool isMatch = true;
 
-            for(int j = 1; j < phrase.Length; j++)
+            for (int j = 1; j < phrase.Length; j++)
             {
-                if(phrase[j] != sb[index + j])
+                if (phrase[j] != sb[index + j])
                 {
                     isMatch = false;
                     index += j;
@@ -123,11 +123,11 @@ namespace Tools.Extensions.Text
 
             var anyOfSet = new HashSet<char>(anyOf);
 
-            for(int i = startIndex; i < length; i++)
+            for (int i = startIndex; i < length; i++)
             {
                 char value = sb[i];
 
-                if(anyOfSet.Contains(value))
+                if (anyOfSet.Contains(value))
                 {
                     return i;
                 }
@@ -157,9 +157,9 @@ namespace Tools.Extensions.Text
 
             CheckBounds(sb, startIndex, count, startPos + 1);
 
-            for(int i = startPos; i >= startIndex; i--)
+            for (int i = startPos; i >= startIndex; i--)
             {
-                if(sb[i] == value) return i;
+                if (sb[i] == value) return i;
             }
 
             return -1;
@@ -183,7 +183,7 @@ namespace Tools.Extensions.Text
             Guard.AssertArgs(sb != null, "StringBuilder is null");
             Guard.AssertArgs(phrase != null, nameof(phrase));
 
-            if(phrase.Length > 0)
+            if (phrase.Length > 0)
             {
                 int startPos = startIndex + count;
 
@@ -197,11 +197,11 @@ namespace Tools.Extensions.Text
 
         private static int GetLastIndexOf(StringBuilder sb, string phrase, int startIndex, int startPos)
         {
-            for(int i = startPos; i >= startIndex; i--)
+            for (int i = startPos; i >= startIndex; i--)
             {
-                if(sb[i] != phrase[phrase.Length - 1]) continue;
+                if (sb[i] != phrase[phrase.Length - 1]) continue;
 
-                if(IsLastIndexOfMatch(sb, phrase, ref i))
+                if (IsLastIndexOfMatch(sb, phrase, ref i))
                 {
                     return i;
                 }
@@ -214,9 +214,9 @@ namespace Tools.Extensions.Text
         {
             bool isMatch = true;
 
-            for(int j = phrase.Length - 2; j >= 0; j--)
+            for (int j = phrase.Length - 2; j >= 0; j--)
             {
-                if(sb[--index] != phrase[j])
+                if (sb[--index] != phrase[j])
                 {
                     isMatch = false;
                     break;
@@ -247,9 +247,9 @@ namespace Tools.Extensions.Text
             CheckBounds(sb, startIndex, count, startPos + 1);
             HashSet<char> anyOfSet = new HashSet<char>(anyOf); //128 chars max
 
-            for(int i = startPos; i >= startIndex; i--)
+            for (int i = startPos; i >= startIndex; i--)
             {
-                if(anyOfSet.Contains(sb[i])) return i;
+                if (anyOfSet.Contains(sb[i])) return i;
             }
 
             return -1;

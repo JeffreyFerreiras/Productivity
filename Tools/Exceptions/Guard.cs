@@ -9,7 +9,7 @@ namespace Tools.Exceptions
     {
         public static void Assert<TException>(bool assert, string message) where TException : Exception
         {
-            if(!assert)
+            if (!assert)
             {
                 throw (TException)Activator.CreateInstance(typeof(TException), message);
             }
@@ -17,7 +17,7 @@ namespace Tools.Exceptions
 
         public static void AssertArgs(bool assert, string message)
         {
-            if(!assert)
+            if (!assert)
             {
                 Assert<ArgumentException>(assert, $"Invlaid argument: {message}");
             }
@@ -25,7 +25,7 @@ namespace Tools.Exceptions
 
         public static void AssertOperation(bool assert, string message)
         {
-            if(!assert)
+            if (!assert)
             {
                 throw new InvalidOperationException($"Invalid operation: {message}");
             }

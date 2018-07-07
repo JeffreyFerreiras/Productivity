@@ -23,7 +23,7 @@ namespace Tools
             Guard.AssertArgs(model.IsValid(), nameof(model));
             Guard.AssertOperation(model.GetType() != typeof(string), "Cannot serialize type string");
 
-            using(var writer = new System.IO.StringWriter())
+            using (var writer = new System.IO.StringWriter())
             {
                 XmlSerializer ser = BuildXmlSerializer(model);
 
@@ -54,13 +54,13 @@ namespace Tools
         {
             var types = new List<Type>();
 
-            foreach(PropertyInfo prop in model.GetType().GetProperties())
+            foreach (PropertyInfo prop in model.GetType().GetProperties())
             {
-                if(!prop.CanRead) continue;
+                if (!prop.CanRead) continue;
 
                 object value = prop.GetValue(model);
 
-                if(value is ICollection)
+                if (value is ICollection)
                 {
                     types.Add(prop.PropertyType);
                 }
@@ -81,8 +81,8 @@ namespace Tools
         {
             Guard.AssertArgs(xml.IsValid(), "null or empty XML string");
 
-            using(var stringReader = new System.IO.StringReader(xml))
-            using(var xmlReader = XmlReader.Create(stringReader))
+            using (var stringReader = new System.IO.StringReader(xml))
+            using (var xmlReader = XmlReader.Create(stringReader))
             {
                 XmlRootAttribute attr = typeof(T)
                     .GetTypeInfo()
@@ -90,7 +90,7 @@ namespace Tools
 
                 XmlSerializer ser;
 
-                if(attr == null)
+                if (attr == null)
                 {
                     var xRoot = new XmlRootAttribute
                     {

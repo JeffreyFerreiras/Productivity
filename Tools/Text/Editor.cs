@@ -24,7 +24,7 @@ namespace Tools.Text
         /// <returns></returns>
         public static string Mask(string text, int count)
         {
-            if(text == null || count >= text.Trim().Length || count <= 0) return text;
+            if (text == null || count >= text.Trim().Length || count <= 0) return text;
 
             string mask = new string('*', text.Length - count);
             string last = text.Substring((text.Length) - count);
@@ -48,11 +48,11 @@ namespace Tools.Text
 
             int startIndex = text.IndexOf(tagName);
 
-            if(startIndex > -1)
+            if (startIndex > -1)
             {
                 int endIndex = text.IndexOf(@"/>", startIndex);
 
-                if(endIndex == -1)
+                if (endIndex == -1)
                 {
                     endIndex = text.IndexOf(closingTag, startIndex);
                 }
@@ -75,7 +75,7 @@ namespace Tools.Text
         {
             int? index = text?.IndexOf(phrase);
 
-            if(index > -1)
+            if (index > -1)
             {
                 StringBuilder sb = new StringBuilder(text);
 
@@ -100,7 +100,7 @@ namespace Tools.Text
                 return text;
             }
 
-            foreach(string phrase in phrases)
+            foreach (string phrase in phrases)
             {
                 text = Strip(text, phrase);
             }
@@ -118,7 +118,7 @@ namespace Tools.Text
         {
             int? index = text?.IndexOf(c);
 
-            if(index > -1)
+            if (index > -1)
             {
                 text = text.Remove((int)index, 1);
 
@@ -136,7 +136,7 @@ namespace Tools.Text
         /// <returns></returns>
         public static string Strip(string text, params char[] characters)
         {
-            foreach(char c in characters)
+            foreach (char c in characters)
             {
                 text = Strip(text, c);
             }

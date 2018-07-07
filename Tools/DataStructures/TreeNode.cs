@@ -41,7 +41,7 @@ namespace Tools.DataStructures
 
         internal TreeNode<T> AddSorted(T[] data, int low, int high)
         {
-            if(low <= high)
+            if (low <= high)
             {
                 int mid = (low + high) / 2;
 
@@ -63,20 +63,20 @@ namespace Tools.DataStructures
 
         internal void Add(TreeNode<T> node)
         {
-            if(node == null) return;
+            if (node == null) return;
 
             node.Parent = this;
 
-            if(node > this)
+            if (node > this)
             {
-                if(this.RightChild == null)
+                if (this.RightChild == null)
                     this.RightChild = node;
                 else
                     this.RightChild.Add(node);
             }
-            else if(node < this)
+            else if (node < this)
             {
-                if(this.LeftChild == null)
+                if (this.LeftChild == null)
                     this.LeftChild = node;
                 else
                     this.LeftChild.Add(node);
@@ -89,15 +89,15 @@ namespace Tools.DataStructures
         {
             int balance = GetBalance();
 
-            if(balance <= -tension)
+            if (balance <= -tension)
             {
-                if(this.LeftChild == null)
+                if (this.LeftChild == null)
                 {
-                    if(this.RightChild.LeftChild != null)
+                    if (this.RightChild.LeftChild != null)
                     {
                         RotateRightLeft();
                     }
-                    else if(this.RightChild.RightChild != null)
+                    else if (this.RightChild.RightChild != null)
                     {
                         RotateRight();
                     }
@@ -107,15 +107,15 @@ namespace Tools.DataStructures
                     RotateRight();
                 }
             }
-            else if(balance >= tension)
+            else if (balance >= tension)
             {
-                if(this.RightChild == null)
+                if (this.RightChild == null)
                 {
-                    if(this.LeftChild.RightChild != null)
+                    if (this.LeftChild.RightChild != null)
                     {
                         RotateLeftRight();
                     }
-                    else if(this.LeftChild.LeftChild != null)
+                    else if (this.LeftChild.LeftChild != null)
                     {
                         RotateLeft();
                     }
@@ -148,7 +148,7 @@ namespace Tools.DataStructures
             rightTemp.RightChild = rightTemp.LeftChild;
             rightTemp.LeftChild = this.LeftChild;
 
-            if(rightTemp.LeftChild != null)
+            if (rightTemp.LeftChild != null)
             {
                 rightTemp.LeftChild.Parent = rightTemp;
             }
@@ -170,7 +170,7 @@ namespace Tools.DataStructures
             leftTemp.LeftChild = leftTemp.RightChild;
             leftTemp.RightChild = this.RightChild;
 
-            if(leftTemp.RightChild != null)
+            if (leftTemp.RightChild != null)
             {
                 leftTemp.RightChild.Parent = leftTemp;
             }
@@ -212,14 +212,14 @@ namespace Tools.DataStructures
 
         internal TreeNode<T> Find(TreeNode<T> value)
         {
-            if(this == value && !this.IsDeleted) return this;
+            if (this == value && !this.IsDeleted) return this;
 
-            if(this > value && this.LeftChild != null)
+            if (this > value && this.LeftChild != null)
             {
                 return this.LeftChild.Find(value);
             }
 
-            if(this < value && this.RightChild != null)
+            if (this < value && this.RightChild != null)
             {
                 return this.RightChild.Find(value);
             }
@@ -229,7 +229,7 @@ namespace Tools.DataStructures
 
         internal TreeNode<T> Min()
         {
-            if(this.LeftChild == null)
+            if (this.LeftChild == null)
             {
                 return this;
             }
@@ -239,7 +239,7 @@ namespace Tools.DataStructures
 
         internal TreeNode<T> Max()
         {
-            if(this.RightChild == null)
+            if (this.RightChild == null)
             {
                 return this;
             }
@@ -249,7 +249,7 @@ namespace Tools.DataStructures
 
         internal int Height() //Note: Cannot memoize height because it's always changing...
         {
-            if(this.IsLeafNode) return 1;
+            if (this.IsLeafNode) return 1;
 
             int left = this.LeftChild != null ? this.LeftChild.Height() : 0;
             int right = this.RightChild != null ? this.RightChild.Height() : 0;
@@ -312,9 +312,9 @@ namespace Tools.DataStructures
 
         public static bool operator ==(TreeNode<T> left, TreeNode<T> right)
         {
-            if(left is null && right is null)
+            if (left is null && right is null)
                 return true;
-            if(left is null || right is null)
+            if (left is null || right is null)
                 return false;
 
             return left.Value.CompareTo(right.Value) == 0; ;
@@ -322,9 +322,9 @@ namespace Tools.DataStructures
 
         public static bool operator !=(TreeNode<T> left, TreeNode<T> right)
         {
-            if(left == null && right == null)
+            if (left == null && right == null)
                 return false;
-            if(left == null || right == null)
+            if (left == null || right == null)
                 return true;
 
             return left.Value.CompareTo(right.Value) != 0; ;
@@ -332,7 +332,7 @@ namespace Tools.DataStructures
 
         public override bool Equals(object other)
         {
-            if(other is TreeNode<T> node)
+            if (other is TreeNode<T> node)
             {
                 return this.Value.Equals(node.Value);
             }

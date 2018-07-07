@@ -23,12 +23,12 @@ namespace Tools.RandomGenerator
 
             string result = string.Empty;
 
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
-                for(int i = 0; i < length; i++)
+                for (int i = 0; i < length; i++)
                 {
                     char c = (char)(s_random.Next(0, 26) + 97); //use ASCII to get lower case letters.
-                    if(s_random.Next(0, 2) == 1) c = char.ToUpper(c);
+                    if (s_random.Next(0, 2) == 1) c = char.ToUpper(c);
 
                     result += c;
                 }
@@ -48,9 +48,9 @@ namespace Tools.RandomGenerator
 
             string result = string.Empty;
 
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
-                for(int i = 0; i < length; i++)
+                for (int i = 0; i < length; i++)
                 {
                     result += (char)(s_random.Next(0, 10) + 48);
                 }
@@ -72,9 +72,9 @@ namespace Tools.RandomGenerator
 
             string password = string.Empty;
 
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
-                for(int i = 0; i < length; i++)
+                for (int i = 0; i < length; i++)
                 {
                     char c = (char)(s_random.Next(0, 94) + 33);
                     password += c;
@@ -95,9 +95,9 @@ namespace Tools.RandomGenerator
 
             string randomized = string.Empty;
 
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
-                for(int i = 0; i < length; i++)
+                for (int i = 0; i < length; i++)
                 {
                     char c = (char)s_random.Next(0, 128);
                     randomized += c;

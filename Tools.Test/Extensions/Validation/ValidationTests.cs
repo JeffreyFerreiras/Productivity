@@ -9,6 +9,22 @@ namespace Tools.Test.Extensions
     public class ValidationTests
     {
         [Test]
+        public void IsValidUrl_ValidUrl_ReturnsTrue()
+        {
+            string url = "https://www.google.com/search?q=what";
+
+            Assert.IsTrue(url.IsValidUrl());
+        }
+
+        [Test]
+        [TestCase("")]
+        [TestCase(null)]
+        public void IsValidUrl_InvalidData_ReturnsTrue(string url)
+        {
+            Assert.IsFalse(url.IsValidUrl());
+        }
+
+        [Test]
         public void ValidateProperties_Test()
         {
             object o = new

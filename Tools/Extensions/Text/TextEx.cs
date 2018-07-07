@@ -6,7 +6,7 @@
 
         public static string Tab(this string text, int count)
         {
-            if(text == null || count <= 0)
+            if (text == null || count <= 0)
                 return text;
 
             string tabs = new string('\t', count);

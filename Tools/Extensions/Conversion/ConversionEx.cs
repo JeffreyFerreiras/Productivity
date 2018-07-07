@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Tools.Exceptions;
@@ -24,6 +25,19 @@ namespace Tools.Extensions.Conversion
             return (T)Convert.ChangeType(source, typeof(T));
         }
 
+        public static T PopulateWith<T>(this T source, T target)
+        {
+            foreach (PropertyInfo prop in target.GetType().GetProperties())
+            {
+                if (prop.CanRead && prop.CanWrite)
+                {
+                    prop.SetValue(source, prop.GetValue(target));
+                }
+            }
+
+            return source;
+        }
+
         public static T Create<T>(this object source)
         {
             //TODO: Needs unit test
@@ -32,12 +46,12 @@ namespace Tools.Extensions.Conversion
             var sourceProps = source.GetType().GetProperties();
             var targetProps = target.GetType().GetProperties();
 
-            foreach(PropertyInfo srcProp in sourceProps)
+            foreach (PropertyInfo srcProp in sourceProps)
             {
                 var targetProp = targetProps.SingleOrDefault(p => p.Name == srcProp.Name);
                 var srcValue = srcProp.GetValue(source);
 
-                if(targetProp != null && srcValue != null)
+                if (targetProp != null && srcValue != null)
                 {
                     targetProp.SetValue(target, srcValue);
                 }

@@ -79,7 +79,7 @@ namespace Tools.Extensions.Collection
 
             T[] sequence = new T[length];
 
-            for(int i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
                 T elem = source.ElementAt(i + startIndex);
 
@@ -119,7 +119,7 @@ namespace Tools.Extensions.Collection
 
             int index = 0;
 
-            lock(s_syncLock)
+            lock (s_syncLock)
             {
                 index = s_random.Next(0, source.Count() - 1);
             }
@@ -138,7 +138,6 @@ namespace Tools.Extensions.Collection
             return dict.FromDictionary<T>(Activator.CreateInstance<T>());
         }
 
-
         /// <summary>
         /// Assigns matching key value pairs to object properties.
         /// </summary>
@@ -153,14 +152,14 @@ namespace Tools.Extensions.Collection
             Guard.AssertArgs(model.IsValid(), $"{typeof(T).Name} not valid");
             Guard.AssertArgs(dict.IsValid(), "Dictionary not valid");
 
-            foreach(var prop in model.GetType().GetProperties())
+            foreach (var prop in model.GetType().GetProperties())
             {
-                if(!prop.CanWrite) continue;
-                if(!dict.ContainsKey(prop.Name)) continue;
+                if (!prop.CanWrite) continue;
+                if (!dict.ContainsKey(prop.Name)) continue;
 
                 object val = dict[prop.Name];
 
-                if(val.GetType() != prop.PropertyType && !(val is ICollection))
+                if (val.GetType() != prop.PropertyType && !(val is ICollection))
                 {
                     val = Convert.ChangeType(val, prop.PropertyType);
                 }
@@ -184,7 +183,7 @@ namespace Tools.Extensions.Collection
             Guard.AssertArgs(key.IsValid(), $"{nameof(key)} not valid");
             Guard.AssertArgs(dict.IsValid(), "Dictionary not valid");
 
-            if(dict.ContainsKey(key))
+            if (dict.ContainsKey(key))
             {
                 return dict[key];
             }
@@ -193,7 +192,7 @@ namespace Tools.Extensions.Collection
         }
 
         /// <summary>
-        /// Provides paging for IEnumerable sources.       
+        /// Provides paging for IEnumerable sources.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source">data source</param>
@@ -217,12 +216,12 @@ namespace Tools.Extensions.Collection
                 Guard.AssertArgs(source.IsValid(), "Invalid source");
                 Guard.AssertArgs(pageNum > 0, $"{nameof(pageNum)} must be > 0");
                 Guard.Assert<ArgumentOutOfRangeException>(count > 0 && count < source.Count(), $"{nameof(count)} is out of range");
-                Guard.Assert<ArgumentOutOfRangeException>(product >= 0 && product <= source.Count(), $"product of {nameof(pageNum)} and {nameof(count)} is out of range");               
+                Guard.Assert<ArgumentOutOfRangeException>(product >= 0 && product <= source.Count(), $"product of {nameof(pageNum)} and {nameof(count)} is out of range");
             }
         }
 
         /// <summary>
-        /// Provides paging for IQueriable sources.       
+        /// Provides paging for IQueriable sources.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source">data source</param>
@@ -235,7 +234,5 @@ namespace Tools.Extensions.Collection
             //AssertPageArgs(source, pageNum)
             //return source.Skip(pageNum * count).Take(count);
         }
-
-
     }
 }

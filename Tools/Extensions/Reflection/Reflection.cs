@@ -18,11 +18,11 @@ namespace Tools.Extensions.Reflection
         /// <returns></returns>
         public static bool HasCollection<T>(this T source)
         {
-            foreach(PropertyInfo propInfo in source.GetType().GetProperties())
+            foreach (PropertyInfo propInfo in source.GetType().GetProperties())
             {
                 Type type = propInfo.PropertyType.GetTypeInfo().GetInterface(nameof(ICollection));
 
-                if(type != null)
+                if (type != null)
                 {
                     return true;
                 }
@@ -45,7 +45,7 @@ namespace Tools.Extensions.Reflection
 
             PropertyInfo propInfo = source.GetType().GetTypeInfo().GetProperty(property);
 
-            if(propInfo != null && propInfo.CanRead)
+            if (propInfo != null && propInfo.CanRead)
             {
                 dynamic val = propInfo.GetValue(source);
 
@@ -63,14 +63,14 @@ namespace Tools.Extensions.Reflection
         /// <returns></returns>
         public static T DeepClone<T>(this T source) where T : class
         {
-            if(source == null) return null;
+            if (source == null) return null;
 
-            if(source is ICollection<object> col)
+            if (source is ICollection<object> col)
             {
                 return (T)DeepCloneCollection(col);
             }
 
-            if(source is IDictionary dict)
+            if (source is IDictionary dict)
             {
                 return (T)DeepCloneDictionary(dict);
             }
@@ -85,10 +85,10 @@ namespace Tools.Extensions.Reflection
             MethodInfo memberwiseClone = typeof(object).GetMethod("MemberwiseClone", BindingFlags.NonPublic | BindingFlags.Instance);
             T clone = (T)memberwiseClone.Invoke(source, null);
 
-            foreach(FieldInfo field in source.GetType().GetRuntimeFields())
+            foreach (FieldInfo field in source.GetType().GetRuntimeFields())
             {
-                if(field.IsStatic) continue;
-                if(field.FieldType.GetTypeInfo().IsPrimitive) continue;
+                if (field.IsStatic) continue;
+                if (field.FieldType.GetTypeInfo().IsPrimitive) continue;
 
                 object sourceValue = field.GetValue(source);
                 field.SetValue(clone, DeepClone(sourceValue));
@@ -101,7 +101,7 @@ namespace Tools.Extensions.Reflection
         {
             object[] arr = (object[])Activator.CreateInstance(source.GetType(), new object[] { source.Count });
 
-            for(int i = 0; i < source.Count; i++)
+            for (int i = 0; i < source.Count; i++)
             {
                 object original = source.ElementAt(i);
                 object clone = DeepClone(original);
@@ -116,7 +116,7 @@ namespace Tools.Extensions.Reflection
         {
             IDictionary clone = (IDictionary)Activator.CreateInstance(dict.GetType());
 
-            foreach(object pair in dict)
+            foreach (object pair in dict)
             {
                 object key = pair.GetValueOf("Key");
                 object original = pair.GetValueOf("Value");

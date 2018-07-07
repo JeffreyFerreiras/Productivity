@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 //NOTE TO SELF - Prefix trees don't need generic implementations... it defeats their purpose..
@@ -31,9 +30,9 @@ namespace Tools.DataStructures
             _root = new Node(string.Empty);
         }
 
-        public PrefixTree(IEnumerable<string> dictionary): this()
+        public PrefixTree(IEnumerable<string> dictionary) : this()
         {
-            foreach(string word in dictionary.Distinct())
+            foreach (string word in dictionary.Distinct())
             {
                 this.Add(word);
             }
@@ -46,7 +45,7 @@ namespace Tools.DataStructures
 
         private void AddRecursive(Node node, string remaining, string current)
         {
-            if(string.IsNullOrWhiteSpace(remaining))
+            if (string.IsNullOrWhiteSpace(remaining))
             {
                 return;
             }
@@ -54,12 +53,12 @@ namespace Tools.DataStructures
             char prefix = remaining[0];
             remaining = remaining.Substring(1);
 
-            if(!node.Children.ContainsKey(prefix))
+            if (!node.Children.ContainsKey(prefix))
             {
                 node.Children.Add(prefix, new Node(current + prefix));
             }
 
-            if(remaining.Length == 0)
+            if (remaining.Length == 0)
             {
                 node.Children[prefix].IsWord = true;
             }
@@ -73,9 +72,9 @@ namespace Tools.DataStructures
         {
             Node node = _root;
 
-            foreach(char search in searchString)
+            foreach (char search in searchString)
             {
-                if(!node.Children.ContainsKey(search))
+                if (!node.Children.ContainsKey(search))
                 {
                     return new string[0];
                 }
@@ -88,14 +87,14 @@ namespace Tools.DataStructures
 
         private IEnumerable<string> FindAllWords(Node node)
         {
-            if(node.IsWord)
+            if (node.IsWord)
             {
                 yield return node.Word;
             }
 
-            foreach(var childPair in node.Children)
+            foreach (var childPair in node.Children)
             {
-                foreach(string result in FindAllWords(childPair.Value))
+                foreach (string result in FindAllWords(childPair.Value))
                 {
                     yield return result;
                 };
