@@ -6,6 +6,11 @@ namespace Tools.Extensions.IO
 {
     public static class IOEx
     {
+        /// <summary>
+        /// Shorthand for creating a directory
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static bool CreateDirectory(this string path)
         {
             if (!path.IsValidPath()) return false;
@@ -39,6 +44,11 @@ namespace Tools.Extensions.IO
             return directoryInfo != null;
         }
 
+        /// <summary>
+        /// Short-hand for validating file name.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static bool IsValidFileName(this string fileName)
         {
             /*
@@ -59,6 +69,18 @@ namespace Tools.Extensions.IO
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Check if file exists in the current directory.
+        /// </summary>
+        /// <param name="fileNamePattern"></param>
+        /// <returns></returns>
+        public static bool InCurrentDirectory(this string fileNamePattern)
+        {
+            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), fileNamePattern);
+
+            return files.Length > 0;
         }
     }
 }
