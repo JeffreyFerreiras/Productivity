@@ -6492,11 +6492,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NinJask\\Google Drive\\Projects\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "projectUniqueName": "D:\\Development\\Local\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "projectName": "Tools.Test",
-      "projectPath": "C:\\Users\\NinJask\\Google Drive\\Projects\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
+      "projectPath": "D:\\Development\\Local\\Tools.NET-Core\\Tools.Test\\Tools.Test.csproj",
       "packagesPath": "C:\\Users\\NinJask\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NinJask\\Google Drive\\Projects\\Tools.NET-Core\\Tools.Test\\obj\\",
+      "outputPath": "D:\\Development\\Local\\Tools.NET-Core\\Tools.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6516,8 +6516,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\NinJask\\Google Drive\\Projects\\Tools.NET-Core\\Tools\\Tools.csproj": {
-              "projectPath": "C:\\Users\\NinJask\\Google Drive\\Projects\\Tools.NET-Core\\Tools\\Tools.csproj"
+            "D:\\Development\\Local\\Tools.NET-Core\\Tools\\Tools.csproj": {
+              "projectPath": "D:\\Development\\Local\\Tools.NET-Core\\Tools\\Tools.csproj"
             }
           }
         }

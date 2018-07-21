@@ -18,13 +18,13 @@ namespace Tools.Configuration
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             Configuration = builder.Build();
+
+            AssertConfigFileExists();
         }
 
         public static string GetConnectionString(string connStringName)
         {
-            AssertConfigFileExists();
-
-            string connString = ConfigurationManager.ConnectionStrings[connStringName]?.ConnectionString; ;
+            string connString = ConfigurationManager.ConnectionStrings[connStringName]?.ConnectionString;
 
             if(Configuration != null && string.IsNullOrWhiteSpace(connString))
             {
