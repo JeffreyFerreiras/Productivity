@@ -5,7 +5,7 @@
     <AssemblyName>Tools</AssemblyName>
     <PackageId>Tools.NET-Standard</PackageId>
     <!--<NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>-->
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <!--<PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>-->
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -13,7 +13,9 @@
     <Authors>Jeffrey E. Ferreiras</Authors>
     <PackageProjectUrl>https://github.com/BotJeff/Tools.NET-Core</PackageProjectUrl>
     <Description>This Toolkit was created to aid in general functionality that is not business logic. This toolkit is created to be performant and take the place of common functionality that cannot be used in performance critical paths such as regex. Additionally many convinience extension methods are included.</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />

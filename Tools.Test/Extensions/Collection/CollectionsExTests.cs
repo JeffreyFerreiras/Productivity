@@ -349,6 +349,14 @@ namespace Tools.Test.Extensions
             }
         }
 
+        [Test]
+        public void Page_CountHigherThanCollection_PagesWithIEnumerableOverload()
+        {
+            string[] words = Helper.GeStringArray(100);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => words.Page(1, 101));
+        }
+
         private static void AssertPageResult(IEnumerable<string> result)
         {
             if(result.Count() > 0)

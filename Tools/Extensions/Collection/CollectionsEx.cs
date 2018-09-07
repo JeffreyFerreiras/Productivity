@@ -203,36 +203,15 @@ namespace Tools.Extensions.Collection
         /// <returns></returns>
         public static IEnumerable<T> Page<T>(this IEnumerable<T> source, int pageNum, int count)
         {
-            int product = pageNum * count;
+            if(source == null) { return source; }
 
-            Assert();
+            pageNum -= 1; //offset page number
+            int skipCount = pageNum * count;
 
-            var result = source.Skip(product).Take(count);
+            Guard.AssertArgs(pageNum >= 0, $"{nameof(pageNum)} must be >= 0");
+            Guard.Assert<ArgumentOutOfRangeException>(skipCount >= 0, $"product of {nameof(pageNum)} and {nameof(count)} is out of range");
 
-            return result.IsValid() ? result : Enumerable.Empty<T>();
-
-            void Assert()
-            {
-                Guard.AssertArgs(source.IsValid(), "Invalid source");
-                Guard.AssertArgs(pageNum > 0, $"{nameof(pageNum)} must be > 0");
-                Guard.Assert<ArgumentOutOfRangeException>(count > 0 && count < source.Count(), $"{nameof(count)} is out of range");
-                Guard.Assert<ArgumentOutOfRangeException>(product >= 0 && product <= source.Count(), $"product of {nameof(pageNum)} and {nameof(count)} is out of range");
-            }
-        }
-
-        /// <summary>
-        /// Provides paging for IQueriable sources.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source">data source</param>
-        /// <param name="pageNum">page number</param>
-        /// <param name="count">number of items per page</param>
-        /// <returns></returns>
-        public static IQueryable<T> Page<T>(this IQueryable<T> source, int pageNum, int count)
-        {
-            throw new NotImplementedException();
-            //AssertPageArgs(source, pageNum)
-            //return source.Skip(pageNum * count).Take(count);
+            return source.Skip(skipCount).Take(count);
         }
     }
 }

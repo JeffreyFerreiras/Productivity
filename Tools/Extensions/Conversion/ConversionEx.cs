@@ -40,7 +40,6 @@ namespace Tools.Extensions.Conversion
 
         public static T Create<T>(this object source)
         {
-            //TODO: Needs unit test
             T target = Activator.CreateInstance<T>();
 
             var sourceProps = source.GetType().GetProperties();
