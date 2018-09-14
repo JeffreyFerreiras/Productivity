@@ -73,31 +73,28 @@ namespace Tools.Extensions.Text
             {
                 if (sb[i] != phrase[0]) continue;
 
-                if (IsIndexOfMatch(sb, phrase, ref i))
+                if (IsIndexOfMatch(ref i))
                 {
                     return i;
                 }
             }
 
             return -1;
-        }
 
-        private static bool IsIndexOfMatch(StringBuilder sb, string phrase, ref int index)
-        {
-            bool isMatch = true;
-
-            for (int j = 1; j < phrase.Length; j++)
+            bool IsIndexOfMatch(ref int index)
             {
-                if (phrase[j] != sb[index + j])
+                for(int j = 1; j < phrase.Length; j++)
                 {
-                    isMatch = false;
-                    index += j;
+                    if(phrase[j] != sb[index + j])
+                    {
+                        index += j;
 
-                    break;
+                        return false;
+                    }
                 }
-            }
 
-            return isMatch;
+                return true;
+            }
         }
 
         public static int IndexOfAny(this StringBuilder sb, char[] anyOf)
