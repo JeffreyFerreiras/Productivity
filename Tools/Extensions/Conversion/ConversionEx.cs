@@ -113,18 +113,25 @@ namespace Tools.Extensions.Conversion
         }
 
         /// <summary>
-        /// Converts an object to standard Date Time format MM/dd/yyyy h:mm:ss tt
+        /// Converts source to standard Date Time format MM/dd/yyyy h:mm:ss tt
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static string ToDateTimeString(this object source)
+        public static string ToDateTimeString(this DateTime source)
         {
             string format = "MM/dd/yyyy h:mm:ss tt";
 
-            if (source is DateTime) return ((DateTime)source).ToString(format);
-            if (source is string && source.IsValid()) return Convert.ToDateTime(source).ToString(format);
+            return source.ToString(format);
+        }
 
-            return string.Empty;
+        /// <summary>
+        /// Converts source to standard Date Time format MM/dd/yyyy h:mm:ss tt
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string ToDateTimeString(this string source)
+        {
+            return Convert.ToDateTime(source).ToDateTimeString();
         }
 
         /// <summary>
@@ -135,7 +142,7 @@ namespace Tools.Extensions.Conversion
         /// <param name="model"></param>
         /// <returns></returns>
 
-        public static IDictionary<string, dynamic> ToDictionary<T>(this T model)
+        public static IDictionary<string, object> ToDictionary<T>(this T model)
         {
             Guard.AssertArgs(model.IsValid(), $"{typeof(T).Name} not valid");
 
@@ -145,7 +152,7 @@ namespace Tools.Extensions.Conversion
             {
                 if (!p.CanRead) continue;
 
-                dynamic val = p.GetValue(model);
+                object val = p.GetValue(model);
 
                 dict[p.Name] = val;
             }

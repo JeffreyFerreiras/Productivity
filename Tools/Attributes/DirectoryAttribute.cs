@@ -18,7 +18,7 @@ namespace Tools.Attributes
                 return false;
             }
 
-            string root = Path.GetPathRoot(dir);
+            //string root = Path.GetPathRoot(dir);
             var set = new HashSet<char>(dir);
 
             return !Path.GetInvalidPathChars().Any(c => set.Contains(c));
