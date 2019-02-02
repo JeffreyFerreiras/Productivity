@@ -236,5 +236,19 @@ namespace Tools.Test.Extensions
             int[] arr = null;
             Assert.Throws<ArgumentException>(() => arr.IsSortedAsc());
         }
+
+        [Test]
+        public void IsValidABA_ValidABA_ReturnsTrue()
+        {
+            string aba = "021000021";
+            Assert.IsTrue(aba.IsValidABA());
+        }
+
+        [Test]
+        public void IsValidCreditCard_ValidCard_ReturnsTrue()
+        {
+            string ccnum = "5454545454545454";
+            Assert.IsTrue(ccnum.IsValidCard());
+        }
     }
 }

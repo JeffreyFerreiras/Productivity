@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Tools.Exceptions;
 using Tools.Extensions.Validation;
+using Tools.Text;
 
 namespace Tools.Extensions.Conversion
 {
@@ -20,44 +21,149 @@ namespace Tools.Extensions.Conversion
 
         public static decimal ToDecimal(this object source) => Convert.ToDecimal(source);
 
-        public static T ChangeType<T>(this object source)
+        public static char ToChar(this string source) => Convert.ToChar(source);
+
+        /// <summary>
+        /// Change type to specified type (handles enums and string currency types)
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static object ChangeType(object value, Type type)
         {
-            return (T)Convert.ChangeType(source, typeof(T));
+            if (type.IsEnum)
+            {
+                return value.ToEnum(type);
+            }
+
+            //it's money
+            if (value is string stringValue && (type == typeof(decimal) || type == typeof(double) || type == typeof(float)))
+            {
+                stringValue = stringValue.CleanCurrency();
+
+                if (stringValue.IsValidNumber())
+                {
+                    return Convert.ChangeType(stringValue, type);
+                }
+            }
+
+            return Convert.ChangeType(value, type);
         }
 
-        public static T PopulateWith<T>(this T source, T target)
+        /// <summary>
+        /// Clean currency value leaving just the numbers
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string CleanCurrency(this string source)
         {
-            foreach (PropertyInfo prop in target.GetType().GetProperties())
+            if (source == null)
             {
-                if (prop.CanRead && prop.CanWrite)
+                return "N/A";
+            }
+
+            return System.Text.RegularExpressions.Regex.Replace(source, @"[^0-9\.]+", "N/A");
+        }
+
+        /// <summary>
+        /// Converts string or integer representation of enum to given type of enum
+        /// </summary>
+        /// <param name="source">
+        /// </param>
+        /// <param name="enumType">
+        /// </param>
+        /// <param name="ignoreCase">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static dynamic ToEnum(this object source, Type enumType, bool ignoreCase = true)
+        {
+            Array enumValues = enumType.GetTypeInfo().GetEnumValues();
+
+            foreach (object enumValue in enumValues)
+            {
+                if (source is string text
+                   && (ignoreCase && text.EqualsIgnoreCase(enumValue.ToString()) || text.Equals(enumValue.ToString())))
                 {
-                    prop.SetValue(source, prop.GetValue(target));
+                    return enumValue;
+                }
+                else if (source.GetType().IsPrimitive)
+                {
+                    if ((int)source == (int)enumValue)
+                    {
+                        return enumValue;
+                    }
+                }
+            }
+
+            throw new InvalidOperationException(
+                "conversion failed because the input did" +
+                " not match any enum values");
+        }
+
+        /// <summary>
+        /// Populate an object with anoher object's properties that share the same property name.
+        /// </summary>
+        /// <typeparam name="TSource">
+        /// </typeparam>
+        /// <typeparam name="TWith">
+        /// </typeparam>
+        /// <param name="source">
+        /// </param>
+        /// <param name="target">
+        /// </param>
+        /// <param name="changeType">
+        /// If set to true the method will attempt to change the type if the property names match but
+        /// the types don't
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static TSource PopulateWith<TSource, TWith>(this TSource source, TWith target, bool changeType = true)
+        {
+            PropertyInfo[] sourceProps = source.GetType().GetProperties();
+            PropertyInfo[] withProps = target.GetType().GetProperties();
+
+            foreach (PropertyInfo srcProp in sourceProps)
+            {
+                PropertyInfo withProp = withProps.SingleOrDefault(p => p.Name == srcProp.Name);
+
+                object withValue = withProp?.GetValue(target);
+
+                if (withValue != null && srcProp.CanWrite)
+                {
+                    if (withProp.PropertyType == srcProp.PropertyType)
+                    {
+                        srcProp.SetValue(source, withValue);
+                    }
+                    else if (changeType)
+                    {
+                        try
+                        {   //High risk section, wrapping in try so entire conversion will not fail.
+                            srcProp.SetValue(source, ChangeType(withValue, srcProp.PropertyType));
+                        }
+                        catch { }
+                    }
                 }
             }
 
             return source;
         }
 
+        /// <summary>
+        /// Create an object by using the matching properties in source
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static T Create<T>(this object source)
         {
+            Guard.AssertArgs(source.IsValid(), "source is not valid");
+
             T target = Activator.CreateInstance<T>();
 
-            var sourceProps = source.GetType().GetProperties();
-            var targetProps = target.GetType().GetProperties();
-
-            foreach (PropertyInfo srcProp in sourceProps)
-            {
-                var targetProp = targetProps.SingleOrDefault(p => p.Name == srcProp.Name);
-                var srcValue = srcProp.GetValue(source);
-
-                if (targetProp != null && srcValue != null)
-                {
-                    targetProp.SetValue(target, srcValue);
-                }
-            }
-
-            return target;
+            return target.PopulateWith(source);
         }
+
 
         /// <summary>
         /// Converts string representation of enum to given type of enum
@@ -229,6 +335,57 @@ namespace Tools.Extensions.Conversion
             source = source?.ToUpper();
 
             return source == "Y" || source == "YES" || source == "T" || source == "TRUE";
+        }
+
+        public static string ToCurrency(this string source)
+        {
+            if (!source.IsValid())
+            {
+                return source;
+            }
+
+            RegionInfo regionInfo = new RegionInfo(System.Threading.Thread.CurrentThread.CurrentUICulture.LCID);
+
+            source = Editor.Strip(source, regionInfo.ISOCurrencySymbol.ToChar(), ',');
+
+            Guard.AssertArgs(source.IsValid(), "invalid amount string format");
+
+            if (decimal.TryParse(source, out decimal result))
+            {
+                result.ToCurrency();
+            }
+
+            return source;
+        }
+
+        public static string ToCurrency(this double source)
+        {
+            return source.ToDecimal().ToCurrency();
+        }
+
+        public static string ToCurrency(this decimal source)
+        {
+            return source.ToString("C");
+        }
+
+        public static string ToYN(this bool source)
+        {
+            if (source)
+            {
+                return "Y";
+            }
+
+            return "N";
+        }
+
+        public static string NullToBlank(this object source)
+        {
+            if (source is string src)
+            {
+                return src;
+            }
+
+            return string.Empty;
         }
     }
 }

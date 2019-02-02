@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Tools.Exceptions;
+using Tools.Extensions.Conversion;
 
 namespace Tools.Extensions.Validation
 {
@@ -59,8 +60,10 @@ namespace Tools.Extensions.Validation
         /// <summary>
         /// Confirms if a given string is a number.
         /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
+        /// <param name="num">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static bool IsValidNumber(this string num)
         {
             if (string.IsNullOrWhiteSpace(num))
@@ -73,9 +76,26 @@ namespace Tools.Extensions.Validation
                 num = num.Substring(1);
             }
 
-            foreach (var c in num)
+            int periodCount = 0;
+
+            foreach (char c in num)
             {
-                if (c >= 48 && c <= 57) continue;
+                if (c == '.')
+                {
+                    periodCount++;
+
+                    if (periodCount > 1)
+                    {
+                        return false;
+                    }
+
+                    continue;
+                }
+
+                if (c >= 48 && c <= 57)
+                {
+                    continue;
+                }
 
                 return false;
             }
@@ -221,6 +241,85 @@ namespace Tools.Extensions.Validation
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Determines if an ABA number is valid by applying the MOD 10 algorithm
+        /// </summary>
+        /// <param name="aba">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static bool IsValidABA(this string aba)
+        {
+            if (string.IsNullOrWhiteSpace(aba) || aba.Length != 9)
+            {
+                return false;
+            }
+
+            const string ABADigitWeightString = "37137137";
+            bool isValidStart = aba[0] != '4' && aba[0] != '5'; //Can't start with 4 or 5
+
+            if (isValidStart && aba != "000000000" && aba.IsNumber())
+            {
+                int checkSum = 0;
+
+                for (int i = 1; i < 8; i++)
+                {
+                    checkSum += aba[i].ToString().ToInt32() * ABADigitWeightString[i].ToString().ToInt32();
+                }
+
+                int remainder = checkSum % 10;
+                int checkDigit = remainder == 0 ? 0 : 10 - remainder;
+
+                if (checkDigit == aba[8].ToString().ToInt32())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determines if a card number is valid by applying the Credit/Debit card MOD 10 Algorithm
+        /// </summary>
+        /// <param name="ccnum">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static bool IsValidCard(this string ccnum)
+        {
+            ccnum = Tools.Text.Editor.Strip(ccnum, '-');
+
+            if (string.IsNullOrWhiteSpace(ccnum) && !ccnum.IsNumber())
+            {
+                return false;
+            }
+
+            int total = 0, multiplier = 0;
+
+            for (int i = ccnum.Length - 1; i >= 1; i -= 2)
+            {
+                total += ccnum[i].ToString().ToInt32();
+
+                multiplier = ccnum[i - 1].ToString().ToInt32() * 2;
+                multiplier = multiplier >= 10 ? multiplier / 10 : multiplier;
+
+                total += multiplier;
+
+                if (multiplier / 10 > 0)
+                {
+                    total += multiplier >= 10 ? multiplier % 10 : multiplier;
+                }
+            }
+
+            if (ccnum.Length % 2 != 0)
+            {
+                total += ccnum[0].ToString().ToInt32();
+            }
+
+            return total % 10 == 0;
         }
     }
 }
