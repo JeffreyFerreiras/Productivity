@@ -1906,7 +1906,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "Tools.NET-Standard/1.0.2": {
+      "Tools.NET-Standard/1.0.3": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -6540,7 +6540,7 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "Tools.NET-Standard/1.0.2": {
+    "Tools.NET-Standard/1.0.3": {
       "type": "project",
       "path": "../Tools/Tools.csproj",
       "msbuildProject": "../Tools/Tools.csproj"
@@ -6555,7 +6555,7 @@
       "NUnit3TestAdapter >= 3.10.0",
       "System.Dynamic.Runtime >= 4.3.0",
       "System.Runtime.Serialization.Xml >= 4.3.0",
-      "Tools.NET-Standard >= 1.0.2",
+      "Tools.NET-Standard >= 1.0.3",
       "nunit >= 3.10.1"
     ]
   },
