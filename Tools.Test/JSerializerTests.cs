@@ -12,13 +12,7 @@ namespace Tools.Test
         [Test]
         public void ToJson_ValidInput_ReturnsJson()
         {
-            object item = new
-            {
-                Name = "Jeffrey",
-                Last = "Ferreiras",
-                Age =  28
-            };
-
+            var item = Helper.GetSimpleFake();
 
             string result = JSerializer.ToJson(item);
 

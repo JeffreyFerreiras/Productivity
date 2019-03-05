@@ -122,5 +122,16 @@ namespace Tools.Test.Extensions.Conversion
         {
             Assert.Throws<InvalidOperationException>(() => 112233.ToDateTime());
         }
+
+        [Test]
+        public void CleanCurrency_MultipleScenarios_ReturnsOnlyNumbers()
+        {
+            Assert.AreEqual("1523.00", "$1,523.00".CleanCurrency());
+            Assert.AreEqual("1523.00", "1,523.00".CleanCurrency());
+            Assert.AreEqual("1523", "$1,523".CleanCurrency());
+            Assert.AreEqual("100454523.99", "$100,454,523.99".CleanCurrency());
+            Assert.AreEqual("100454523.99", "!100,454,523.99".CleanCurrency());
+            Assert.AreEqual("N/A", "".CleanCurrency());
+        }
     }
 }

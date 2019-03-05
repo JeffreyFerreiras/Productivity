@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Tools.Exceptions;
 using Tools.Extensions.Validation;
 using Tools.Text;
@@ -36,8 +37,10 @@ namespace Tools.Extensions.Conversion
                 return value.ToEnum(type);
             }
 
-            //it's money
-            if (value is string stringValue && (type == typeof(decimal) || type == typeof(double) || type == typeof(float)))
+            if (value is string stringValue && 
+                (  type == typeof(decimal) 
+                || type == typeof(double) 
+                || type == typeof(float)))
             {
                 stringValue = stringValue.CleanCurrency();
 
@@ -57,12 +60,12 @@ namespace Tools.Extensions.Conversion
         /// <returns></returns>
         public static string CleanCurrency(this string source)
         {
-            if (source == null)
+            if (string.IsNullOrEmpty(source))
             {
                 return "N/A";
             }
 
-            return System.Text.RegularExpressions.Regex.Replace(source, @"[^0-9\.]+", "N/A");
+            return Regex.Replace(source, @"[^0-9\.]+", "");
         }
 
         /// <summary>
@@ -87,7 +90,7 @@ namespace Tools.Extensions.Conversion
                 {
                     return enumValue;
                 }
-                else if (source.GetType().IsPrimitive)
+                else if (source.GetType().IsPrimitive || source is Enum)
                 {
                     if ((int)source == (int)enumValue)
                     {
