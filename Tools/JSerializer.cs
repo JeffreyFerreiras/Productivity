@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using Newtonsoft.Json;
+using Tools.Exceptions;
+using Tools.Extensions.Validation;
 
 namespace Tools
 {
@@ -16,19 +19,31 @@ namespace Tools
         /// <returns></returns>
         public static string ToJson<T>(T source)
         {
-            //Create a stream to serialize the object to
-            MemoryStream ms = new MemoryStream();
+            Guard.AssertArgs(source!=null, nameof(source));
+            
+            var ser = JsonSerializer.Create();
 
-            // Serializer the User object to the stream
-            var ser = new DataContractJsonSerializer(typeof(T));
+            using(var stringWriter = new StringWriter())
+            using (var writer = new JsonTextWriter(stringWriter))
+            {
+                ser.Serialize(writer, source);
+                writer.Flush();
 
-            ser.WriteObject(ms, source);
-           
-            byte[] json = ms.ToArray();
+                string json = stringWriter.ToString();
+                return json;
+            }
+        }
 
-            ms.Close();
+        public static T FromJson<T>(string json)
+        {
+            Guard.AssertArgs(json.IsValid(), nameof(json));
 
-            return Encoding.UTF8.GetString(json, 0, json.Length);
+            var ser = JsonSerializer.CreateDefault();
+
+            using (var reader = new JsonTextReader(new StringReader(json)))
+            {
+                return ser.Deserialize<T>(reader);
+            }
         }
     }
 }
